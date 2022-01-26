@@ -1,0 +1,448 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: 'DATA WAREHOUSE API'
+  license:
+    name: MIT
+host: api.datawarehouse.com
+basePath: /v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: users
+    description: users administration
+  - name: regions
+    description: regions administration
+  - name: companies
+    description: companies administration
+  - name: contacts
+    description: contacts administration
+paths:
+  /users:
+    get:
+      summary: List of all users
+      tags:
+        - users
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: array of users
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/Users'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create an user
+      tags:
+        - users
+      parameters:
+        - in: body
+          name: body
+          description: User Type Object
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Update an user
+      tags:
+        - users
+      parameters:
+        - in: body
+          name: body
+          description: User Type Object
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: delete an user
+      tags:
+        - users
+      parameters:
+        - name: userId
+          in: query
+          description: id of the user who want to be deleted
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: user deleted succesfully
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /regions:
+    get:
+      summary: List of all regions
+      tags:
+        - regions
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: array of regions
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/Regions'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: create a region
+      tags:
+        - regions
+      parameters:
+        - in: body
+          name: body
+          description: Region Type Object
+          required: true
+          schema:
+            $ref: '#/definitions/Region'
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Modify a Region
+      tags:
+        - regions
+      parameters:
+        - in: body
+          name: body
+          description: Region Type Object
+          required: true
+          schema:
+            $ref: '#/definitions/Region'
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete a Region
+      tags:
+        - regions
+      parameters:
+        - name: regionId
+          in: query
+          description: id of the region to delete
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Region was deleted succesfully
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /companies:
+    get:
+      summary: List of all companies
+      tags:
+        - companies
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: array of companies
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/Companies'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create company
+      tags:
+        - companies
+      parameters:
+        - in: body
+          name: body
+          description: Company Type Object
+          required: true
+          schema:
+            $ref: '#/definitions/Company'
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Modify a Company
+      tags:
+        - companies
+      parameters:
+        - in: body
+          name: body
+          description: Company Type Object
+          required: true
+          schema:
+            $ref: '#/definitions/Company'
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete Company
+      tags:
+        - companies
+      parameters:
+        - name: companyId
+          in: query
+          description: company to delete
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Company deleted Succesfully
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /contacts:
+    get:
+      summary: List of all contacts
+      tags:
+        - contacts
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: array of contacts
+          headers:
+            x-next:
+              type: string
+              description: A link to the next page of responses
+          schema:
+            $ref: '#/definitions/Contacts'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      summary: Create contact
+      tags:
+        - contacts
+      parameters:
+        - in: body
+          name: body
+          description: Contact Type Object
+          required: true
+          schema:
+            $ref: '#/definitions/Contact'
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      summary: Modify a Contact
+      tags:
+        - contacts
+      parameters:
+        - in: body
+          name: body
+          description: Contact Type Object
+          required: true
+          schema:
+            $ref: '#/definitions/Contact'
+      responses:
+        '201':
+          description: Null response
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      summary: Delete Contact
+      tags:
+        - contacts
+      parameters:
+        - name: contactId
+          in: query
+          description: contact to delete
+          required: true
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Contact deleted Succesfully
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  
+definitions:
+  User:
+    properties:
+      id:
+        type: number
+      name:
+        type: string
+      lastname:
+        type: string
+      email:
+        type: number
+      password:
+        type: string
+      rePassword:
+        type: string
+      profile:
+        type: string
+      role:
+        type: string
+  Users:
+    type: array
+    items:
+      $ref: '#/definitions/User'
+  City:
+    properties: 
+      id:
+        type: number
+      cityName:
+        type: string
+  Cities:
+    type: array
+    items:
+      $ref: '#/definitions/City'
+  Country:
+    type: array
+    items:
+      $ref: '#/definitions/Cities'
+    properties: 
+      id:
+        type: number
+      countryName:
+        type: string
+  Countries:
+    type: array
+    items:
+      $ref: '#/definitions/Country'
+  Region:
+    type: array
+    items:
+      $ref: '#/definitions/Countries'
+    properties:
+      id:
+        type: number
+      regionName:
+        type: string
+  Regions:
+    type: array
+    items:
+      $ref: '#/definitions/Region'
+  Company:
+    properties:
+      id:
+        type: number
+      companyName:
+        type: string
+      Country:
+        $ref: '#/definitions/Country'
+      City:
+        $ref: '#/definitions/City'
+      address:
+        type: string
+      email:
+        type: string
+      phoneNumber:
+        type: number
+  Companies:
+    type: array
+    items:
+      $ref : '#/definitions/Company'
+  Contact:
+    properties:
+      id:
+        type: number
+      name:
+        type: string
+      country/region:
+        type: string
+      company:
+        $ref: '#/definitions/Company'
+      contactChannel:
+        type: string
+      interest:
+        type: string
+  Contacts:
+    type: array
+    items:
+      $ref: '#/definitions/Contact'
+  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
