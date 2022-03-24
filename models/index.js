@@ -23,8 +23,8 @@ Channel.belongsTo(Contact, {
     foreignKey: "contactId"
 });
 
-Region.belongsTo(Contact, {
-    foreignKey: "contactId"
+Contact.belongsTo(Region, {
+    foreignKey: "regionId"
 });
 
 Country.belongsTo(Region, {
