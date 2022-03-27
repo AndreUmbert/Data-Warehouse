@@ -27,6 +27,7 @@ const {
     Rol,
     User,
     Contact,
+    UserTableHasContact,
 } = require("./models")
 
 //----------------------------------------------------
@@ -125,20 +126,21 @@ app.post("/signup", async (req, res) => {
     }
 });
 
-app.put("/user/changes/:profile", async (req, res) => {
-    const userProfile = req.params.profile;
-    const userId = req.body.id;
-    const userName = req.body.name;
-    const userlastName = req.body.lastname;
-    const userEmail = req.body.email;
-    const userPassword = req.body.password;
-    console.log(userProfile);
+app.put("/user/changes/:idUser", async (req, res) => {
+    const idUser = req.params.idUser;
+    const name = req.body.name;
+    const lastname = req.body.lastname;
+    const email = req.body.email;
+    const password = req.body.password;
+    const rePassword = req.body.rePassword;
+    const profile = req.body.profile;
+    console.log(idUser);
     try {
         const user = await db.query(
             //NUNCA PERO NUUUNCA usar variables dentro de las consultas de SQL
-            "UPDATE usertable SET id = :id, name = :name, lastname = :lastname, email = :email, password = :password WHERE profile = :profile",
+            "UPDATE usertable SET name = :name, lastname = :lastname, email = :email, password = :password, rePassword= :rePassword, profile= :profile WHERE id= :idUser",
             {
-                replacements: { profile: userProfile, id: userId, name: userName, lastname: userlastName, email: userEmail, password: userPassword }
+                replacements: { idUser: idUser, name: name, lastname: lastname, email: email, password: password, rePassword: rePassword, profile: profile }
             }
         );
         res.status(200).json(user)
@@ -149,13 +151,20 @@ app.put("/user/changes/:profile", async (req, res) => {
 });
 
 app.delete("/user/delete/:idUser", async (req, res) => {
-    const userId = req.params.idUser;
+    const idUser = req.params.idUser;
     console.log(req.params);
-    db.models.userTable.destroy({
+    db.models.userTableHasContact.destroy({
         where: {
-            id: userId,
+            userTableId: idUser,
         }
     })
+        .then(data => {
+            db.models.region.userTable.destroy({
+                where: {
+                    id: idUser,
+                }
+            })
+        })
         .then(record => {
             console.log(record);
             if (record >= 1) {
@@ -511,14 +520,13 @@ app.put("/contact/update/:contactId", async (req, res) => {
     const interest = req.body.interest;
     const preferences = req.body.position;
     const companyId = req.body.companyId;
-    const userTableId = req.body.userTableId;
     const regionId = req.body.regionId;
     console.log(req.body);
     try {
         const contact = await db.query(
-            "UPDATE contact SET name= :name, lastname= :lastname, position= :position, username= :username, email= :email, interest= :interest, preferences = :preferences, companyId = :companyId, userTableId = :userTableId, regionId= :regionId",
+            "UPDATE contact SET name= :name, lastname= :lastname, position= :position, username= :username, email= :email, interest= :interest, preferences = :preferences, companyId = :companyId, regionId= :regionId",
             {
-                replacements: { id: contactId, name: name, lastname: lastname, position: position, username: username, email: email, interest: interest, preferences: preferences, companyId: companyId, userTableId: userTableId, regionId: regionId }
+                replacements: { id: contactId, name: name, lastname: lastname, position: position, username: username, email: email, interest: interest, preferences: preferences, companyId: companyId, regionId: regionId }
             }
         );
         res.status(200).json(contact)
@@ -531,10 +539,10 @@ app.put("/contact/update/:contactId", async (req, res) => {
 app.post("/contact/create", async (req, res) => {
     try {
         const contact = await db.query(
-            "INSERT INTO contact (name, lastname, position, username, email, interest, preferences, companyId, userTableId, regionId) values (?,?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO contact (name, lastname, position, username, email, interest, preferences, companyId, regionId) values (?,?,?,?,?,?,?,?,?)",
             {
                 type: db.QueryTypes.INSERT,
-                replacements: [req.body.name, req.body.lastname, req.body.position, req.body.username, req.body.email, req.body.interest, req.body.preferences, req.body.companyId, req.body.userTableId, req.body.regionId]
+                replacements: [req.body.name, req.body.lastname, req.body.position, req.body.username, req.body.email, req.body.interest, req.body.preferences, req.body.companyId, req.body.regionId]
             }
         );
         res.status(200).json(contact);
@@ -546,11 +554,18 @@ app.post("/contact/create", async (req, res) => {
 
 app.delete("/contact/delete/:contactId", async (req, res) => {
     const contactId = req.params.contactId;
-    db.models.contact.destroy({
+    db.models.userTableHasContact.destroy({
         where: {
-            id: contactId,
+            contactId: contactId,
         }
     })
+        .then(data => {
+            db.models.region.contact.destroy({
+                where: {
+                    id: contactId,
+                }
+            })
+        })
         .then(record => {
             console.log(record);
             if (record >= 1) {
