@@ -27,7 +27,6 @@ const {
     Rol,
     User,
     Contact,
-    UserTableHasContact,
 } = require("./models")
 
 //----------------------------------------------------
@@ -106,9 +105,11 @@ app.post("/login", async (req, res) => {
             posibleUser
         }, JWT_SECRET, { expiresIn: '60m' })
 
-        res.json({ token });
+        res.json({ token, id: posibleUser.id });
     }
+    //Pushear id de usuario a localstorage para obtenerlo en el front y traer los contactos de este idusuario. (AXIOS)
 });
+
 
 app.post("/signup", async (req, res) => {
     try {
@@ -153,18 +154,11 @@ app.put("/user/changes/:idUser", async (req, res) => {
 app.delete("/user/delete/:idUser", async (req, res) => {
     const idUser = req.params.idUser;
     console.log(req.params);
-    db.models.userTableHasContact.destroy({
+    db.models.userTable.destroy({
         where: {
-            userTableId: idUser,
+            id: idUser,
         }
     })
-        .then(data => {
-            db.models.region.userTable.destroy({
-                where: {
-                    id: idUser,
-                }
-            })
-        })
         .then(record => {
             console.log(record);
             if (record >= 1) {
@@ -536,13 +530,14 @@ app.put("/contact/update/:contactId", async (req, res) => {
     };
 });
 
-app.post("/contact/create", async (req, res) => {
+app.post("/contact/create/:userTableId", async (req, res) => {
+    const userTableId = req.params.userTableId;
     try {
         const contact = await db.query(
-            "INSERT INTO contact (name, lastname, position, username, email, interest, preferences, companyId, regionId) values (?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO contact (name, lastname, position, username, email, interest, preferences, companyId, regionId, userTableId) values (?,?,?,?,?,?,?,?,?,?)",
             {
                 type: db.QueryTypes.INSERT,
-                replacements: [req.body.name, req.body.lastname, req.body.position, req.body.username, req.body.email, req.body.interest, req.body.preferences, req.body.companyId, req.body.regionId]
+                replacements: [req.body.name, req.body.lastname, req.body.position, req.body.username, req.body.email, req.body.interest, req.body.preferences, req.body.companyId, req.body.regionId, req.params.userTableId]
             }
         );
         res.status(200).json(contact);
@@ -554,18 +549,11 @@ app.post("/contact/create", async (req, res) => {
 
 app.delete("/contact/delete/:contactId", async (req, res) => {
     const contactId = req.params.contactId;
-    db.models.userTableHasContact.destroy({
+    db.models.contact.destroy({
         where: {
-            contactId: contactId,
+            id: contactId,
         }
     })
-        .then(data => {
-            db.models.region.contact.destroy({
-                where: {
-                    id: contactId,
-                }
-            })
-        })
         .then(record => {
             console.log(record);
             if (record >= 1) {
@@ -574,13 +562,34 @@ app.delete("/contact/delete/:contactId", async (req, res) => {
             else {
                 res.status(404).json({ message: "record not found" })
             }
-
+        })
+        .catch(function (error) {
+            res.status(500).json(error);
         })
         .catch(function (error) {
             res.status(500).json(error);
         });
+
 });
 
+app.get("/contact/dashbord/:userTableId", async (req, res) => {
+    try {
+        const contact = await db.query(
+            'SELECT t1.username, t1.interest, t2.name, t3.regionName FROM contact as t1 INNER JOIN company as t2 ON t1.companyId = t2.id INNER JOIN region as t3 ON t1.regionId = t3.id WHERE t1.userTableId = :id',
+            { type: db.QueryTypes.SELECT }
+        );
+        res.status(200).json(contact);
+    } catch (error) {
+        console.error(error.message);
+        response.status(500).json({ error: "Please try again in a few minutes" });
+    }
+})
+
+//----------------------------------------------------
+//5.6 USERTABLEHASCONTACTS:
+//----------------------------------------------------
+
+app.post("/userTableHasContact/create",)
 
 //----------------------------------------------------
 //6. PUT THE SERVER ON

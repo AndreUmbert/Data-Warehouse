@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data-Warehose Project</title>
 </head>
+
 <body>
     <header id="header">
-        <img id="projectLogo" src="" alt="">
+        <a href="./index.html"><img id="projectLogo" src="" alt=""></a>
         <div id="navBar">
             <ul id="navBarItems">
                 <li id="contactsButton">Contactos</li>
@@ -20,12 +22,60 @@
     </header>
     <section id="login">
         <h1 id="loginTitle">Bienvenido</h1>
-        <div id="userLogin"><p id="userLoginText">Usuario</p></div>
-        <div id="passwordLogin"><p id="passwordLoginText">Contraseña</p></div>
-        <div id="loginButton"><p id="loginButtonText">Ingresar</p></div>
+        <div id="loginUserInfo">
+            <form>
+                <label for="userLoginName"></label>
+                <input type="text" id="userLoginName" name="userLoginName" value="Nombre"><br>
+                <label for="userLoginPassword"></label>
+                <input type="text" id="userLoginPassword" name="userLoginPassword" value="Apellido"><br>
+                <input id="loginSubmitButton" type="submit" value="Ingresar">
+            </form>
+        </div>
+        <div id="loginButton">
+            <p id="loginButtonText">Ingresar</p>
+        </div>
     </section>
     <section id="signUp">
-
+        <h2 id="signUpTitle">Crear usuario</h2>
+        <div>
+            <form>
+                <label for="signUpUserName">Nombre</label>
+                <input type="text" id="signUpUserName" name="signUpUserName" value=""><br>
+                <label for="signUpUserLastname">Apellido</label>
+                <input type="text" id="signUpUserLastname" name="signUpUserLastname" value=""><br>
+                <label for="signUpUserEmail">Email</label>
+                <input type="text" name="signUpUserEmail" id="signUpUserPerfil" value=""><br>
+                <label for="signUpUserPerfil">Perfil</label>
+                <input type="text" name="signUpUserPerfil" id="signUpUserPerfil" value=""><br>
+                <label for="signUpUserPassword">Contraseña</label>
+                <input type="text" name="signUpUserPassword" id="signUpUserPassword" value=""><br>
+                <label for="signUpUserRePassword">Repetir contraseña</label>
+                <input type="text" name="signUpUserRePassword" id="signUpUserRePassword" value=""><br>
+                <input id="signUpSubmitButton" type="submit" value="Crear">
+            </form>
+        </div>
+    </section>
+    <section id="regionCity">
+        <div>
+            <p> Agregar región</p>
+        </div>
+    </section>
+    <section id="company">
+        <div>
+            <h3 id="companyTitle">Compañias</h3>
+            <div id="addCompanyButton">
+                <p id="addCompanyButtonText">Agregar</p>
+            </div>
+        </div>
+        <div id="companiesList">
+            <div id="companiesListTitles">
+                <p id="companyNameListTitle">Nombre</p>
+                <p id="companyCountryListTitle">País</p>
+                <p id="companyAddressListTitle">Dirección</p>
+                <p id="companyActionsListTitle">Acciones</p>
+            </div>
+        </div>
     </section>
 </body>
+
 </html>

@@ -6,7 +6,6 @@ const Region = require("./region");
 const Rol = require("./rol");
 const User = require("./user");
 const Contact = require("./contact");
-const UserTableHasContact = require("./usertableHasContat");
 
 User.belongsTo(Rol, {
     foreignKey: "rolId"
@@ -37,7 +36,7 @@ City.belongsTo(Country, {
 });
 
 User.belongsTo(Contact, {
-    through: UserTableHasContact
+    foreignKey: "contactId"
 });
 
 module.exports = {
@@ -49,5 +48,4 @@ module.exports = {
     Rol,
     User,
     Contact,
-    UserTableHasContact,
 };
