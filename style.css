@@ -1,0 +1,83 @@
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#header {
+  height: 3vw;
+  background-color: #5555d1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#header #projectLogo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1vw;
+  margin: 0vw 73vw 0 1vw;
+  height: 3vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#header #projectLogo #projectLogoText {
+  margin: 0;
+}
+
+#header #navBar {
+  display: block;
+}
+
+#header #navBar #navBarItems {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0;
+  padding: 0;
+  width: 21vw;
+  height: 2.5vw;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#header #navBar #navBarItems .listItem {
+  width: 5vw;
+}
+
+#header #navBar #navBarItems .listItem .navBarAnchors {
+  color: white;
+  font-size: 0.7vw;
+  text-decoration: none;
+}
+
+#header #navBar #navBarItems .listItem .liBorder {
+  width: 3vw;
+  height: 5px;
+  z-index: 1;
+}
+
+.navBarListItem:hover .navBarAnchors {
+  color: white;
+  font-weight: 800;
+}
+
+.navBarListItem:hover .liborder {
+  border-bottom: 1px solid white;
+  width: 5vw;
+  height: 1px;
+}
+/*# sourceMappingURL=style.css.map */

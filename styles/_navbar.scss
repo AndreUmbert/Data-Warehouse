@@ -1,0 +1,57 @@
+#header{
+    height: 3vw;
+    background-color: rgb(85, 85, 209);
+    display: flex;
+    #projectLogo{
+        display: flex;
+        color: white;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 1vw;
+        margin: 0vw 73vw 0 1vw;
+        height: 3vw;
+        justify-content: center;
+        align-items: center;
+        #projectLogoText{
+            margin: 0;
+        }
+    }
+    #navBar{
+        display: block;
+        #navBarItems{
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            margin: 0;
+            padding: 0;
+            width: 21vw;
+            height: 2.5vw;
+            align-items: center;
+            .listItem{
+                width: 5vw;
+                .navBarAnchors{
+                    color: white;
+                    font-size: 0.7vw;
+                    text-decoration: none;
+                }
+                .liBorder{
+                    width: 3vw;
+                    height: 5px;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+}
+
+.navBarListItem:hover{
+    .navBarAnchors{
+        color: rgba(255, 255, 255, 1);
+        font-weight: 800;
+    }
+    .liborder{
+        border-bottom: 1px solid white;
+        width: 5vw;
+        height: 1px;
+    }
+}
