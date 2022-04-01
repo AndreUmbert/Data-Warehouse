@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
+  background-image: url("/Data-Warehouse/assets/bodyBackgroundImage.webp");
 }
 
 #header {
@@ -56,6 +57,15 @@ body {
 
 #header #navBar #navBarItems .listItem {
   width: 5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #header #navBar #navBarItems .listItem .navBarAnchors {
@@ -66,18 +76,42 @@ body {
 
 #header #navBar #navBarItems .listItem .liBorder {
   width: 3vw;
-  height: 5px;
-  z-index: 1;
+  height: 1px;
+  position: absolute;
+  top: 2.9vw;
 }
 
-.navBarListItem:hover .navBarAnchors {
+.listItem:hover > .navBarAnchors {
   color: white;
   font-weight: 800;
 }
 
-.navBarListItem:hover .liborder {
-  border-bottom: 1px solid white;
-  width: 5vw;
-  height: 1px;
+.listItem:hover > .liBorder {
+  background-color: white;
+}
+
+#login {
+  margin-top: 5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 60%;
+  margin-left: 20%;
+  border: solid 1px black;
+}
+
+#login #loginTitle {
+  font-size: 5vw;
+  margin: 3vw 0 3vw 0;
 }
 /*# sourceMappingURL=style.css.map */

@@ -6,17 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data-Warehose Project Contacts Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css.css">
 </head>
 
 <body>
     <header id="header">
-        <a href="./index.html"><img id="projectLogo" src="" alt=""></a>
+        <a id="projectLogo" href="./index.html">
+            <p id="projectLogoText">CONNET</p>
+        </a>
         <div id="navBar">
-            <ul id="navBarItems">
-                <li id="contactsButton"><a href="./dashboard.html"> Contactos</a> </li>
-                <li id="usersButton"><a href="./signup.html"> Usuarios</a></li>
-                <li id="companiesButton"><a href="./company.html"> Compañias</a></li>
-                <li id="regionCityButton"><a href="./regionCity.html">Region/Ciudad</a></li>
+            <ul class="menu" id="navBarItems">
+                <li class="listItem" id="contactsButton"><a class="navBarAnchors" id="contactsButtonAnchor"
+                        href="./dashboard.html">Contactos</a>
+                    <div class="liBorder"></div>
+                </li>
+                <li class="listItem" id="usersButton"><a class="navBarAnchors" href="./signup.html"> Usuarios</a>
+                    <div class="liBorder"></div>
+                </li>
+
+                <li class="listItem" id="companiesButton"><a class="navBarAnchors" href="./company.html">Compañias</a>
+                    <div class="liBorder"></div>
+                </li>
+
+                <li class="listItem" id="regionCityButton"><a class="navBarAnchors"
+                        href="./regionCity.html">Region/Ciudad</a>
+                    <div class="liBorder"></div>
+                </li>
+
             </ul>
         </div>
     </header>
@@ -44,22 +64,23 @@
             </div>
         </div>
         <div id="contactsDashboard">
-           <input type="checkbox" id="contactsDashboardTitleCheckBox" value=""> <label for="contactDashboardTitleCheckBox"></label> 
-           <div id="contactsDashboardContactsTitleDiv">
+            <input type="checkbox" id="contactsDashboardTitleCheckBox" value=""> <label
+                for="contactDashboardTitleCheckBox"></label>
+            <div id="contactsDashboardContactsTitleDiv">
                 <p id="contactsDashboardContactsTitleText">Contactos</p>
                 <img id="contactsDashboardContactsOrderImg" src="" alt="">
-           </div>
-           <div id="contactsDashboardCountryRegionTitleDiv">
-            <p id="contactsDashboardCountryRegionTitleText">País/Region</p>
-            <img id="contactsDashboardCountryRegionOrderImg" src="" alt="">
+            </div>
+            <div id="contactsDashboardCountryRegionTitleDiv">
+                <p id="contactsDashboardCountryRegionTitleText">País/Region</p>
+                <img id="contactsDashboardCountryRegionOrderImg" src="" alt="">
             </div>
             <div id="contactsDashboardCompanyTitleDiv">
                 <p id="contactsDashboardCompanyTitleText">Compañia</p>
                 <img id="contactsDashboardCompanyOrderImg" src="" alt="">
-           </div>
-           <div id="contactsDashboardPositionTitleDiv">
-            <p id="contactsDashboardPositionTitleText">Cargo</p>
-            <img id="contactsDashboardPositionsOrderImg" src="" alt="">
+            </div>
+            <div id="contactsDashboardPositionTitleDiv">
+                <p id="contactsDashboardPositionTitleText">Cargo</p>
+                <img id="contactsDashboardPositionsOrderImg" src="" alt="">
             </div>
             <div id="contactsDashboardChannelTitleDiv">
                 <p id="contactsDashboardChannelTitleText">Canal preferido</p>

@@ -1,0 +1,14 @@
+#login {
+  margin-top: 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  margin-left: 20%;
+  border: solid 1px black;
+  #loginTitle {
+    font-size: 5vw;
+    margin: 3vw 0 3vw 0;
+  }
+}
