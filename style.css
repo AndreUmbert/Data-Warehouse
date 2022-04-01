@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
-  background-image: url("/Data-Warehouse/assets/bodyBackgroundImage.webp");
+  background-image: url("/assets/bodyBackgroundImage.webp");
 }
 
 #header {
@@ -108,10 +108,19 @@ body {
   width: 60%;
   margin-left: 20%;
   border: solid 1px black;
+  background-color: #5555d1;
 }
 
 #login #loginTitle {
   font-size: 5vw;
   margin: 3vw 0 3vw 0;
+}
+
+#login #loginUserInfo #loginForm #userLoginName {
+  width: 40vw;
+  height: 5vw;
+  font-size: 3vw;
+  text-align: center;
+  font-weight: 100;
 }
 /*# sourceMappingURL=style.css.map */
