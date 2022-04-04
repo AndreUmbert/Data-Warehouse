@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./css.css">
 </head>
 
 <body>
@@ -42,22 +41,26 @@
     </header>
     <section id="signUp">
         <h2 id="signUpTitle">Crear usuario</h2>
-        <div>
-            <form>
-                <label for="signUpUserName">Nombre</label>
-                <input type="text" id="signUpUserName" name="signUpUserName" value=""><br>
-                <label for="signUpUserLastname">Apellido</label>
-                <input type="text" id="signUpUserLastname" name="signUpUserLastname" value=""><br>
-                <label for="signUpUserEmail">Email</label>
-                <input type="text" name="signUpUserEmail" id="signUpUserPerfil" value=""><br>
-                <label for="signUpUserPerfil">Perfil</label>
-                <input type="text" name="signUpUserPerfil" id="signUpUserPerfil" value=""><br>
-                <label for="signUpUserPassword">Contraseña</label>
-                <input type="text" name="signUpUserPassword" id="signUpUserPassword" value=""><br>
-                <label for="signUpUserRePassword">Repetir contraseña</label>
-                <input type="text" name="signUpUserRePassword" id="signUpUserRePassword" value=""><br>
+        <div id="formSignUpConteiner">
+            <form id="formDivFormSignUpContainer">
+                <label class="signUpFormTexts" for="signUpUserName">Nombre</label>
+                <input type="text" class="signUpInputFormData" id="signUpUserName" name="signUpUserName" value="">
+                <label class="signUpFormTexts" for="signUpUserLastname">Apellido</label>
+                <input type="text" class="signUpInputFormData" id="signUpUserLastname" name="signUpUserLastname"
+                    value="">
+                <label class="signUpFormTexts" for="signUpUserEmail">Email</label>
+                <input type="text" class="signUpInputFormData" name="signUpUserEmail" id="signUpUserPerfil" value="">
+                <label class="signUpFormTexts" for="signUpUserPerfil">Perfil</label>
+                <input type="text" class="signUpInputFormData" name="signUpUserPerfil" id="signUpUserPerfil" value="">
+                <label class="signUpFormTexts" for="signUpUserPassword">Contraseña</label>
+                <input type="text" class="signUpInputFormData" name="signUpUserPassword" id="signUpUserPassword"
+                    value="">
+                <label class="signUpFormTexts" for="signUpUserRePassword">Repetir contraseña</label>
+                <input type="text" class="signUpInputFormData" name="signUpUserRePassword" id="signUpUserRePassword"
+                    value="">
                 <input id="signUpSubmitButton" type="submit" value="Crear">
             </form>
+
         </div>
     </section>
 </body>

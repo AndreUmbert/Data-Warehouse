@@ -6,21 +6,38 @@
   align-items: center;
   width: 60%;
   margin-left: 20%;
-  border: solid 1px black;
-  background-color: rgb(85, 85, 209);
+  border: solid 1px blue;
+  background-color: rgb(130, 174, 255);
   #loginTitle {
     font-size: 5vw;
     margin: 3vw 0 3vw 0;
   }
-  #loginUserInfo{
-    #loginForm{
-      #userLoginName{
+  #loginUserInfo {
+    #loginForm {
+      #userLoginName {
         width: 40vw;
         height: 5vw;
         font-size: 3vw;
         text-align: center;
         font-weight: 100;
+        margin-bottom: 3vw;
       }
-    } 
+      #userLoginPassword {
+        width: 40vw;
+        height: 5vw;
+        font-size: 3vw;
+        text-align: center;
+        font-weight: 100;
+        margin-bottom: 3vw;
+      }
+      #loginSubmitButton {
+        width: 15vw;
+        height: 5vw;
+        font-size: 3vw;
+        text-align: center;
+        font-weight: 100;
+        margin: 0 0 3vw 63%;
+      }
+    }
   }
 }

@@ -1,0 +1,68 @@
+#contactSection {
+  margin: 3vw 0 0 0;
+  #contactSearchActionsContainer {
+    display: flex;
+    justify-content: space-between;
+    #contactsSearchDiv {
+      width: 40vw;
+      margin: 0 0 0 2vw;
+      #contactsSearchDivTitle {
+        font-size: 3vw;
+        margin: 0 0 0.5vw 0;
+      }
+      #contactsSearchBarPlusIcon {
+        display: flex;
+        align-items: center;
+        #contactsSearchBar {
+          border: 1px solid rgb(130, 174, 255);
+          margin: 0 0 0 0vw;
+          border-radius: 0.3vw;
+          width: 90%;
+          height: 2.5vw;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          #contactsSearchBarTextInput {
+            font-size: 1.3vw;
+            border: none;
+            width: 92%;
+            font-weight: 300;
+          }
+          #contactsSearchBarArrowIcon {
+            width: 0.7vw;
+            height: 0.7vw;
+            transform: rotate(180deg);
+            padding: 0.557vw;
+          }
+        }
+      }
+      #contactsSearchIcon {
+        border: 1px solid rgb(130, 174, 255);
+        padding: 0.5vw;
+        width: 1.5vw;
+        height: 1.5vw;
+        border-radius: 0.3vw;
+        margin-left: 0.6vw;
+      }
+    }
+    #contactsActionsDiv {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 25vw;
+      #exportContactArrowIcon {
+        width: 1.3vw;
+        height: 1.3vw;
+        transform: rotate(180deg);
+        border: 1px solid rgb(130, 174, 255);
+        margin: 0 0 0 0vw;
+        border-radius: 0.3vw;
+        padding: 0.4vw;
+      }
+      #exportContact {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

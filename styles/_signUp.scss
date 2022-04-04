@@ -1,0 +1,39 @@
+#signUp {
+  width: 40vw;
+  border: 1px solid rgb(85, 85, 209);
+  margin: 3vw 0 0 30vw;
+  background-color: rgb(130, 174, 255);
+  #signUpTitle {
+    margin: 2vw 0 2vw 0;
+    text-align: center;
+    font-size: 2.5vw;
+  }
+  #formSignUpConteiner {
+    width: 32vw;
+    margin: 0 0 0 10%;
+    #formDivFormSignUpContainer {
+      display: grid;
+      grid-template-columns: 12vw 20vw;
+      grid-template-rows: 5vw 5vw 5vw 5vw 5vw 5vw;
+      row-gap: 1.5vw;
+      margin: 0 0 3vw 0;
+      .signUpFormTexts {
+        font-size: 1.8vw;
+        display: flex;
+        align-items: center;
+      }
+      .signUpInputFormData {
+        font-size: 1.8vw;
+        border: 1px solid rgb(85, 85, 209);
+      }
+      #signUpSubmitButton {
+        grid-column: 2;
+        width: 7vw;
+        height: 3vw;
+        font-size: 1.8vw;
+        margin: 0 0 0 13vw;
+        border: 1px solid rgb(85, 85, 209);
+      }
+    }
+  }
+}

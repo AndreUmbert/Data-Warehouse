@@ -107,8 +107,8 @@ body {
           align-items: center;
   width: 60%;
   margin-left: 20%;
-  border: solid 1px black;
-  background-color: #5555d1;
+  border: solid 1px blue;
+  background-color: #82aeff;
 }
 
 #login #loginTitle {
@@ -122,5 +122,253 @@ body {
   font-size: 3vw;
   text-align: center;
   font-weight: 100;
+  margin-bottom: 3vw;
+}
+
+#login #loginUserInfo #loginForm #userLoginPassword {
+  width: 40vw;
+  height: 5vw;
+  font-size: 3vw;
+  text-align: center;
+  font-weight: 100;
+  margin-bottom: 3vw;
+}
+
+#login #loginUserInfo #loginForm #loginSubmitButton {
+  width: 15vw;
+  height: 5vw;
+  font-size: 3vw;
+  text-align: center;
+  font-weight: 100;
+  margin: 0 0 3vw 63%;
+}
+
+#signUp {
+  width: 40vw;
+  border: 1px solid #5555d1;
+  margin: 3vw 0 0 30vw;
+  background-color: #82aeff;
+}
+
+#signUp #signUpTitle {
+  margin: 2vw 0 2vw 0;
+  text-align: center;
+  font-size: 2.5vw;
+}
+
+#signUp #formSignUpConteiner {
+  width: 32vw;
+  margin: 0 0 0 10%;
+}
+
+#signUp #formSignUpConteiner #formDivFormSignUpContainer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 12vw 20vw;
+      grid-template-columns: 12vw 20vw;
+  -ms-grid-rows: 5vw 5vw 5vw 5vw 5vw 5vw;
+      grid-template-rows: 5vw 5vw 5vw 5vw 5vw 5vw;
+  row-gap: 1.5vw;
+  margin: 0 0 3vw 0;
+}
+
+#signUp #formSignUpConteiner #formDivFormSignUpContainer .signUpFormTexts {
+  font-size: 1.8vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#signUp #formSignUpConteiner #formDivFormSignUpContainer .signUpInputFormData {
+  font-size: 1.8vw;
+  border: 1px solid #5555d1;
+}
+
+#signUp #formSignUpConteiner #formDivFormSignUpContainer #signUpSubmitButton {
+  -ms-grid-column: 2;
+  grid-column: 2;
+  width: 7vw;
+  height: 3vw;
+  font-size: 1.8vw;
+  margin: 0 0 0 13vw;
+  border: 1px solid #5555d1;
+}
+
+#companySection {
+  margin: 0 5vw 0 5vw;
+}
+
+#companySection #companyTitlePlusAddButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 90vw;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 4vw 0 4vw 0;
+}
+
+#companySection #companyTitlePlusAddButton #companyTitle {
+  font-size: 3vw;
+  margin: 0;
+}
+
+#companySection #companyTitlePlusAddButton #addCompanyButton {
+  width: 15vw;
+  height: 3.8vw;
+  border: 1px solid #5555d1;
+}
+
+#companySection #companyTitlePlusAddButton #addCompanyButton #addCompanyButtonText {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.8vw;
+  margin: 0;
+  height: 3.8vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#companySection #companiesList {
+  width: 89vw;
+  border: 1px solid #5555d1;
+  margin: 0 0 0 1vw;
+}
+
+#companySection #companiesList #companiesListTitles {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background-color: #82aeff;
+}
+
+#companySection #companiesList #companiesListTitles .companySubTitle {
+  font-size: 1.8vw;
+}
+
+#companySection #companiesList #companiesListInfoGrid {
+  display: -ms-grid;
+  display: grid;
+  grid-column: auto auto auto auto auto;
+}
+
+#contactSection {
+  margin: 3vw 0 0 0;
+}
+
+#contactSection #contactSearchActionsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#contactSection #contactSearchActionsContainer #contactsSearchDiv {
+  width: 40vw;
+  margin: 0 0 0 2vw;
+}
+
+#contactSection #contactSearchActionsContainer #contactsSearchDiv #contactsSearchDivTitle {
+  font-size: 3vw;
+  margin: 0 0 0.5vw 0;
+}
+
+#contactSection #contactSearchActionsContainer #contactsSearchDiv #contactsSearchBarPlusIcon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#contactSection #contactSearchActionsContainer #contactsSearchDiv #contactsSearchBarPlusIcon #contactsSearchBar {
+  border: 1px solid #82aeff;
+  margin: 0 0 0 0vw;
+  border-radius: 0.3vw;
+  width: 90%;
+  height: 2.5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#contactSection #contactSearchActionsContainer #contactsSearchDiv #contactsSearchBarPlusIcon #contactsSearchBar #contactsSearchBarTextInput {
+  font-size: 1.3vw;
+  border: none;
+  width: 92%;
+  font-weight: 300;
+}
+
+#contactSection #contactSearchActionsContainer #contactsSearchDiv #contactsSearchBarPlusIcon #contactsSearchBar #contactsSearchBarArrowIcon {
+  width: 0.7vw;
+  height: 0.7vw;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  padding: 0.557vw;
+}
+
+#contactSection #contactSearchActionsContainer #contactsSearchDiv #contactsSearchIcon {
+  border: 1px solid #82aeff;
+  padding: 0.5vw;
+  width: 1.5vw;
+  height: 1.5vw;
+  border-radius: 0.3vw;
+  margin-left: 0.6vw;
+}
+
+#contactSection #contactSearchActionsContainer #contactsActionsDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  width: 25vw;
+}
+
+#contactSection #contactSearchActionsContainer #contactsActionsDiv #exportContactArrowIcon {
+  width: 1.3vw;
+  height: 1.3vw;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  border: 1px solid #82aeff;
+  margin: 0 0 0 0vw;
+  border-radius: 0.3vw;
+  padding: 0.4vw;
+}
+
+#contactSection #contactSearchActionsContainer #contactsActionsDiv #exportContact {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=style.css.map */
