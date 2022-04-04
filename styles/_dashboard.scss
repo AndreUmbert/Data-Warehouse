@@ -1,5 +1,5 @@
 #contactSection {
-  margin: 3vw 0 0 0;
+  margin: 2vw 0 0 0;
   #contactSearchActionsContainer {
     display: flex;
     justify-content: space-between;
@@ -17,7 +17,7 @@
           border: 1px solid rgb(130, 174, 255);
           margin: 0 0 0 0vw;
           border-radius: 0.3vw;
-          width: 90%;
+          width: 70%;
           height: 2.5vw;
           display: flex;
           justify-content: center;
@@ -41,28 +41,108 @@
         padding: 0.5vw;
         width: 1.5vw;
         height: 1.5vw;
-        border-radius: 0.3vw;
+        border-radius: 0.2vw;
         margin-left: 0.6vw;
       }
     }
     #contactsActionsDiv {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: flex-end;
-      width: 25vw;
+      margin: 0 2vw 0 0;
+      width: 26vw;
       #exportContactArrowIcon {
         width: 1.3vw;
         height: 1.3vw;
         transform: rotate(180deg);
         border: 1px solid rgb(130, 174, 255);
-        margin: 0 0 0 0vw;
-        border-radius: 0.3vw;
-        padding: 0.4vw;
+        margin: 0;
+        border-radius: 0.2vw;
+        padding: 0.6vw;
       }
       #exportContact {
         display: flex;
         align-items: center;
+        height: 2.5vw;
+        border: 1px solid rgb(130, 174, 255);
+        border-radius: 0.3vw;
+        #exportContactText{
+          margin: 0;
+          padding: 0.6VW 1VW;
+          font-size: 0.8vw;
+          color: rgb(130, 174, 255);
+        }
+        #exportContactDownArrow{
+            width: 1vw;
+            height: 1vw;
+            padding: 0.557vw;
+        }
       }
+      #addContact{
+        display: flex;
+        align-items: center;
+        height: 2.5vw;
+        border: 1px solid rgb(130, 174, 255);
+        border-radius: 0.3vw;
+        background-color: rgb(85, 85, 209);
+        #addContactText{
+          margin: 0;
+          padding: 0.6VW 1VW;
+          font-size: 0.8vw;
+          color: rgb(130, 174, 255);
+        }
+      }
+    }
+  }
+  #contactsDashboard{
+    border: 1px solid rgb(130, 174, 255);
+    border-radius: 0.3vw;
+    width: 95vw;
+    margin: 2vw 0 0 2.5vw;
+    #contactDashboardStatic{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      #contactsDashboardTitleCheckBox{
+        width: 2%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #contactDashboardTitlesDBInfo{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 90%;
+        .ContactDashboardTitles{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .contactDashboardTitlesTexts{
+            margin: 0 0.2vw 0 0 ;
+          }
+          .contactDashboardDoubleArrow{
+            width: 1vw;
+            height: 1vw;
+            transform: rotate(270deg);
+          }
+        }
+  
+      }
+      #contactsDashboardActionTitleDiv{
+        width: 8%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    #dashboardBreaker{
+      width: 100%;
+      height: 1px;
+      background-color: rgb(130, 174, 255);
+    }
+    #contactDashboardDynamic{
+      height: 10vw;
     }
   }
 }

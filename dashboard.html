@@ -56,6 +56,7 @@
                 <img id="exportContactArrowIcon" src="./assets/exportIcon.png" alt="">
                 <div id="exportContact">
                     <p id="exportContactText">Exportar contactos</p>
+                    <img id="exportContactDownArrow" src="./assets/downArrowBlue.png" alt="exportContactDownArrow">
                 </div>
                 <div id="addContact">
                     <p id="addContactText">Agregar Contacto</p>
@@ -63,34 +64,40 @@
             </div>
         </div>
         <div id="contactsDashboard">
-            <input type="checkbox" id="contactsDashboardTitleCheckBox" value=""> <label
-                for="contactDashboardTitleCheckBox"></label>
-            <div id="contactsDashboardContactsTitleDiv">
-                <p id="contactsDashboardContactsTitleText">Contactos</p>
-                <img id="contactsDashboardContactsOrderImg" src="" alt="">
+            <div id="contactDashboardStatic">
+                <input type="checkbox" id="contactsDashboardTitleCheckBox" value=""> <label
+                    for="contactDashboardTitleCheckBox"></label>
+                <div id="contactDashboardTitlesDBInfo">
+                    <div class="ContactDashboardTitles" id="contactsDashboardContactsTitleDiv">
+                        <p class="contactDashboardTitlesTexts" id="contactsDashboardContactsTitleText">Contactos</p>
+                        <img class="contactDashboardDoubleArrow" id="contactsDashboardContactsOrderImg" src="./assets/doubleArrow.png" alt="contactDashboardDoubleArrowIcon">
+                    </div>
+                    <div class="ContactDashboardTitles" id="contactsDashboardCountryRegionTitleDiv">
+                        <p class="contactDashboardTitlesTexts"  id="contactsDashboardCountryRegionTitleText">País/Region</p>
+                        <img class="contactDashboardDoubleArrow" id="contactsDashboardCountryRegionOrderImg" src="./assets/doubleArrow.png" alt="contactDashboardDoubleArrowIcon">
+                    </div>
+                    <div class="ContactDashboardTitles" id="contactsDashboardCompanyTitleDiv">
+                        <p class="contactDashboardTitlesTexts"  id="contactsDashboardCompanyTitleText">Compañia</p>
+                        <img class="contactDashboardDoubleArrow" id="contactsDashboardCompanyOrderImg" src="./assets/doubleArrow.png" alt="contactDashboardDoubleArrowIcon">
+                    </div>
+                    <div class="ContactDashboardTitles" id="contactsDashboardPositionTitleDiv">
+                        <p class="contactDashboardTitlesTexts"  id="contactsDashboardPositionTitleText">Cargo</p>
+                        <img class="contactDashboardDoubleArrow" id="contactsDashboardPositionsOrderImg" src="./assets/doubleArrow.png" alt="contactDashboardDoubleArrowIcon">
+                    </div>
+                    <div class="ContactDashboardTitles" id="contactsDashboardChannelTitleDiv">
+                        <p class="contactDashboardTitlesTexts"  id="contactsDashboardChannelTitleText">Canal preferido</p>
+                    </div>
+                    <div class="ContactDashboardTitles" id="contactsDashboardInterestTitleDiv">
+                        <p class="contactDashboardTitlesTexts"  id="contactsDashboardInterestTitleText">Interés</p>
+                        <img class="contactDashboardDoubleArrow" id="contactsDashboardInterestsOrderImg" src="./assets/doubleArrow.png" alt="contactDashboardDoubleArrowIcon">
+                    </div>
+                </div>
+                <div id="contactsDashboardActionTitleDiv">
+                    <p id="contactsDashboardActionTitleText">Acciones</p>
+                </div>
             </div>
-            <div id="contactsDashboardCountryRegionTitleDiv">
-                <p id="contactsDashboardCountryRegionTitleText">País/Region</p>
-                <img id="contactsDashboardCountryRegionOrderImg" src="" alt="">
-            </div>
-            <div id="contactsDashboardCompanyTitleDiv">
-                <p id="contactsDashboardCompanyTitleText">Compañia</p>
-                <img id="contactsDashboardCompanyOrderImg" src="" alt="">
-            </div>
-            <div id="contactsDashboardPositionTitleDiv">
-                <p id="contactsDashboardPositionTitleText">Cargo</p>
-                <img id="contactsDashboardPositionsOrderImg" src="" alt="">
-            </div>
-            <div id="contactsDashboardChannelTitleDiv">
-                <p id="contactsDashboardChannelTitleText">Canal preferido</p>
-            </div>
-            <div id="contactsDashboardInterestTitleDiv">
-                <p id="contactsDashboardInterestTitleText">Interés</p>
-                <img id="contactsDashboardInterestsOrderImg" src="" alt="">
-            </div>
-            <div id="contactsDashboardPositionTitleDiv">
-                <p id="contactsDashboardPositionTitleText">Acciones</p>
-            </div>
+            <div id="dashboardBreaker"></div>
+            <div id="contactDashboardDynamic"></div>
         </div>
     </section>
 </body>

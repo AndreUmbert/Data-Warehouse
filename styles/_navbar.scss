@@ -7,8 +7,8 @@
     color: white;
     text-decoration: none;
     font-weight: 800;
-    font-size: 1vw;
-    margin: 0vw 73vw 0 1vw;
+    font-size: 1.5vw;
+    margin: 0vw 60vw 0 1vw;
     height: 3vw;
     justify-content: center;
     align-items: center;
@@ -21,11 +21,11 @@
     #navBarItems {
       list-style: none;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       margin: 0;
       padding: 0;
-      width: 21vw;
-      height: 2.5vw;
+      width: 32.666vw;
+      height: 3vw;
       align-items: center;
       .listItem {
         width: 5vw;
@@ -34,7 +34,7 @@
         align-items: center;
         .navBarAnchors {
           color: white;
-          font-size: 0.7vw;
+          font-size: 1vw;
           text-decoration: none;
         }
         .liBorder {
