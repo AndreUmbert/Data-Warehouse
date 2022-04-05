@@ -151,7 +151,7 @@ body {
 #signUp #signUpTitle {
   margin: 2vw 0 2vw 0;
   text-align: center;
-  font-size: 2.5vw;
+  font-size: 2vw;
 }
 
 #signUp #formSignUpConteiner {
@@ -164,14 +164,14 @@ body {
   display: grid;
   -ms-grid-columns: 12vw 20vw;
       grid-template-columns: 12vw 20vw;
-  -ms-grid-rows: 5vw 5vw 5vw 5vw 5vw 5vw;
-      grid-template-rows: 5vw 5vw 5vw 5vw 5vw 5vw;
+  -ms-grid-rows: 3vw 3vw 3vw 3vw 3vw 3vw;
+      grid-template-rows: 3vw 3vw 3vw 3vw 3vw 3vw;
   row-gap: 1.5vw;
   margin: 0 0 3vw 0;
 }
 
 #signUp #formSignUpConteiner #formDivFormSignUpContainer .signUpFormTexts {
-  font-size: 1.8vw;
+  font-size: 1.3vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -181,7 +181,7 @@ body {
 }
 
 #signUp #formSignUpConteiner #formDivFormSignUpContainer .signUpInputFormData {
-  font-size: 1.8vw;
+  font-size: 1.1vw;
   border: 1px solid #5555d1;
 }
 
