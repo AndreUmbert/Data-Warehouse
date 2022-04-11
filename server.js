@@ -12,6 +12,7 @@ const db = require("./config/db");
 const { response } = require("express");
 const APP_PORT = process.env.APP_PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET;
+const adminVerification = require("./controlers/adminVerification");
 
 
 //----------------------------------------------------
