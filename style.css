@@ -195,6 +195,38 @@ body {
   border: 1px solid #5555d1;
 }
 
+#regionCity #addRegionCityButton {
+  width: 5vw;
+  margin: 0 0 0 90vw;
+}
+
+#regionCity #addRegionCityButton #adddRegionCityButtonText {
+  margin: 0;
+}
+
+#regionCity #regionCityUl {
+  margin: 0;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl {
+  margin: 0 80vw 0 0;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionAddCountryButton {
+  border: 1px solid #82aeff;
+  height: 3vw;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionAddCountryButton .regionAddCountryButtonText {
+  margin: 0;
+}
+
 #companySection {
   margin: 0 5vw 0 5vw;
 }

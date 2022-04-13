@@ -1,0 +1,27 @@
+#regionCity {
+  #addRegionCityButton {
+    width: 5vw;
+    margin: 0 0 0 90vw;
+    #adddRegionCityButtonText {
+      margin: 0;
+    }
+  }
+  #regionCityUl {
+    margin: 0;
+    .regionEntry {
+      .regionPlusAddButton {
+        display: flex;
+        .regionNameUl {
+          margin: 0 80vw 0 0;
+        }
+        .regionAddCountryButton {
+          border: 1px solid rgb(130, 174, 255);
+          height: 3vw;
+          .regionAddCountryButtonText {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
