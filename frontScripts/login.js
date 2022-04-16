@@ -7,13 +7,22 @@ function login() {
     //Como? Comparando con un if-else datos del front con unos fijos que despues van a ser del Backend.
     //Para Que? Para poder logearme correctamente.
     //Por que? Porque despues solo voy a tener que cambiar los valores estaticos por valores traidos desde la DB y el usuario quedara logeado.
-    if (userLoginName.value == "Andre" && userLoginPassword.value == "1111") {
-        console.log("Logeado correctamente");
-        location.href = './dashboard.html';
-    } else {
-        console.log("Nombre o Contraseña incorrecta");
-    }
-
+    axios({
+        method: 'post',
+        url: 'http://localhost:3000/login',
+        data: {
+            name: userLoginName.value,
+            password: userLoginPassword.value
+        }
+    })
+        .then(function logear(response) {
+            console.log(response);
+            console.log("Logeado correctamente");
+            window.localStorage.setItem('token', response.data.token);
+            location.href = './dashboard.html';
+        }, function error(params) {
+            console.error("Nombre o Contraseña incorrecta");
+        })
 }
 
 loginSubmitButton.addEventListener('click', (loginButtonEvent) => {

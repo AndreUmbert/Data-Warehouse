@@ -35,6 +35,7 @@ body {
 
 #header #navBar {
   display: block;
+  width: 39%;
 }
 
 #header #navBar #navBarItems {
@@ -46,7 +47,7 @@ body {
       justify-content: space-around;
   margin: 0;
   padding: 0;
-  width: 32.666vw;
+  width: 100%;
   height: 3vw;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -54,7 +55,7 @@ body {
 }
 
 #header #navBar #navBarItems .listItem {
-  width: 5vw;
+  width: 25%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -195,17 +196,25 @@ body {
   border: 1px solid #5555d1;
 }
 
+#regionCity {
+  margin-top: 1vw;
+}
+
 #regionCity #addRegionCityButton {
-  width: 5vw;
-  margin: 0 0 0 90vw;
+  width: 20%;
+  margin: 0 0 0 75.8%;
+  border: 1px solid #82aeff;
 }
 
 #regionCity #addRegionCityButton #adddRegionCityButtonText {
   margin: 0;
+  font-weight: 700;
+  font-size: 2vw;
+  text-align: center;
 }
 
 #regionCity #regionCityUl {
-  margin: 0;
+  margin: 2vw 0 0 0;
 }
 
 #regionCity #regionCityUl .regionEntry .regionPlusAddButton {
@@ -215,16 +224,104 @@ body {
 }
 
 #regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl {
-  margin: 0 80vw 0 0;
+  margin: 0 0 0 0;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .regionName {
+  font-weight: 700;
+  font-size: 1.4vw;
+  margin: 0;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 40vw 3vw 5vw 30vw;
+      grid-template-columns: 40vw 3vw 5vw 30vw;
+  grid-gap: 1vw;
+  margin-top: 3vw;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .countryNameUl {
+  font-weight: 600;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .editCountry {
+  height: 2vw;
+  border: 1px solid #82aeff;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .editCountry .editCountryText {
+  margin: 0;
+  text-align: center;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .deleteCountry {
+  height: 2vw;
+  border: 1px solid #82aeff;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .deleteCountry .deleteCountryText {
+  margin: 0;
+  text-align: center;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .addCity {
+  height: 2vw;
+  border: 1px solid #82aeff;
+  margin-left: 30vw;
+  width: 7vw;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .addCity .addCityText {
+  margin: 0;
+  text-align: center;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .cities {
+  margin-left: 8vw;
+  list-style-type: none;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .cities .cityEntry {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 15vw 5vw 5vw;
+      grid-template-columns: 15vw 5vw 5vw;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-gap: 1vw;
+  margin-bottom: 1vw;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .cities .cityEntry .editCity {
+  border: 1px solid #82aeff;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .cities .cityEntry .editCity .editCityText {
+  margin: 0;
+  text-align: center;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .cities .cityEntry .deleteCity {
+  border: 1px solid #82aeff;
+}
+
+#regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionNameUl .countryEntry .cities .cityEntry .deleteCity .deleteCityText {
+  margin: 0;
+  text-align: center;
 }
 
 #regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionAddCountryButton {
   border: 1px solid #82aeff;
-  height: 3vw;
+  height: 4vw;
+  width: 7vw;
 }
 
 #regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionAddCountryButton .regionAddCountryButtonText {
   margin: 0;
+  text-align: center;
 }
 
 #companySection {

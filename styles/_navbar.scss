@@ -18,17 +18,18 @@
   }
   #navBar {
     display: block;
+    width: 39%;
     #navBarItems {
       list-style: none;
       display: flex;
       justify-content: space-around;
       margin: 0;
       padding: 0;
-      width: 32.666vw;
+      width: 100%;
       height: 3vw;
       align-items: center;
       .listItem {
-        width: 5vw;
+        width: 25%;
         display: flex;
         justify-content: center;
         align-items: center;

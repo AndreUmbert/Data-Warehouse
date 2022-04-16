@@ -1,24 +1,96 @@
 #regionCity {
+  margin-top: 1vw;
   #addRegionCityButton {
-    width: 5vw;
-    margin: 0 0 0 90vw;
+    width: 20%;
+    margin: 0 0 0 75.8%;
+    border: 1px solid rgb(130, 174, 255);
     #adddRegionCityButtonText {
       margin: 0;
+      font-weight: 700;
+      font-size: 2vw;
+      text-align: center;
     }
   }
   #regionCityUl {
-    margin: 0;
+    margin: 2vw 0 0 0;
     .regionEntry {
       .regionPlusAddButton {
         display: flex;
         .regionNameUl {
-          margin: 0 80vw 0 0;
+          margin: 0 0 0 0;
+          .regionName {
+            font-weight: 700;
+            font-size: 1.4vw;
+            margin: 0;
+          }
+          .countryEntry {
+            display: grid;
+            grid-template-columns: 40vw 3vw 5vw 30vw;
+            grid-gap: 1vw;
+            margin-top: 3vw;
+            .countryNameUl {
+              font-weight: 600;
+            }
+            .editCountry {
+              height: 2vw;
+              border: 1px solid rgb(130, 174, 255);
+              .editCountryText {
+                margin: 0;
+                text-align: center;
+              }
+            }
+            .deleteCountry {
+              height: 2vw;
+              border: 1px solid rgb(130, 174, 255);
+              .deleteCountryText {
+                margin: 0;
+                text-align: center;
+              }
+            }
+            .addCity {
+              height: 2vw;
+              border: 1px solid rgb(130, 174, 255);
+              margin-left: 30vw;
+              width: 7vw;
+              .addCityText {
+                margin: 0;
+                text-align: center;
+              }
+            }
+            .cities {
+              margin-left: 8vw;
+              list-style-type: none;
+              .cityEntry {
+                display: grid;
+                grid-template-columns: 15vw 5vw 5vw;
+                align-items: center;
+                grid-gap: 1vw;
+                margin-bottom: 1vw;
+                .editCity {
+                  border: 1px solid rgb(130, 174, 255);
+                  .editCityText {
+                    margin: 0;
+                    text-align: center;
+                  }
+                }
+                .deleteCity {
+                  border: 1px solid rgb(130, 174, 255);
+                  .deleteCityText {
+                    margin: 0;
+                    text-align: center;
+                  }
+                }
+              }
+            }
+          }
         }
         .regionAddCountryButton {
           border: 1px solid rgb(130, 174, 255);
-          height: 3vw;
+          height: 4vw;
+          width: 7vw;
           .regionAddCountryButtonText {
             margin: 0;
+            text-align: center;
           }
         }
       }

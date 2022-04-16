@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="./frontScripts/login.js"></script>
 </head>
 
 <body>
@@ -25,12 +27,11 @@
                 <label for="userLoginName"></label>
                 <input type="text" id="userLoginName" name="userLoginName" placeholder="Nombre"><br>
                 <label for="userLoginPassword"></label>
-                <input type="text" id="userLoginPassword" name="userLoginPassword" placeholder="Contraseña"><br>
+                <input type="password" id="userLoginPassword" name="userLoginPassword" placeholder="Contraseña"><br>
                 <input id="loginSubmitButton" type="submit" value="Ingresar">
             </form>
         </div>
     </section>
-    <script src="./frontScripts/login.js"></script>
 </body>
 
 </html>
