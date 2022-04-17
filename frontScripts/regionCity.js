@@ -63,18 +63,73 @@ const regionUl = document.getElementById("regionCityUl");
 // const brasilCountry = { name: "Brasil", cities: brasilCities, value: 2 };
 // const colombiaCountry = { name: "Colombia", cities: colombiaCities, value: 3 };
 
-const regions = [
-    // {
-    //     name: "North America",
-    //     countries: [americaCountry, canadaCountry, mexicoCountry],
-    // }
-];
+// const regions = [
+//     // {
+//     //     name: "North America",
+//     //     countries: [americaCountry, canadaCountry, mexicoCountry],
+//     // }
+// ];
 
 // regions[0].northAmericaCountries.forEach(function (e) {console.log(e.name)}
 
-function showRegions() {
+
+
+// Get regions from server
+
+
+const getDemographics = async () => {
+
+    let paises = await axios.get(
+        "http://localhost:3000/country/dashboard",
+        config
+    );
+
+    let cities = await axios.get("http://localhost:3000/city/dashboard", config);
+
+
+    for (let pIndex = 0; pIndex < paises.data.length; pIndex++) {
+        paises.data[pIndex].cities = [];
+        for (let cIndex = 0; cIndex < cities.data.length; cIndex++) {
+            if (paises.data[pIndex].id == cities.data[cIndex].countryId) {
+                paises.data[pIndex].cities.push(cities.data[cIndex]);
+            }
+        }
+    }
+
+    getAndShowRegions(paises)
+
+};
+
+
+
+const getAndShowRegions = async (paises) => {
+    let regiones = await axios.get(
+        "http://localhost:3000/region/dashboard",
+        config
+    );
+
+    for (let rIndex = 0; rIndex < regiones.data.length; rIndex++) {
+        regiones.data[rIndex].countries = [];
+        for (let pIndex = 0; pIndex < paises.data.length; pIndex++) {
+            if (regiones.data[rIndex].id == paises.data[pIndex].regionId) {
+                regiones.data[rIndex].countries.push(
+                    paises.data[pIndex]
+                );
+            }
+        }
+    }
+
+    showRegions(regiones.data)
+
+};
+
+
+
+getDemographics();
+
+function showRegions(regions) {
     for (let region of regions) {
-        // console.log(region);
+        console.log(region);
         const regionEntry = document.createElement("div");
         regionEntry.setAttribute("class", "regionEntry");
         regionUl.appendChild(regionEntry);
@@ -87,7 +142,7 @@ function showRegions() {
         regionNameUl.setAttribute("class", "regionNameUl");
         const regionName = document.createElement("p");
         regionName.setAttribute("class", "regionName");
-        regionName.appendChild(document.createTextNode(region.name));
+        regionName.appendChild(document.createTextNode(region.regionName));
         regionNameUl.appendChild(regionName);
         regionPlusAddButton.appendChild(regionNameUl);
         const regionAddCountryButton = document.createElement("div");
@@ -165,46 +220,3 @@ function showRegions() {
         }
     }
 }
-
-// Get regions from server
-
-const getRegions = async () => {
-    const regiones = await axios.get(
-        "http://localhost:3000/region/dashboard",
-        config
-    );
-    regiones.data.forEach((item) =>
-        regions.push({ name: item.regionName, id: item.id, countries: [] })
-    );
-    return regions;
-};
-
-getRegions();
-
-const getCountries = async (regions) => {
-    let paises = await axios.get(
-        "http://localhost:3000/country/dashboard",
-        config
-    );
-
-    for (let rIndex = 0; rIndex < regions.length; rIndex++) {
-        for (let pIndex = 0; pIndex < paises.data.length; pIndex++) {
-            if (regions[rIndex].id == paises.data[pIndex].regionId) {
-                regions[rIndex].countries.push(paises.data[pIndex])
-
-            }
-        }
-    }
-    console.log(regions);
-};
-
-getCountries(regions);
-
-const getCities = () => {
-    axios.get("http://localhost:3000/city/dashboard", config);
-    // .then(function (response) {
-    //     console.log(response);
-    // });
-};
-
-getCities();
