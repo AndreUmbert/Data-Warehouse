@@ -232,12 +232,12 @@ app.post("/city/create", async (req, res) => {
     }
 });
 
-app.delete("/city/delete/:cityId", async (req, res) => {
-    const cityId = req.params.cityId;
+app.delete("/city/delete/:cityName", async (req, res) => {
+    const cityName = req.params.cityName;
     console.log(req.params);
     db.models.city.destroy({
         where: {
-            id: cityId,
+            name: cityName,
         }
     })
         .then(record => {
@@ -312,18 +312,43 @@ app.post("/country/create", async (req, res) => {
     }
 });
 
-app.delete("/country/delete/:countryId", async (req, res) => {
-    const countryId = req.params.countryId;
+app.delete("/country/delete/:countryName", async (req, res) => {
+    const countryName = req.params.countryName;
     console.log(req.params);
     db.models.country.destroy({
         where: {
-            id: countryId,
+            name: countryName,
         }
     })
         .then(record => {
             console.log(record);
             if (record >= 1) {
                 res.status(200).json({ message: "Country was deleted successfully" });
+            }
+            else {
+                res.status(404).json({ message: "record not found" })
+            }
+
+        })
+        .catch(function (error) {
+            res.status(500).json(error);
+        });
+});
+
+// http://localhost:3000/country/deleteAllCities/
+
+app.delete("/country/deleteAllCities/:countryId", async (req, res) => {
+    const countryId = req.params.countryId;
+    console.log(req.params);
+    db.models.city.destroy({
+        where: {
+            countryId: countryId,
+        }
+    })
+        .then(record => {
+            console.log(record);
+            if (record >= 1) {
+                res.status(200).json({ message: "All cities were deleted successfully" });
             }
             else {
                 res.status(404).json({ message: "record not found" })

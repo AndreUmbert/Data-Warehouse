@@ -2,8 +2,6 @@
 //Como? Usando array multidimensinal, pero primero tengo que definir desde abajo hacia arriba, es decir desde ciudades hasta regiones y luego incluirlas dentro
 //Para que? Para tener todas las regiones, paises y ciudades debidamente y hacer una especia de diagrama de arbol
 
-// const { default: axios } = require("axios");
-
 //Por que? Al usar un nested array de objetos, esto me permite poder acceder a cada uno de los valores de los objetos que cree.
 const blur = document.getElementById("blurSection");
 const token = localStorage.getItem("token");
@@ -20,65 +18,7 @@ let formControl = document.getElementById("formControl");
 const regionAddButton = document.getElementsByClassName("regionAddButton");
 let contador = 0;
 let indexCountry = 0;
-// const americaCities = [
-//     { name: "New York", value: 1 },
-//     { name: "Las Vegas", value: 2 },
-//     { name: "Orlando", value: 3 },
-//     { name: "Las Vegas", value: 4 },
-// ];
-// const canadaCities = [
-//     { name: "Toronto", value: 1 },
-//     { name: "Ottawa", value: 2 },
-//     { name: "Vancouver", value: 3 },
-//     { name: "Quebec", value: 4 },
-// ];
-// const mexicoCities = [
-//     { name: "Ciudad de mexico", value: 1 },
-//     { name: "Guadalajara", value: 2 },
-//     { name: "Monterrey", value: 3 },
-//     { name: "Tijuana", value: 4 },
-// ];
-// const argentinaCities = [
-//     { name: "Córdoba", value: 1 },
-//     { name: "La Plata", value: 2 },
-//     { name: "Ciudad Autonoma de Buenos Aires", value: 3 },
-//     { name: "La Rioja", value: 4 },
-// ];
-// const brasilCities = [
-//     { name: "Rio de Janeiro", value: 1 },
-//     { name: "Brasilia", value: 2 },
-//     { name: "Manaos", value: 3 },
-//     { name: "Curitiba", value: 4 },
-// ];
-// const colombiaCities = [
-//     { name: "Bogota", value: 1 },
-//     { name: "Medellin", value: 2 },
-//     { name: "Cartajena", value: 3 },
-//     { name: "Calí", value: 4 },
-// ];
-
-// const americaCountry = {
-//     name: "Estados Unidos",
-//     cities: americaCities,
-//     value: 1,
-// };
-// const canadaCountry = { name: "Canada", cities: canadaCities, value: 2 };
-// const mexicoCountry = { name: "Mexico", cities: mexicoCities, value: 3 };
-
-// const argentinaCountry = {
-//     name: "Argentina",
-//     cities: argentinaCities,
-//     value: 1,
-// };
-// const brasilCountry = { name: "Brasil", cities: brasilCities, value: 2 };
-// const colombiaCountry = { name: "Colombia", cities: colombiaCities, value: 3 };
-
-// const regions = [
-//     // {
-//     //     name: "North America",
-//     //     countries: [americaCountry, canadaCountry, mexicoCountry],
-//     // }
-// ];
+let indexCity = 0;
 
 // regions[0].northAmericaCountries.forEach(function (e) {console.log(e.name)}
 
@@ -158,6 +98,7 @@ function showRegions(regions) {
         regionAddCountryButton.setAttribute("onclick", "createCountry(this)");
         for (let country of region.countries.values()) {
             // console.log(country);
+            //setting Country
             console.log(region.countries);
             const countryEntry = document.createElement("div");
             countryEntry.setAttribute("class", "countryEntry");
@@ -177,13 +118,20 @@ function showRegions(regions) {
             //Delete Country Button
             const deleteCountry = document.createElement("div");
             deleteCountry.setAttribute("class", "deleteCountry");
+            deleteCountry.setAttribute("countryName", country.name);
+            deleteCountry.setAttribute("onclick", "deleteCountry(this)");
+            deleteCountry.setAttribute("citiesLength", country.cities.length);
             countryEntry.appendChild(deleteCountry);
             const deleteCountryText = document.createElement("p");
             deleteCountryText.setAttribute("class", " deleteCountryText");
             deleteCountryText.appendChild(document.createTextNode("Delete"));
             deleteCountry.appendChild(deleteCountryText);
+            deleteCountry.setAttribute("countryId", country.id);
             //Add City Button
             const addCity = document.createElement("div");
+            addCity.setAttribute("onclick", "createCity(this)");
+            addCity.setAttribute("cityNumber", indexCity);
+            indexCity = indexCity + 1;
             addCity.setAttribute("class", "addCity");
             countryEntry.appendChild(addCity);
             const addCityText = document.createElement("p");
@@ -210,6 +158,8 @@ function showRegions(regions) {
                 // Delete City Button
                 const deleteCity = document.createElement("div");
                 deleteCity.setAttribute("class", "deleteCity");
+                deleteCity.setAttribute("onclick", "deleteCity(this)");
+                deleteCity.setAttribute("cityName", city.name);
                 cityEntry.appendChild(deleteCity);
                 const deleteCityText = document.createElement("p");
                 deleteCityText.setAttribute("class", " deleteCityText");
@@ -317,4 +267,95 @@ function createCountry(element) {
         let regPost = await axios.post("http://localhost:3000/country/create", { "name": inputCountry.value, "regionId": reg.data[element.getAttribute("countrynumber")].id }, config);
         location.reload();
     });
+}
+
+
+//addCityButton:
+function createCity(element) {
+    console.log(element.getAttribute("citynumber"));
+    const blurDiv = document.createElement("blurDiv");
+    blur.appendChild(blurDiv);
+    blurDiv.style.position = "absolute";
+    blurDiv.style.width = "100%";
+    blurDiv.style.height = "100%";
+    blurDiv.style.top = "0";
+    regionCity.style.filter = "blur(8px)";
+    const inputCityContainer = document.createElement("Container");
+    blurDiv.appendChild(inputCityContainer);
+    inputCityContainer.style.position = "absolute";
+    inputCityContainer.style.display = "flex";
+    inputCityContainer.style.flexDirection = "column";
+    inputCityContainer.style.alignItems = "center";
+    inputCityContainer.style.width = "50%";
+    inputCityContainer.style.margin = " 0 0 0 25%";
+    inputCityContainer.style.backgroundColor = "rgb(130, 174, 255)";
+    inputCityContainer.style.height = "15vw";
+    inputCityContainer.style.top = "25vw";
+    inputCityContainer.style.border = "1px solid rgb(85, 85, 209)";
+    inputCityContainer.style.borderRadius = "1.5vw";
+    const inputCityText = document.createElement("p");
+    inputCityText.appendChild(document.createTextNode("Create City"));
+    inputCityContainer.appendChild(inputCityText);
+    const inputCity = document.createElement("input");
+    inputCity.setAttribute("type", "text");
+    inputCity.setAttribute("placeholder", "City Name");
+    inputCityContainer.appendChild(inputCity);
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.setAttribute("id", " buttonsContainer");
+    inputCityContainer.appendChild(buttonsContainer);
+    const createButton = document.createElement("button");
+    createButton.setAttribute("id", "createButton");
+    buttonsContainer.appendChild(createButton);
+    createButton.setAttribute("type", "button");
+    createButton.appendChild(document.createTextNode("Create"));
+    const cancelButton = document.createElement("button");
+    cancelButton.setAttribute("id", "cancelButton");
+    buttonsContainer.appendChild(cancelButton);
+    cancelButton.setAttribute("type", "button");
+    cancelButton.appendChild(document.createTextNode("Close"));
+    cancelButton.addEventListener("click", () => {
+        blur.removeChild(blurDiv);
+        regionCity.style.filter = "none";
+    });
+    createButton.addEventListener("click", async () => {
+        let count = await axios.get("http://localhost:3000/country/dashboard", config);
+        // console.log(reg.data[element.getAttribute("countrynumber")].id);
+        let countPost = await axios.post("http://localhost:3000/city/create", { "name": inputCity.value, "countryId": count.data[element.getAttribute("citynumber")].id }, config);
+        location.reload();
+    });
+}
+
+
+//cityDelete:
+function deleteCity(element) {
+    const city = element.getAttribute("cityName");
+
+    axios.delete(
+        `http://localhost:3000/city/delete/${city}`,
+        config
+    );
+    location.reload();
+}
+
+//countryDalete:
+
+async function deleteAllCities(countryId) {
+    await axios.delete(
+        `http://localhost:3000/country/deleteAllCities/${countryId}`,
+        config
+    );
+}
+
+async function deleteCountry(element) {
+    console.log(element);
+    const countryName = element.getAttribute("countryname");
+    const countryId = element.getAttribute("countryid");
+    const numberOfCities = element.getAttribute("citieslength");
+
+    (numberOfCities > 0) && await deleteAllCities(countryId)
+    await axios.delete(
+        `http://localhost:3000/country/delete/${countryName}`,
+        config
+    );
+    location.reload();
 }
