@@ -213,6 +213,35 @@ body {
   text-align: center;
 }
 
+#regionCity #addRegionFormContainer {
+  display: none;
+}
+
+#regionCity #addRegionFormContainer #inputRegion {
+  display: none;
+  margin: 0;
+}
+
+#regionCity #addRegionFormContainer #inputRegion #formControl {
+  width: 68%;
+  border: 0;
+  border-right: 1px solid #82aeff;
+}
+
+#regionCity #addRegionFormContainer #inputRegion .inputRegionCreate {
+  width: 31%;
+  height: 100%;
+}
+
+#regionCity #addRegionFormContainer #inputRegion .inputRegionCreate .regionAddButton {
+  display: block;
+  width: 100%;
+  padding: 0.602222222vw;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+}
+
 #regionCity #regionCityUl {
   margin: 2vw 0 0 0;
 }
@@ -317,6 +346,7 @@ body {
   border: 1px solid #82aeff;
   height: 4vw;
   width: 7vw;
+  cursor: pointer;
 }
 
 #regionCity #regionCityUl .regionEntry .regionPlusAddButton .regionAddCountryButton .regionAddCountryButtonText {

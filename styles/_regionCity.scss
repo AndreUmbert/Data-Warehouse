@@ -11,6 +11,30 @@
       text-align: center;
     }
   }
+  #addRegionFormContainer {
+    display: none;
+    #inputRegion {
+      display: none;
+      margin: 0;
+      #formControl {
+        width: 68%;
+        border: 0;
+        border-right: 1px solid rgb(130, 174, 255);
+      }
+      .inputRegionCreate {
+        width: 31%;
+        height: 100%;
+        .regionAddButton {
+          display: block;
+          width: 100%;
+          padding: 0.602222222vw;
+          border: 0;
+          background-color: white;
+          cursor: pointer;
+        }
+      }
+    }
+  }
   #regionCityUl {
     margin: 2vw 0 0 0;
     .regionEntry {
@@ -88,6 +112,7 @@
           border: 1px solid rgb(130, 174, 255);
           height: 4vw;
           width: 7vw;
+          cursor: pointer;
           .regionAddCountryButtonText {
             margin: 0;
             text-align: center;
