@@ -37,8 +37,31 @@
       }
     }
     #companiesListInfoGrid {
-      display: grid;
-      grid-column: auto auto auto auto auto;
+      .companyDiv{
+        display: grid;
+        grid-template-columns: 25% 23% 27% 25%;
+        margin: 1vw  0; 
+        .companyName{
+          text-align: center;
+        }
+        .companyCountry{
+          text-align: center;
+        }
+        .companyAddress{
+          text-align: center;
+        }
+        .companyButtonsDiv{
+          display: flex;
+          justify-content: space-between;
+          margin: 0 32.5%;
+          .companyEditButton{
+            width: 60%;
+          }
+          .companyDeleteButton{
+            width: 30%;
+          }
+        }
+      }
     }
   }
 }

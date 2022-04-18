@@ -417,10 +417,42 @@ body {
   font-size: 1.8vw;
 }
 
-#companySection #companiesList #companiesListInfoGrid {
+#companySection #companiesList #companiesListInfoGrid .companyDiv {
   display: -ms-grid;
   display: grid;
-  grid-column: auto auto auto auto auto;
+  -ms-grid-columns: 25% 23% 27% 25%;
+      grid-template-columns: 25% 23% 27% 25%;
+  margin: 1vw  0;
+}
+
+#companySection #companiesList #companiesListInfoGrid .companyDiv .companyName {
+  text-align: center;
+}
+
+#companySection #companiesList #companiesListInfoGrid .companyDiv .companyCountry {
+  text-align: center;
+}
+
+#companySection #companiesList #companiesListInfoGrid .companyDiv .companyAddress {
+  text-align: center;
+}
+
+#companySection #companiesList #companiesListInfoGrid .companyDiv .companyButtonsDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 32.5%;
+}
+
+#companySection #companiesList #companiesListInfoGrid .companyDiv .companyButtonsDiv .companyEditButton {
+  width: 60%;
+}
+
+#companySection #companiesList #companiesListInfoGrid .companyDiv .companyButtonsDiv .companyDeleteButton {
+  width: 30%;
 }
 
 #contactSection {
