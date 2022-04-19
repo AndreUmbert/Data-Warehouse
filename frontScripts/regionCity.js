@@ -18,7 +18,6 @@ let formControl = document.getElementById("formControl");
 const regionAddButton = document.getElementsByClassName("regionAddButton");
 let contador = 0;
 let indexCountry = 0;
-let indexCity = 0;
 
 // regions[0].northAmericaCountries.forEach(function (e) {console.log(e.name)}
 
@@ -99,7 +98,7 @@ function showRegions(regions) {
         for (let country of region.countries.values()) {
             // console.log(country);
             //setting Country
-            console.log(region.countries);
+            // console.log(region.countries);
             const countryEntry = document.createElement("div");
             countryEntry.setAttribute("class", "countryEntry");
             const countryNameUl = document.createElement("ul");
@@ -130,8 +129,8 @@ function showRegions(regions) {
             //Add City Button
             const addCity = document.createElement("div");
             addCity.setAttribute("onclick", "createCity(this)");
-            addCity.setAttribute("cityNumber", indexCity);
-            indexCity = indexCity + 1;
+            console.log(country);
+            addCity.setAttribute("countryId", country.id);
             addCity.setAttribute("class", "addCity");
             countryEntry.appendChild(addCity);
             const addCityText = document.createElement("p");
@@ -155,6 +154,8 @@ function showRegions(regions) {
                 editCityText.setAttribute("class", " editCityText");
                 editCityText.appendChild(document.createTextNode("Edit"));
                 editCity.appendChild(editCityText);
+                editCity.setAttribute("onclick", "editCity(this)");
+                editCity.setAttribute("cityName", city.name);
                 // Delete City Button
                 const deleteCity = document.createElement("div");
                 deleteCity.setAttribute("class", "deleteCity");
@@ -272,7 +273,7 @@ function createCountry(element) {
 
 //addCityButton:
 function createCity(element) {
-    console.log(element.getAttribute("citynumber"));
+    console.log(element);
     const blurDiv = document.createElement("blurDiv");
     blur.appendChild(blurDiv);
     blurDiv.style.position = "absolute";
@@ -317,10 +318,11 @@ function createCity(element) {
         blur.removeChild(blurDiv);
         regionCity.style.filter = "none";
     });
+    //arreglar que se agregue por nombre y no por indice, ya que se rompe
     createButton.addEventListener("click", async () => {
         let count = await axios.get("http://localhost:3000/country/dashboard", config);
-        // console.log(reg.data[element.getAttribute("countrynumber")].id);
-        let countPost = await axios.post("http://localhost:3000/city/create", { "name": inputCity.value, "countryId": count.data[element.getAttribute("citynumber")].id }, config);
+        console.log(element.getAttribute("countryId"));
+        let countPost = await axios.post("http://localhost:3000/city/create", { "name": inputCity.value, "countryId": element.getAttribute("countryId") }, config);
         location.reload();
     });
 }
@@ -353,9 +355,67 @@ async function deleteCountry(element) {
     const numberOfCities = element.getAttribute("citieslength");
 
     (numberOfCities > 0) && await deleteAllCities(countryId)
+
     await axios.delete(
         `http://localhost:3000/country/delete/${countryName}`,
         config
     );
+
     location.reload();
+}
+
+
+//cityUpdate:
+function editCity(element) {
+    const blurDiv = document.createElement("blurDiv");
+    blur.appendChild(blurDiv);
+    blurDiv.style.position = "absolute";
+    blurDiv.style.width = "100%";
+    blurDiv.style.height = "100%";
+    blurDiv.style.top = "0";
+    regionCity.style.filter = "blur(8px)";
+    const editInputCity = document.createElement("Container");
+    blurDiv.appendChild(editInputCity);
+    editInputCity.style.position = "absolute";
+    editInputCity.style.display = "flex";
+    editInputCity.style.flexDirection = "column";
+    editInputCity.style.alignItems = "center";
+    editInputCity.style.width = "50%";
+    editInputCity.style.margin = " 0 0 0 25%";
+    editInputCity.style.backgroundColor = "rgb(130, 174, 255)";
+    editInputCity.style.height = "15vw";
+    editInputCity.style.top = "25vw";
+    editInputCity.style.border = "1px solid rgb(85, 85, 209)";
+    editInputCity.style.borderRadius = "1.5vw";
+    const editInputCityText = document.createElement("p");
+    editInputCityText.appendChild(document.createTextNode("Create City"));
+    editInputCity.appendChild(editInputCityText);
+    const editCity = document.createElement("input");
+    editCity.setAttribute("type", "text");
+    editCity.setAttribute("placeholder", "New City Name");
+    editInputCity.appendChild(editCity);
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.setAttribute("id", " buttonsContainer");
+    editInputCity.appendChild(buttonsContainer);
+    const editButton = document.createElement("button");
+    editButton.setAttribute("id", "editButton");
+    buttonsContainer.appendChild(editButton);
+    editButton.setAttribute("type", "button");
+    editButton.appendChild(document.createTextNode("Edit"));
+    const cancelButton = document.createElement("button");
+    cancelButton.setAttribute("id", "cancelButton");
+    buttonsContainer.appendChild(cancelButton);
+    cancelButton.setAttribute("type", "button");
+    cancelButton.appendChild(document.createTextNode("Close"));
+    cancelButton.addEventListener("click", () => {
+        blur.removeChild(blurDiv);
+        regionCity.style.filter = "none";
+    });
+    const cityName = element.getAttribute("cityname");
+    editButton.addEventListener("click", async (element) => {
+        let cityEdit = await axios.put(`http://localhost:3000/city/update/${cityName}`, { "newName": editCity.value }, config);
+        location.reload();
+    });
+    console.log(element.getAttribute("cityname"));
+    // console.log(newCity);
 }
