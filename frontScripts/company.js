@@ -1,19 +1,42 @@
-const companiesList =document.getElementById("companiesList");
+const companiesList = document.getElementById("companiesList");
 const companiesListInfoGrid = document.getElementById("companiesListInfoGrid");
-
-const companies = [
-    {name:  "crunchyroll", country: "Mexico", address: "Mexico DF 889"},
-    {name:  "disney", country: "Estados Unidos", address: "Orlando 544"},
-    {name:  "iClub", country: "Argentina", address: "Villa Allende Plodeportivo"},
-    {name:  "toyota", country: "Japon", address: "Tokio 123"}
-];
+const token = localStorage.getItem("token");
+const config = { headers: { Authorization: `Bearer ${token}` } };
 
 
-function showCompanies() {
-    for (let company of companies) {
+//get companies:
+const getCompanies = async () => {
+    let companies = await axios.get(
+        "http://localhost:3000/company/dashboard",
+        config
+    );
+
+
+    //get companyCountry:
+    let countries = await axios.get(
+        "http://localhost:3000/country/dashboard",
+        config
+    );
+
+    for (let companyIndex = 0; companyIndex < companies.data.length; companyIndex++) {
+        companies.data[companyIndex].countryName = "";
+        for (let countryIndex = 0; countryIndex < countries.data.length; countryIndex++) {
+            if (companies.data[companyIndex].countryId == countries.data[countryIndex].id) {
+                companies.data[companyIndex].countryName = countries.data[countryIndex].name;
+            }
+        }
+    }
+
+    showCompanies(companies);
+}
+
+getCompanies();
+
+function showCompanies(companies,) {
+    for (let company of companies.data) {
         console.log(company.name);
         //div
-        const companyDiv= document.createElement("div");
+        const companyDiv = document.createElement("div");
         companyDiv.setAttribute("class", "companyDiv");
         companiesListInfoGrid.appendChild(companyDiv);
         //name
@@ -22,9 +45,9 @@ function showCompanies() {
         companyName.appendChild(document.createTextNode(company.name));
         companyDiv.appendChild(companyName);
         //company
-        const companyCountry= document.createElement("p");
+        const companyCountry = document.createElement("p");
         companyCountry.setAttribute("class", "companyCountry");
-        companyCountry.appendChild(document.createTextNode(company.country));
+        companyCountry.appendChild(document.createTextNode(company.countryName));
         companyDiv.appendChild(companyCountry);
         //address
         const companyAddress = document.createElement("p");
@@ -49,5 +72,3 @@ function showCompanies() {
         companyButtonsDiv.appendChild(companyDeleteButton);
     }
 }
-
-showCompanies();

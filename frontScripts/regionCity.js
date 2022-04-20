@@ -61,6 +61,8 @@ const getAndShowRegions = async (paises) => {
 };
 
 getDemographics();
+
+
 function showRegions(regions) {
     for (let region of regions) {
         // console.log(region);

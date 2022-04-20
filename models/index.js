@@ -39,6 +39,10 @@ User.belongsTo(Contact, {
     foreignKey: "contactId"
 });
 
+Company.belongsTo(City, {
+    foreignKey: "countryId"
+});
+
 module.exports = {
     Channel,
     City,
