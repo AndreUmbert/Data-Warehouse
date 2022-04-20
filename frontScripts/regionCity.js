@@ -96,9 +96,7 @@ function showRegions(regions) {
         indexCountry = indexCountry + 1;
         regionAddCountryButton.setAttribute("onclick", "createCountry(this)");
         for (let country of region.countries.values()) {
-            // console.log(country);
-            //setting Country
-            // console.log(region.countries);
+            // country:
             const countryEntry = document.createElement("div");
             countryEntry.setAttribute("class", "countryEntry");
             const countryNameUl = document.createElement("ul");
@@ -106,15 +104,17 @@ function showRegions(regions) {
             countryEntry.appendChild(countryNameUl);
             countryNameUl.appendChild(document.createTextNode(country.name));
             regionNameUl.appendChild(countryEntry);
-            //Edit Country Button
+            //Edit Country Button:
             const editCountry = document.createElement("div");
             editCountry.setAttribute("class", "editCountry");
+            editCountry.setAttribute("onclick", "editCountry(this)");
             countryEntry.appendChild(editCountry);
             const editCountryText = document.createElement("p");
             editCountryText.setAttribute("class", " editCountryText");
             editCountryText.appendChild(document.createTextNode("Edit"));
             editCountry.appendChild(editCountryText);
-            //Delete Country Button
+            editCountry.setAttribute("countryName", country.name);
+            //Delete Country Button:
             const deleteCountry = document.createElement("div");
             deleteCountry.setAttribute("class", "deleteCountry");
             deleteCountry.setAttribute("countryName", country.name);
@@ -126,10 +126,10 @@ function showRegions(regions) {
             deleteCountryText.appendChild(document.createTextNode("Delete"));
             deleteCountry.appendChild(deleteCountryText);
             deleteCountry.setAttribute("countryId", country.id);
-            //Add City Button
+            //Add City Button:
             const addCity = document.createElement("div");
             addCity.setAttribute("onclick", "createCity(this)");
-            console.log(country);
+            // console.log(country);
             addCity.setAttribute("countryId", country.id);
             addCity.setAttribute("class", "addCity");
             countryEntry.appendChild(addCity);
@@ -141,12 +141,13 @@ function showRegions(regions) {
             cities.setAttribute("class", "cities");
             countryEntry.appendChild(cities);
             for (let city of country.cities.values()) {
+                //city
                 const cityEntry = document.createElement("li");
                 cityEntry.setAttribute("class", "cityEntry");
                 cityEntry.appendChild(document.createTextNode(city.name));
                 countryEntry.appendChild(cityEntry);
                 cities.appendChild(cityEntry);
-                //Edit Country Button
+                //Edit City Button
                 const editCity = document.createElement("div");
                 editCity.setAttribute("class", "editCity");
                 cityEntry.appendChild(editCity);
@@ -367,6 +368,7 @@ async function deleteCountry(element) {
 
 //cityUpdate:
 function editCity(element) {
+    console.log(element);
     const blurDiv = document.createElement("blurDiv");
     blur.appendChild(blurDiv);
     blurDiv.style.position = "absolute";
@@ -388,7 +390,7 @@ function editCity(element) {
     editInputCity.style.border = "1px solid rgb(85, 85, 209)";
     editInputCity.style.borderRadius = "1.5vw";
     const editInputCityText = document.createElement("p");
-    editInputCityText.appendChild(document.createTextNode("Create City"));
+    editInputCityText.appendChild(document.createTextNode("Edit City"));
     editInputCity.appendChild(editInputCityText);
     const editCity = document.createElement("input");
     editCity.setAttribute("type", "text");
@@ -418,4 +420,58 @@ function editCity(element) {
     });
     console.log(element.getAttribute("cityname"));
     // console.log(newCity);
+}
+
+//countryUpdate:
+function editCountry(element) {
+    const blurDiv = document.createElement("blurDiv");
+    blur.appendChild(blurDiv);
+    blurDiv.style.position = "absolute";
+    blurDiv.style.width = "100%";
+    blurDiv.style.height = "100%";
+    blurDiv.style.top = "0";
+    regionCity.style.filter = "blur(8px)";
+    const editInputCountry = document.createElement("Container");
+    blurDiv.appendChild(editInputCountry);
+    editInputCountry.style.position = "absolute";
+    editInputCountry.style.display = "flex";
+    editInputCountry.style.flexDirection = "column";
+    editInputCountry.style.alignItems = "center";
+    editInputCountry.style.width = "50%";
+    editInputCountry.style.margin = " 0 0 0 25%";
+    editInputCountry.style.backgroundColor = "rgb(130, 174, 255)";
+    editInputCountry.style.height = "15vw";
+    editInputCountry.style.top = "25vw";
+    editInputCountry.style.border = "1px solid rgb(85, 85, 209)";
+    editInputCountry.style.borderRadius = "1.5vw";
+    const editInputCountryText = document.createElement("p");
+    editInputCountryText.appendChild(document.createTextNode("Edit Country"));
+    editInputCountry.appendChild(editInputCountryText);
+    const editCountry = document.createElement("input");
+    editCountry.setAttribute("type", "text");
+    editCountry.setAttribute("placeholder", "New Country Name");
+    editInputCountry.appendChild(editCountry);
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.setAttribute("id", " buttonsContainer");
+    editInputCountry.appendChild(buttonsContainer);
+    const editButton = document.createElement("button");
+    editButton.setAttribute("id", "editButton");
+    buttonsContainer.appendChild(editButton);
+    editButton.setAttribute("type", "button");
+    editButton.appendChild(document.createTextNode("Edit"));
+    const cancelButton = document.createElement("button");
+    cancelButton.setAttribute("id", "cancelButton");
+    buttonsContainer.appendChild(cancelButton);
+    cancelButton.setAttribute("type", "button");
+    cancelButton.appendChild(document.createTextNode("Close"));
+    cancelButton.addEventListener("click", () => {
+        blur.removeChild(blurDiv);
+        regionCity.style.filter = "none";
+    });
+    const countryName = element.getAttribute("countryName");
+    console.log(element.getAttribute("countryName"));
+    editButton.addEventListener("click", async (element) => {
+        let countryEdit = await axios.put(`http://localhost:3000/country/update/${countryName}`, { "newName": editCountry.value }, config);
+        location.reload();
+    });
 }

@@ -272,18 +272,17 @@ app.get("/country/dashboard", async (req, res) => {
     }
 });
 
-app.put("/country/update/:countryId", async (req, res) => {
-    const countryId = req.params.countryId;
-    const name = req.body.name;
-    const regionId = req.body.regionId;
-    console.log(countryId);
+app.put("/country/update/:countryName", async (req, res) => {
+    const countryName = req.params.countryName;
+    const newName = req.body.newName;
+    console.log(countryName);
     try {
         const country = await db.query(
             //NUNCA PERO NUUUNCA usar variables dentro de las consultas de SQL
-            "UPDATE country SET name = :name, regionId= :regionId WHERE id = :id",
+            "UPDATE country SET name = :newName WHERE name = :countryName",
             {
                 replacements: {
-                    id: countryId, name: name, regionId: regionId
+                    newName: newName, countryName: countryName
                 }
             }
         );
