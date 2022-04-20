@@ -142,7 +142,12 @@
       background-color: rgb(130, 174, 255);
     }
     #contactDashboardDynamic{
-      height: 10vw;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      .contactDiv{
+        display: flex;
+      }
     }
   }
 }
