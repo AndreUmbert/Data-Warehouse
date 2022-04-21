@@ -453,17 +453,17 @@ app.get("/company/dashboard", async (req, res) => {
     }
 });
 
-app.put("/company/update/:companyId", async (req, res) => {
-    const companyId = req.params.companyId;
-    const name = req.body.name;
+app.put("/company/update/:companyName", async (req, res) => {
+    const companyName = req.params.companyName;
+    const newName = req.body.newName;
     const address = req.body.address;
     const email = req.body.email;
     const phoneNumber = req.body.phoneNumber;
     try {
         const company = await db.query(
-            "UPDATE company SET name= :name, address= :address, email= :email, phoneNumber= :phoneNumber",
+            "UPDATE company SET name= :newName, address= :address, email= :email, phoneNumber= :phoneNumber WHERE name = :companyName",
             {
-                replacements: { id: companyId, name: name, address: address, email: email, phoneNumber: phoneNumber }
+                replacements: { newName: newName, address: address, email: email, phoneNumber: phoneNumber, companyName: companyName }
             }
         );
         res.status(200).json(company)
@@ -476,10 +476,10 @@ app.put("/company/update/:companyId", async (req, res) => {
 app.post("/company/create", async (req, res) => {
     try {
         const company = await db.query(
-            "INSERT INTO company (name, address, email, phoneNumber) values (?,?,?,?)",
+            "INSERT INTO company (name, address, email, phoneNumber, countryId) values (?,?,?,?,?)",
             {
                 type: db.QueryTypes.INSERT,
-                replacements: [req.body.name, req.body.address, req.body.email, req.body.phoneNumber]
+                replacements: [req.body.name, req.body.address, req.body.email, req.body.phoneNumber, req.body.countryId]
             }
         );
         res.status(200).json(company);
@@ -489,11 +489,11 @@ app.post("/company/create", async (req, res) => {
     }
 });
 
-app.delete("/company/delete/:companyId", async (req, res) => {
-    const companyId = req.params.companyId;
+app.delete("/company/delete/:companyName", async (req, res) => {
+    const companyName = req.params.companyName;
     db.models.company.destroy({
         where: {
-            id: companyId,
+            name: companyName,
         }
     })
         .then(record => {

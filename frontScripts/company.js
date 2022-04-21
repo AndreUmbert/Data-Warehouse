@@ -66,16 +66,20 @@ function showCompanies(companies) {
         companyEditButton.setAttribute("type", "button");
         companyEditButton.appendChild(document.createTextNode("Edit"));
         companyButtonsDiv.appendChild(companyEditButton);
+        companyEditButton.setAttribute("onclick", "editcompany(this)")
+        companyEditButton.setAttribute("name", company.name);
         //deleteButton
         const companyDeleteButton = document.createElement("button");
         companyDeleteButton.setAttribute("class", "companyDeleteButton");
         companyDeleteButton.setAttribute("type", "button");
+        companyDeleteButton.setAttribute("onclick", "deleteCompany(this)");
+        companyDeleteButton.setAttribute("name", company.name);
         companyDeleteButton.appendChild(document.createTextNode("X"));
         companyButtonsDiv.appendChild(companyDeleteButton);
     }
 }
 
-//add companie:
+//add company:
 async function createCompany(element) {
     // console.log(element);
     const blurDiv = document.createElement("blurDiv");
@@ -131,6 +135,16 @@ async function createCompany(element) {
     inputAddress.setAttribute("type", "text");
     inputAddress.setAttribute("placeholder", "Address Direction");
     inputCompanyContainer.appendChild(inputAddress);
+    //email Input:
+    const inputEmail = document.createElement("input");
+    inputEmail.setAttribute("type", "text");
+    inputEmail.setAttribute("placeholder", "Email");
+    inputCompanyContainer.appendChild(inputEmail);
+    //phone Input:
+    const inputPhoneNumber = document.createElement("input");
+    inputPhoneNumber.setAttribute("type", "text");
+    inputPhoneNumber.setAttribute("placeholder", "Phone Number");
+    inputCompanyContainer.appendChild(inputPhoneNumber);
     //modal Buttons:
     const buttonsContainer = document.createElement("div");
     buttonsContainer.setAttribute("id", " buttonsContainer");
@@ -153,7 +167,94 @@ async function createCompany(element) {
     createButton.addEventListener("click", async () => {
         let count = await axios.get("http://localhost:3000/country/dashboard", config);
         console.log(selectCompanyCountry.options[(selectCompanyCountry.selectedIndex)].value);
-        // let countPost = await axios.post("http://localhost:3000/company/create", { "name": inputCompany.value, "countryId": selectCompanyCountry.options[(selectCompanyCountry.selectedIndex)].value, "address": inputAddress.value }, config);
-        // location.reload();
+        console.log(inputCompany.value);
+        console.log(inputAddress.value);
+        let countPost = await axios.post("http://localhost:3000/company/create", { "name": inputCompany.value, "countryId": selectCompanyCountry.options[(selectCompanyCountry.selectedIndex)].value, "address": inputAddress.value, "email": inputEmail.value, "phoneNumber": inputPhoneNumber.value }, config);
+        location.reload();
+    });
+}
+
+//delete company:
+function deleteCompany(element) {
+    console.log(element);
+    const company = element.getAttribute("name");
+    axios.delete(
+        `http://localhost:3000/company/delete/${company}`,
+        config
+    );
+    location.reload();
+};
+
+// //edit company:
+function editcompany(element) {
+    console.log(element);
+    const blurDiv = document.createElement("blurDiv");
+    blur.appendChild(blurDiv);
+    blurDiv.style.position = "absolute";
+    blurDiv.style.width = "100%";
+    blurDiv.style.height = "100%";
+    blurDiv.style.top = "0";
+    companySection.style.filter = "blur(8px)";
+    //createContainer:
+    const inputCompanyContainer = document.createElement("Container");
+    blurDiv.appendChild(inputCompanyContainer);
+    inputCompanyContainer.style.position = "absolute";
+    inputCompanyContainer.style.display = "flex";
+    inputCompanyContainer.style.flexDirection = "column";
+    inputCompanyContainer.style.alignItems = "center";
+    inputCompanyContainer.style.width = "50%";
+    inputCompanyContainer.style.margin = " 0 0 0 25%";
+    inputCompanyContainer.style.backgroundColor = "rgb(130, 174, 255)";
+    inputCompanyContainer.style.height = "15vw";
+    inputCompanyContainer.style.top = "25vw";
+    inputCompanyContainer.style.border = "1px solid rgb(85, 85, 209)";
+    inputCompanyContainer.style.borderRadius = "1.5vw";
+    const inputCompanyText = document.createElement("p");
+    inputCompanyText.appendChild(document.createTextNode("Edit Company"));
+    inputCompanyContainer.appendChild(inputCompanyText);
+    //name input:
+    const inputCompany = document.createElement("input");
+    inputCompany.setAttribute("type", "text");
+    inputCompany.setAttribute("placeholder", "Company Name");
+    inputCompanyContainer.appendChild(inputCompany);
+    //address Input:
+    const inputAddress = document.createElement("input");
+    inputAddress.setAttribute("type", "text");
+    inputAddress.setAttribute("placeholder", "Address Direction");
+    inputCompanyContainer.appendChild(inputAddress);
+    //email Input:
+    const inputEmail = document.createElement("input");
+    inputEmail.setAttribute("type", "text");
+    inputEmail.setAttribute("placeholder", "Email");
+    inputCompanyContainer.appendChild(inputEmail);
+    //phone Input:
+    const inputPhoneNumber = document.createElement("input");
+    inputPhoneNumber.setAttribute("type", "text");
+    inputPhoneNumber.setAttribute("placeholder", "Phone Number");
+    inputCompanyContainer.appendChild(inputPhoneNumber);
+    //modal Buttons:
+    const buttonsContainer = document.createElement("div");
+    buttonsContainer.setAttribute("id", " buttonsContainer");
+    inputCompanyContainer.appendChild(buttonsContainer);
+    const createButton = document.createElement("button");
+    createButton.setAttribute("id", "createButton");
+    buttonsContainer.appendChild(createButton);
+    createButton.setAttribute("type", "button");
+    createButton.appendChild(document.createTextNode("Edit"));
+    const cancelButton = document.createElement("button");
+    cancelButton.setAttribute("id", "cancelButton");
+    buttonsContainer.appendChild(cancelButton);
+    cancelButton.setAttribute("type", "button");
+    cancelButton.appendChild(document.createTextNode("Close"));
+    cancelButton.addEventListener("click", () => {
+        blur.removeChild(blurDiv);
+        companySection.style.filter = "none";
+    });
+    //arreglar que se agregue por nombre y no por indice, ya que se rompe
+    createButton.addEventListener("click", async () => {
+        const companyName = element.getAttribute("name");
+        let countPost = await axios.put(`http://localhost:3000/company/update/${companyName}`, { "newName": inputCompany.value, "address": inputAddress.value, "email": inputEmail.value, "phoneNumber": inputPhoneNumber.value }, config);
+        location.reload();
+        //agregar que se borren todos los contactos que trabajen en esa empresa
     });
 }

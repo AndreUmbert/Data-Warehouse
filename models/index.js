@@ -39,7 +39,7 @@ User.belongsTo(Contact, {
     foreignKey: "contactId"
 });
 
-Company.belongsTo(City, {
+Company.belongsTo(Country, {
     foreignKey: "countryId"
 });
 
