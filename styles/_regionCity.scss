@@ -4,6 +4,7 @@
     width: 20%;
     margin: 0 0 0 75.8%;
     border: 1px solid rgb(130, 174, 255);
+    cursor: pointer;
     #adddRegionCityButtonText {
       margin: 0;
       font-weight: 700;
@@ -58,6 +59,7 @@
             .editCountry {
               height: 2vw;
               border: 1px solid rgb(130, 174, 255);
+              cursor: pointer;
               .editCountryText {
                 margin: 0;
                 text-align: center;
@@ -66,6 +68,7 @@
             .deleteCountry {
               height: 2vw;
               border: 1px solid rgb(130, 174, 255);
+              cursor: pointer;
               .deleteCountryText {
                 margin: 0;
                 text-align: center;
@@ -76,6 +79,7 @@
               border: 1px solid rgb(130, 174, 255);
               margin-left: 30vw;
               width: 7vw;
+              cursor: pointer;
               .addCityText {
                 margin: 0;
                 text-align: center;
@@ -92,12 +96,14 @@
                 margin-bottom: 1vw;
                 .editCity {
                   border: 1px solid rgb(130, 174, 255);
+                  cursor: pointer;
                   .editCityText {
                     margin: 0;
                     text-align: center;
                   }
                 }
                 .deleteCity {
+                  cursor: pointer;
                   border: 1px solid rgb(130, 174, 255);
                   .deleteCityText {
                     margin: 0;
