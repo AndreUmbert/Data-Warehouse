@@ -572,7 +572,7 @@ body {
 
 #contactSection #contactSearchActionsContainer #contactsActionsDiv #exportContact #exportContactText {
   margin: 0;
-  padding: 0.6VW 1VW;
+  padding: 0.6vw 1vw;
   font-size: 0.8vw;
   color: #82aeff;
 }
@@ -598,7 +598,7 @@ body {
 
 #contactSection #contactSearchActionsContainer #contactsActionsDiv #addContact #addContactText {
   margin: 0;
-  padding: 0.6VW 1VW;
+  padding: 0.6vw 1vw;
   font-size: 0.8vw;
   color: #82aeff;
 }
@@ -637,12 +637,22 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   width: 90%;
+}
+
+#contactSection #contactsDashboard #contactDashboardStatic #contactDashboardTitlesDBInfo #contactsDashboardContactsTitleDiv {
+  width: 17%;
+}
+
+#contactSection #contactsDashboard #contactDashboardStatic #contactDashboardTitlesDBInfo #contactsDashboardCountryRegionTitleDiv {
+  width: 13%;
+}
+
+#contactSection #contactsDashboard #contactDashboardStatic #contactDashboardTitlesDBInfo #contactsDashboardCompanyTitleDiv {
+  width: 18%;
 }
 
 #contactSection #contactsDashboard #contactDashboardStatic #contactDashboardTitlesDBInfo .ContactDashboardTitles {
@@ -702,5 +712,155 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  height: 6vw;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactCheckBoxDiv {
+  width: 3%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactPersonalInfo {
+  width: 17%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactPersonalInfo .contactImg {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 10%;
+  height: 25%;
+  border-radius: 50vw;
+  margin: 0 5% 0 0;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactPersonalInfo .contactNamePlusEmail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactPersonalInfo .contactNamePlusEmail .contactName {
+  margin: 0;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactPersonalInfo .contactNamePlusEmail .contactEmail {
+  font-size: 80%;
+  color: gray;
+  margin: 0;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactCountryPlusRegion {
+  width: 13%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactCountryPlusRegion .contactCountry {
+  margin: 0;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactCountryPlusRegion .contactRegion {
+  font-size: 80%;
+  color: gray;
+  margin: 0;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactCompany {
+  width: 18%;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactPosition {
+  width: 12%;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactPrefreredChannelDiv {
+  width: 18%;
+  background-color: lightblue;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactPrefreredChannelDiv .contactPrefreredChannelText {
+  color: #8587e7;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactInterestConteiner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 12%;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactInterestConteiner .contactInterestNumber {
+  width: 25%;
+  font-size: 80%;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactInterestConteiner .contactInterestBar {
+  height: 8%;
+  width: 70%;
+  border-radius: 50vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #e2e2e2;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactInterestConteiner .contactInterestBar .contactInterestColoredBar {
+  border-radius: 50vw;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactAccionsButtonContainer {
+  width: 8%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactAccionsButtonContainer .contactAccionsButtonDiv {
+  width: 20%;
+}
+
+#contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactAccionsButtonContainer .contactAccionsButtonDiv .contactAccionsButtonText {
+  text-align: center;
+  font-size: 130%;
+  margin: 0;
 }
 /*# sourceMappingURL=style.css.map */

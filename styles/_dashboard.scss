@@ -66,87 +66,187 @@
         height: 2.5vw;
         border: 1px solid rgb(130, 174, 255);
         border-radius: 0.3vw;
-        #exportContactText{
+        #exportContactText {
           margin: 0;
-          padding: 0.6VW 1VW;
+          padding: 0.6vw 1vw;
           font-size: 0.8vw;
           color: rgb(130, 174, 255);
         }
-        #exportContactDownArrow{
-            width: 1vw;
-            height: 1vw;
-            padding: 0.557vw;
+        #exportContactDownArrow {
+          width: 1vw;
+          height: 1vw;
+          padding: 0.557vw;
         }
       }
-      #addContact{
+      #addContact {
         display: flex;
         align-items: center;
         height: 2.5vw;
         border: 1px solid rgb(130, 174, 255);
         border-radius: 0.3vw;
         background-color: rgb(85, 85, 209);
-        #addContactText{
+        #addContactText {
           margin: 0;
-          padding: 0.6VW 1VW;
+          padding: 0.6vw 1vw;
           font-size: 0.8vw;
           color: rgb(130, 174, 255);
         }
       }
     }
   }
-  #contactsDashboard{
+  #contactsDashboard {
     border: 1px solid rgb(130, 174, 255);
     border-radius: 0.3vw;
     width: 95vw;
     margin: 2vw 0 0 2.5vw;
-    #contactDashboardStatic{
+    #contactDashboardStatic {
       width: 100%;
       display: flex;
       align-items: center;
-      #contactsDashboardTitleCheckBox{
+      #contactsDashboardTitleCheckBox {
         width: 2%;
         display: flex;
         justify-content: center;
         align-items: center;
       }
-      #contactDashboardTitlesDBInfo{
+      #contactDashboardTitlesDBInfo {
         display: flex;
-        justify-content: space-around;
+        #contactsDashboardContactsTitleDiv {
+          width: 17%;
+        }
+        #contactsDashboardCountryRegionTitleDiv {
+          width: 13%;
+        }
+        #contactsDashboardCompanyTitleDiv {
+          width: 18%;
+        }
         align-items: center;
         width: 90%;
-        .ContactDashboardTitles{
+        .ContactDashboardTitles {
           display: flex;
           justify-content: center;
           align-items: center;
-          .contactDashboardTitlesTexts{
-            margin: 0 0.2vw 0 0 ;
+          .contactDashboardTitlesTexts {
+            margin: 0 0.2vw 0 0;
           }
-          .contactDashboardDoubleArrow{
+          .contactDashboardDoubleArrow {
             width: 1vw;
             height: 1vw;
             transform: rotate(270deg);
           }
         }
-  
       }
-      #contactsDashboardActionTitleDiv{
+      #contactsDashboardActionTitleDiv {
         width: 8%;
         display: flex;
         justify-content: center;
         align-items: center;
       }
     }
-    #dashboardBreaker{
+    #dashboardBreaker {
       width: 100%;
       height: 1px;
       background-color: rgb(130, 174, 255);
     }
-    #contactDashboardDynamic{
+    #contactDashboardDynamic {
       height: auto;
       display: flex;
       flex-direction: column;
-      .contactDiv{
+      .contactDiv {
         display: flex;
+        height: 6vw;
+        .contactCheckBoxDiv {
+          width: 3%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .contactPersonalInfo {
+          width: 17%;
+          display: flex;
+          align-items: center;
+          .contactImg {
+            align-items: center;
+            width: 10%;
+            height: 25%;
+            border-radius: 50vw;
+            margin: 0 5% 0 0;
+          }
+          .contactNamePlusEmail {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .contactName {
+              margin: 0;
+            }
+            .contactEmail {
+              font-size: 80%;
+              color: gray;
+              margin: 0;
+            }
+          }
+        }
+
+        .contactCountryPlusRegion {
+          width: 13%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          .contactCountry {
+            margin: 0;
+          }
+          .contactRegion {
+            font-size: 80%;
+            color: gray;
+            margin: 0;
+          }
+        }
+        .contactCompany {
+          width: 18%;
+        }
+        .contactPosition {
+          width: 12%;
+        }
+        .contactPrefreredChannelDiv {
+          width: 18%;
+          background-color: lightblue;
+          .contactPrefreredChannelText {
+            color: rgb(133, 135, 231);
+          }
+        }
+        .contactInterestConteiner {
+          display: flex;
+          align-items: center;
+          width: 12%;
+          .contactInterestNumber {
+            width: 25%;
+            font-size: 80%;
+          }
+          .contactInterestBar {
+            height: 8%;
+            width: 70%;
+            border-radius: 50vw;
+            display: flex;
+            background-color: rgb(226, 226, 226);
+            .contactInterestColoredBar {
+              border-radius: 50vw;
+            }
+          }
+        }
+        .contactAccionsButtonContainer {
+          width: 8%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .contactAccionsButtonDiv {
+            width: 20%;
+            .contactAccionsButtonText {
+              text-align: center;
+              font-size: 130%;
+              margin: 0;
+            }
+          }
+        }
       }
     }
   }
