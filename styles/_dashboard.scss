@@ -107,21 +107,30 @@
       #contactDashboardTitlesDBInfo {
         display: flex;
         align-items: center;
-        width: 90%;
+        width: 100%;
         #contactsDashboardTitleCheckBoxDiv{
-          width: 3%;
+          width: 2.9709%;
           display: flex;
           justify-content: center;
           align-items: center;
         }
         #contactsDashboardContactsTitleDiv {
-          width: 17%;
+          width: 16.833%;
         }
         #contactsDashboardCountryRegionTitleDiv {
-          width: 13%;
+          width: 12.872%;
         }
         #contactsDashboardCompanyTitleDiv {
-          width: 18%;
+          width: 17.822%;
+        }
+        #contactsDashboardPositionTitleDiv{
+          width: 11.881%;
+        }
+        #contactsDashboardChannelTitleDiv{
+          width: 17.823%;
+        }
+        #contactsDashboardInterestTitleDiv{
+          width: 11.892%;
         }
         .ContactDashboardTitles {
           display: flex;
@@ -203,15 +212,28 @@
         }
         .contactCompany {
           width: 18%;
+          display: flex;
+          align-items: center;
         }
         .contactPosition {
           width: 12%;
+          display: flex;
+          align-items: center;
         }
-        .contactPrefreredChannelDiv {
+        .contactPreferedChannelContainer {
           width: 18%;
-          background-color: lightblue;
-          .contactPrefreredChannelText {
-            color: rgb(133, 135, 231);
+          display: flex;
+          align-items: center;
+          .contactPreferedChannelDiv{
+            background-color: rgb(203, 242, 255);
+            width: 40%;
+            height: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .contactPrefreredChannelText {
+              color: rgb(129, 131, 238);
+            } 
           }
         }
         .contactInterestConteiner {

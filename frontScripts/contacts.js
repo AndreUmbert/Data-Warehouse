@@ -82,15 +82,18 @@ function showContacts(contacts) {
         contactDiv.appendChild(contactPosition);
         contactPosition.appendChild(document.createTextNode(contact.position));
         //contactPreferedChannel:
+        const contactPreferedChannelContainer = document.createElement("div");
+        contactPreferedChannelContainer.setAttribute("class", "contactPreferedChannelContainer");
+        contactDiv.appendChild(contactPreferedChannelContainer);
         if (contact.channels.length > 2) {
             //Agregar boton ... en el caso de que el usuario tenga mas de 2 canales preferidos de contatos y que al apretar agrande el div y los muestre.
         } else {
-            const contactPrefreredChannelDiv = document.createElement("div");
-            contactPrefreredChannelDiv.setAttribute("class", "contactPrefreredChannelDiv");
-            contactDiv.appendChild(contactPrefreredChannelDiv);
+            const contactPreferedChannelDiv = document.createElement("div");
+            contactPreferedChannelDiv.setAttribute("class", "contactPreferedChannelDiv");
+            contactPreferedChannelContainer.appendChild(contactPreferedChannelDiv);
             const contactPrefreredChannelText = document.createElement("p");
             contactPrefreredChannelText.setAttribute("class", "contactPrefreredChannelText");
-            contactPrefreredChannelDiv.appendChild(contactPrefreredChannelText);
+            contactPreferedChannelDiv.appendChild(contactPrefreredChannelText);
             contactPrefreredChannelText.appendChild(document.createTextNode(contact.channels));
             //sacar las "," entre cada uno de los elementos.
         }
