@@ -620,8 +620,18 @@ body {
           align-items: center;
 }
 
-#contactSection #contactsDashboard #contactDashboardStatic #contactsDashboardTitleCheckBox {
-  width: 2%;
+#contactSection #contactsDashboard #contactDashboardStatic #contactDashboardTitlesDBInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 90%;
+}
+
+#contactSection #contactsDashboard #contactDashboardStatic #contactDashboardTitlesDBInfo #contactsDashboardTitleCheckBoxDiv {
+  width: 3%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -631,16 +641,6 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-#contactSection #contactsDashboard #contactDashboardStatic #contactDashboardTitlesDBInfo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 90%;
 }
 
 #contactSection #contactsDashboard #contactDashboardStatic #contactDashboardTitlesDBInfo #contactsDashboardContactsTitleDiv {
@@ -659,9 +659,6 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -678,7 +675,7 @@ body {
           transform: rotate(270deg);
 }
 
-#contactSection #contactsDashboard #contactDashboardStatic #contactsDashboardActionTitleDiv {
+#contactSection #contactsDashboard #contactDashboardStatic #contactDashboardTitlesDBInfo #contactsDashboardActionTitleDiv {
   width: 8%;
   display: -webkit-box;
   display: -ms-flexbox;

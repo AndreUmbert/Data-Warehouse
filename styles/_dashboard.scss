@@ -103,14 +103,17 @@
       width: 100%;
       display: flex;
       align-items: center;
-      #contactsDashboardTitleCheckBox {
-        width: 2%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+
       #contactDashboardTitlesDBInfo {
         display: flex;
+        align-items: center;
+        width: 90%;
+        #contactsDashboardTitleCheckBoxDiv{
+          width: 3%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
         #contactsDashboardContactsTitleDiv {
           width: 17%;
         }
@@ -120,11 +123,8 @@
         #contactsDashboardCompanyTitleDiv {
           width: 18%;
         }
-        align-items: center;
-        width: 90%;
         .ContactDashboardTitles {
           display: flex;
-          justify-content: center;
           align-items: center;
           .contactDashboardTitlesTexts {
             margin: 0 0.2vw 0 0;
@@ -135,12 +135,12 @@
             transform: rotate(270deg);
           }
         }
-      }
-      #contactsDashboardActionTitleDiv {
-        width: 8%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        #contactsDashboardActionTitleDiv {
+          width: 8%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
     #dashboardBreaker {
