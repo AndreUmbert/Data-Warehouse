@@ -1,4 +1,7 @@
 const contactDashboardDynamic = document.getElementById("contactDashboardDynamic");
+const addContact = document.getElementById("addContact");
+const blurSection = document.getElementById("blurSection"); 
+const contactSection = document.getElementById("contactSection");
 
 const contactsFullData = [
     { name: "Carolina Almagro", email: "caroGG@gmail.com", country: "Argentina", region: "South America", company: "Crunchyroll", position: "UI/UX", channels: ["WhatsApp"], interest: "75%", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg/800px-2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg" },
@@ -147,3 +150,56 @@ function showContacts(contacts) {
     }
 };
 
+function addContactFunction(element) {
+    //create Container:
+    contactSection.style.filter = "blur(8px)";
+    const createContactContainer = document.createElement("div");
+    createContactContainer.setAttribute("id", "createContactContainer");
+    blurSection.appendChild(createContactContainer);
+    createContactContainer.style.position= "absolute";
+    createContactContainer.style. display = "flex";
+    createContactContainer.style.width = "100vw";
+    createContactContainer.style.height = "7.5vw";
+    createContactContainer.style.backgroundColor = "rgb(85, 85, 209)";
+    createContactContainer.style.top= "0";
+    //create tittle and close button:
+    const titleAndClose = document.createElement("div");
+    titleAndClose.setAttribute("id", "titleAndClose");
+    createContactContainer.appendChild(titleAndClose);
+    //newContactTitle:
+    const newContactTitle = document.createElement("div");
+    newContactTitle.setAttribute("id", "newContactTitle");
+    titleAndClose.appendChild(newContactTitle);
+    newContactTitle.appendChild(document.createTextNode("Nuevo Contacto"));
+    //newContactCloseButton:
+    const newContactCloseButton = document.createElement("div");
+    newContactCloseButton.setAttribute("id", "newContactCloseButton");
+    titleAndClose.appendChild(newContactCloseButton);
+    newContactCloseButton.appendChild(document.createTextNode("x"));
+    //contactPrincipalDataContainer:
+    const contactPrincipalDataContainer = document.createElement("div");
+    contactPrincipalDataContainer.setAttribute("id", "contactPrincipalDataContainer");
+    createContactContainer.appendChild(contactPrincipalDataContainer);
+    contactPrincipalDataContainer.style.width = "96%";
+    contactPrincipalDataContainer.style.backgroundColor = "white";
+    contactPrincipalDataContainer.style.position = "absolute";
+    contactPrincipalDataContainer.style.top = "4vw";
+    contactPrincipalDataContainer.style.height = "10vw";
+    contactPrincipalDataContainer.style.margin = "0 0 0 2% ";
+    //contactPrincipalDataPhotoDiv:
+    const contactPrincipalDataPhotoDiv = document.createElement("div");
+    contactPrincipalDataPhotoDiv.setAttribute("id", "contactPrincipalDataPhotoDiv");
+    contactPrincipalDataContainer.appendChild(contactPrincipalDataPhotoDiv);
+    //contactPrincipalDataPhotoPlusIcon:
+    const contactPrincipalDataPhotoPlusIcon = document.createElement("div");
+    contactPrincipalDataPhotoPlusIcon.setAttribute("id", "contactPrincipalDataPhotoPlusIcon");
+    contactPrincipalDataPhotoDiv.appendChild(contactPrincipalDataPhotoPlusIcon);
+    //contactPrincipalDataPhoto:
+    const contactPrincipalDataPhoto = document.createElement("img");
+    contactPrincipalDataPhoto.setAttribute("id", "contactPrincipalDataPhoto");
+    contactPrincipalDataPhotoPlusIcon.appendChild(contactPrincipalDataPhoto);
+    //contactPrincipalDataPhotoIcon:
+    const contactPrincipalDataPhotoIcon  = document.createElement("img");
+    contactPrincipalDataPhotoIcon.setAttribute("id", "contactPrincipalDataPhotoIcon");
+    contactPrincipalDataPhotoPlusIcon.appendChild( contactPrincipalDataPhotoIcon);
+}
