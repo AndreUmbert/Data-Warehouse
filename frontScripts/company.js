@@ -111,6 +111,8 @@ async function createCompany(element) {
     inputCompany.setAttribute("type", "text");
     inputCompany.setAttribute("placeholder", "Company Name");
     inputCompanyContainer.appendChild(inputCompany);
+    inputCompany.setAttribute("id", "inputCompany");
+    inputCompany.style.width = "26.1%"
     //countryName Input:
     const selectCompanyCountry = document.createElement("select");
     selectCompanyCountry.setAttribute("class", "selectCompanyCountry");
@@ -134,17 +136,23 @@ async function createCompany(element) {
     const inputAddress = document.createElement("input");
     inputAddress.setAttribute("type", "text");
     inputAddress.setAttribute("placeholder", "Address Direction");
+    inputAddress.setAttribute("id", "inputAddress");
+    inputAddress.style.width = "26.1%";
     inputCompanyContainer.appendChild(inputAddress);
     //email Input:
     const inputEmail = document.createElement("input");
     inputEmail.setAttribute("type", "text");
     inputEmail.setAttribute("placeholder", "Email");
     inputCompanyContainer.appendChild(inputEmail);
+    inputEmail.setAttribute("id", " inputEmail");
+    inputEmail.style.width = "26.1%";
     //phone Input:
     const inputPhoneNumber = document.createElement("input");
     inputPhoneNumber.setAttribute("type", "text");
     inputPhoneNumber.setAttribute("placeholder", "Phone Number");
     inputCompanyContainer.appendChild(inputPhoneNumber);
+    inputPhoneNumber.setAttribute("id", "inputPhoneNumber");
+    inputPhoneNumber.style.width = "26.1%";
     //modal Buttons:
     const buttonsContainer = document.createElement("div");
     buttonsContainer.setAttribute("id", " buttonsContainer");

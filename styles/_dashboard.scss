@@ -109,7 +109,7 @@
         display: flex;
         align-items: center;
         width: 100%;
-        #contactsDashboardTitleCheckBoxDiv{
+        #contactsDashboardTitleCheckBoxDiv {
           width: 2.9709%;
           display: flex;
           justify-content: center;
@@ -124,13 +124,13 @@
         #contactsDashboardCompanyTitleDiv {
           width: 17.822%;
         }
-        #contactsDashboardPositionTitleDiv{
+        #contactsDashboardPositionTitleDiv {
           width: 11.881%;
         }
-        #contactsDashboardChannelTitleDiv{
+        #contactsDashboardChannelTitleDiv {
           width: 17.823%;
         }
-        #contactsDashboardInterestTitleDiv{
+        #contactsDashboardInterestTitleDiv {
           width: 11.892%;
         }
         .ContactDashboardTitles {
@@ -225,7 +225,7 @@
           width: 18%;
           display: flex;
           align-items: center;
-          .contactPreferedChannelDiv{
+          .contactPreferedChannelDiv {
             background-color: rgb(203, 242, 255);
             width: 40%;
             height: 30%;
@@ -234,7 +234,7 @@
             align-items: center;
             .contactPrefreredChannelText {
               color: rgb(129, 131, 238);
-            } 
+            }
           }
         }
         .contactInterestConteiner {
@@ -275,48 +275,370 @@
   }
 }
 
-
-#blurSection{
-  #createContactContainer{
-    #titleAndClose{
+#blurSection {
+  #createContactContainer {
+    display: flex;
+    flex-direction: column;
+    z-index: 3;
+    #titleAndClose {
+      z-index: 2;
       width: 100%;
       height: 4vw;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      #newContactTitle{
+      #newContactTitle {
         font-size: 1.2vw;
         color: white;
         font-weight: 800;
         margin: 0 0 0 2%;
       }
-      #newContactCloseButton{
+      #newContactCloseButton {
         font-size: 1.2vw;
         color: white;
         font-weight: 500;
         margin: 0 2% 0 0;
       }
     }
-    #contactPrincipalDataContainer{
-      border: 1px solid blue;
-      border-radius: 0.3vw;
+    #contactPrincipalDataContainer {
+      z-index: 2;
+      border: 3px solid rgb(45, 108, 223);
+      border-radius: 0.7vw;
       display: flex;
       align-items: center;
       justify-content: space-around;
-      #contactPrincipalDataPhotoDiv{
-        #contactPrincipalDataPhotoPlusIcon{
+      #contactPrincipalDataPhotoDiv {
+        #contactPrincipalDataPhotoPlusIcon {
           height: 6vw;
           width: 6vw;
-          border: 1px solid blue;
+          border: 5px solid rgb(45, 108, 223);
           border-radius: 50vw;
-          #contactPrincipalDataPhoto{
-            background-color: red;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          #contactPrincipalDataPhoto {
+            height: 4.5vw;
+            width: 4.5vw;
+            border-radius: 50vw;
+            position: absolute;
           }
-          #contactPrincipalDataPhotoIcon{
-
+          #contactPrincipalDataPhotoIconDiv {
+            position: relative;
+            height: 1.5vw;
+            width: 1.5vw;
+            border-radius: 50vw;
+            z-index: 1;
+            left: 2.5vw;
+            top: 2vw;
+            background-color: rgb(45, 108, 223);
+            border: 3px solid white;
+            #contactPrincipalDataPhotoIcon {
+              height: 100%;
+              width: 100%;
+              z-index: 2;
+            }
           }
+        }
+      }
+      #contactPrincipalDataNameContainer {
+        #contactPrincipalDataNameTitleDiv {
+          display: flex;
+          align-items: center;
+          #contactPrincipalDataNameTitle {
+            font-size: 80%;
+            margin: 0;
+          }
+          .asteriscoRed {
+            color: red;
+          }
+        }
+        #contactPrincipalDataNameInput {
+          height: 2.5vw;
+          border-radius: 0.3vw;
+          border: 1px solid rgb(199, 199, 199);
+          width: 14vw;
+        }
+      }
+      #contactPrincipalDataLastnameContainer {
+        #contactPrincipalDataLastnameTitleDiv {
+          display: flex;
+          align-items: center;
+          #contactPrincipalDataLastnameTitle {
+            font-size: 80%;
+            margin: 0;
+          }
+          .asteriscoRed {
+            color: red;
+          }
+        }
+        #contactPrincipalDataLastnameInput {
+          height: 2.5vw;
+          border-radius: 0.3vw;
+          border: 1px solid rgb(199, 199, 199);
+          width: 14vw;
+        }
+      }
+      #contactPrincipalDataPositionContainer {
+        #contactPrincipalDataPositionTitleDiv {
+          display: flex;
+          align-items: center;
+          #contactPrincipalDataPositionTitle {
+            font-size: 80%;
+            margin: 0;
+          }
+          .asteriscoRed {
+            color: red;
+          }
+        }
+        #contactPrincipalDataPositionInput {
+          height: 2.5vw;
+          border-radius: 0.3vw;
+          border: 1px solid rgb(199, 199, 199);
+          width: 14vw;
+        }
+      }
+      #contactPrincipalDataEmailContainer {
+        #contactPrincipalDataEmailTitleDiv {
+          display: flex;
+          align-items: center;
+          #contactPrincipalDataEmailTitle {
+            font-size: 80%;
+            margin: 0;
+          }
+          .asteriscoRed {
+            color: red;
+          }
+        }
+        #contactPrincipalDataEmailInput {
+          height: 2.5vw;
+          border-radius: 0.3vw;
+          border: 1px solid rgb(199, 199, 199);
+          width: 14vw;
+        }
+      }
+      #contactPrincipalDataCompanyContainer {
+        #contactPrincipalDataCompanyTitleDiv {
+          display: flex;
+          align-items: center;
+          #contactPrincipalDataCompanyTitle {
+            font-size: 80%;
+            margin: 0;
+          }
+          .asteriscoRed {
+            color: red;
+          }
+        }
+        #contactPrincipalDataCompanyInput {
+          height: 2.5vw;
+          border-radius: 0.3vw;
+          border: 1px solid rgb(199, 199, 199);
+          overflow: visible;
+          width: 14vw;
+        }
+      }
+    }
+    #secondaryDataContainer {
+      display: flex;
+      flex-direction: column;
+      z-index: 0;
+      position: absolute;
+      height: 40vw;
+      width: 100%;
+      background-color: white;
+      top: 7.5vw;
+      #secondaryDataFirstDiv {
+        margin: 0 0 0 2vw;
+        position: relative;
+        top: 10vw;
+        display: flex;
+        justify-content: space-between;
+        #secondaryDataFirstDivRegion {
+          width: 16%;
+          #secondaryDataFirstDivRegionTitle {
+            font-size: 90%;
+          }
+          #secondaryDataFirstDivRegionSelect {
+            width: 90%;
+          }
+        }
+        #secondaryDataFirstDivCountry {
+          width: 16%;
+          #secondaryDataFirstDivCountryTitle {
+            font-size: 90%;
+          }
+          #secondaryDataFirstDivCountrySelect {
+            width: 90%;
+            background-color: rgb(213, 213, 213);
+          }
+        }
+        #secondaryDataFirstDivCity {
+          width: 16%;
+          #secondaryDataFirstDivCityTitle {
+            font-size: 90%;
+          }
+          #secondaryDataFirstDivCitySelect {
+            width: 90%;
+            background-color: rgb(213, 213, 213);
+          }
+        }
+        #secondaryDataFirstDivAddress {
+          width: 16.865%;
+          #secondaryDataFirstDivAddressTitle {
+            font-size: 90%;
+          }
+          #secondaryDataFirstDivAddressInput {
+            width: 72.46%;
+            background-color: rgb(213, 213, 213);
+            border-radius: 2px;
+            padding: 1vw;
+            border: 1px solid rgb(199, 199, 199);
+            font-size: 80%;
+          }
+        }
+        #secondaryDataFirstDivInterest {
+          width: 30%;
+          display: flex;
+          #interestTitlePlusBar {
+            margin-right: 1vw;
+            width: 80%;
+            #secondaryDataFirstDivInterestTitle {
+              font-size: 90%;
+            }
+            #bar {
+              display: flex;
+              align-items: center;
+              height: 3.5vw;
+              #circleOfBar {
+                border: 1px solid rgb(199, 199, 199);
+                border-radius: 3vw;
+                height: 1.5vw;
+                width: 1.5vw;
+                position: absolute;
+                left: 69%;
+                background-color: white;
+              }
+              #divOfDivs {
+                width: 100%;
+                height: 1vw;
+                border-radius: 3px;
+                border: 1px solid rgb(199, 199, 199);
+                display: flex;
+                margin-right: 1vw;
+                .barDiv {
+                  border: 1px solid rgb(199, 199, 199);
+                  width: 25%;
+                }
+              }
+              #porcentualInterestSelect {
+                height: 3.175vw;
+                width: 6vw;
+                background-position-y: 10px;
+                border-radius: 3px;
+              }
+            }
+          }
+        }
+      }
+      #secondaryDataSecondDiv {
+        margin: 0 0 0 2vw;
+        position: relative;
+        top: 13vw;
+        display: flex;
+        align-items: flex-end;
+        #secondaryDataSecondDivChannel {
+          width: 16%;
+          #secondaryDataSecondDivChannelTitle {
+            font-size: 90%;
+          }
+          #secondaryDataSecondDivChannelSelect {
+            width: 90%;
+          }
+        }
+        #secondaryDataSecondDivUsername {
+          width: 16.865%;
+          margin-left: 1.5vw;
+          #secondaryDataSecondDivUsernameTitle {
+            font-size: 90%;
+          }
+          #secondaryDataSecondDivUsernameInput {
+            width: 72.46%;
+            background-color: rgb(213, 213, 213);
+            border-radius: 2px;
+            padding: 1vw;
+            border: 1px solid rgb(199, 199, 199);
+            font-size: 80%;
+          }
+        }
+        #secondaryDataSecondDivPreferences {
+          width: 16%;
+          #secondaryDataSecondDivPreferencesTitle {
+            font-size: 90%;
+          }
+          #secondaryDataSecondDivPreferencesSelect {
+            width: 90%;
+          }
+        }
+        #secondaryDataSecondDivAddChannel {
+          border: 1px solid rgb(199, 199, 199);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 12vw;
+          height: 50%;
+          margin-left: 1.5vw;
+          #secondaryDataSecondDivAddChannelIcon {
+            width: 30%;
+            height: 100%;
+          }
+          #secondaryDataSecondDivAddChannelText {
+            font-size: 80%;
+            color: rgb(199, 199, 199);
+            margin-right: 1vw;
+          }
+        }
+      }
+      #finalButtons {
+        display: flex;
+        flex-direction: row;
+        z-index: 0;
+        position: absolute;
+        height: 5vw;
+        background-color: white;
+        top: 80%;
+        margin: 0 0 0 60%;
+        #cancelButton {
+          background: white;
+          border: none;
+          color: rgb(185, 185, 185);
+          font-weight: 700;
+          height: 3.5vw;
+          padding: 0.5vw;
+          width: 10vw;
+        }
+        #saveContactButton {
+          background: rgb(185, 185, 185);
+          color: white;
+          font-weight: 700;
+          border: none;
+          border-radius: 3px;
+          height: 3.5vw;
+          padding: 0.5vw;
+          width: 13vw;
         }
       }
     }
   }
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 98%;
+  background-position-y: 10px;
+  border: 1px solid rgb(199, 199, 199);
+  border-radius: 2px;
+  padding: 1vw;
 }

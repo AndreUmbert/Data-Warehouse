@@ -906,7 +906,19 @@ body {
   margin: 0;
 }
 
+#blurSection #createContactContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  z-index: 3;
+}
+
 #blurSection #createContactContainer #titleAndClose {
+  z-index: 2;
   width: 100%;
   height: 4vw;
   display: -webkit-box;
@@ -935,8 +947,9 @@ body {
 }
 
 #blurSection #createContactContainer #contactPrincipalDataContainer {
-  border: 1px solid blue;
-  border-radius: 0.3vw;
+  z-index: 2;
+  border: 3px solid #2d6cdf;
+  border-radius: 0.7vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -950,11 +963,440 @@ body {
 #blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataPhotoDiv #contactPrincipalDataPhotoPlusIcon {
   height: 6vw;
   width: 6vw;
-  border: 1px solid blue;
+  border: 5px solid #2d6cdf;
   border-radius: 50vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 #blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataPhotoDiv #contactPrincipalDataPhotoPlusIcon #contactPrincipalDataPhoto {
-  background-color: red;
+  height: 4.5vw;
+  width: 4.5vw;
+  border-radius: 50vw;
+  position: absolute;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataPhotoDiv #contactPrincipalDataPhotoPlusIcon #contactPrincipalDataPhotoIconDiv {
+  position: relative;
+  height: 1.5vw;
+  width: 1.5vw;
+  border-radius: 50vw;
+  z-index: 1;
+  left: 2.5vw;
+  top: 2vw;
+  background-color: #2d6cdf;
+  border: 3px solid white;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataPhotoDiv #contactPrincipalDataPhotoPlusIcon #contactPrincipalDataPhotoIconDiv #contactPrincipalDataPhotoIcon {
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataNameContainer #contactPrincipalDataNameTitleDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataNameContainer #contactPrincipalDataNameTitleDiv #contactPrincipalDataNameTitle {
+  font-size: 80%;
+  margin: 0;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataNameContainer #contactPrincipalDataNameTitleDiv .asteriscoRed {
+  color: red;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataNameContainer #contactPrincipalDataNameInput {
+  height: 2.5vw;
+  border-radius: 0.3vw;
+  border: 1px solid #c7c7c7;
+  width: 14vw;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataLastnameContainer #contactPrincipalDataLastnameTitleDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataLastnameContainer #contactPrincipalDataLastnameTitleDiv #contactPrincipalDataLastnameTitle {
+  font-size: 80%;
+  margin: 0;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataLastnameContainer #contactPrincipalDataLastnameTitleDiv .asteriscoRed {
+  color: red;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataLastnameContainer #contactPrincipalDataLastnameInput {
+  height: 2.5vw;
+  border-radius: 0.3vw;
+  border: 1px solid #c7c7c7;
+  width: 14vw;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataPositionContainer #contactPrincipalDataPositionTitleDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataPositionContainer #contactPrincipalDataPositionTitleDiv #contactPrincipalDataPositionTitle {
+  font-size: 80%;
+  margin: 0;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataPositionContainer #contactPrincipalDataPositionTitleDiv .asteriscoRed {
+  color: red;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataPositionContainer #contactPrincipalDataPositionInput {
+  height: 2.5vw;
+  border-radius: 0.3vw;
+  border: 1px solid #c7c7c7;
+  width: 14vw;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataEmailContainer #contactPrincipalDataEmailTitleDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataEmailContainer #contactPrincipalDataEmailTitleDiv #contactPrincipalDataEmailTitle {
+  font-size: 80%;
+  margin: 0;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataEmailContainer #contactPrincipalDataEmailTitleDiv .asteriscoRed {
+  color: red;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataEmailContainer #contactPrincipalDataEmailInput {
+  height: 2.5vw;
+  border-radius: 0.3vw;
+  border: 1px solid #c7c7c7;
+  width: 14vw;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataCompanyContainer #contactPrincipalDataCompanyTitleDiv {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataCompanyContainer #contactPrincipalDataCompanyTitleDiv #contactPrincipalDataCompanyTitle {
+  font-size: 80%;
+  margin: 0;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataCompanyContainer #contactPrincipalDataCompanyTitleDiv .asteriscoRed {
+  color: red;
+}
+
+#blurSection #createContactContainer #contactPrincipalDataContainer #contactPrincipalDataCompanyContainer #contactPrincipalDataCompanyInput {
+  height: 2.5vw;
+  border-radius: 0.3vw;
+  border: 1px solid #c7c7c7;
+  overflow: visible;
+  width: 14vw;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  z-index: 0;
+  position: absolute;
+  height: 40vw;
+  width: 100%;
+  background-color: white;
+  top: 7.5vw;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv {
+  margin: 0 0 0 2vw;
+  position: relative;
+  top: 10vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivRegion {
+  width: 16%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivRegion #secondaryDataFirstDivRegionTitle {
+  font-size: 90%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivRegion #secondaryDataFirstDivRegionSelect {
+  width: 90%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivCountry {
+  width: 16%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivCountry #secondaryDataFirstDivCountryTitle {
+  font-size: 90%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivCountry #secondaryDataFirstDivCountrySelect {
+  width: 90%;
+  background-color: #d5d5d5;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivCity {
+  width: 16%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivCity #secondaryDataFirstDivCityTitle {
+  font-size: 90%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivCity #secondaryDataFirstDivCitySelect {
+  width: 90%;
+  background-color: #d5d5d5;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivAddress {
+  width: 16.865%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivAddress #secondaryDataFirstDivAddressTitle {
+  font-size: 90%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivAddress #secondaryDataFirstDivAddressInput {
+  width: 72.46%;
+  background-color: #d5d5d5;
+  border-radius: 2px;
+  padding: 1vw;
+  border: 1px solid #c7c7c7;
+  font-size: 80%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivInterest {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivInterest #interestTitlePlusBar {
+  margin-right: 1vw;
+  width: 80%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivInterest #interestTitlePlusBar #secondaryDataFirstDivInterestTitle {
+  font-size: 90%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivInterest #interestTitlePlusBar #bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 3.5vw;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivInterest #interestTitlePlusBar #bar #circleOfBar {
+  border: 1px solid #c7c7c7;
+  border-radius: 3vw;
+  height: 1.5vw;
+  width: 1.5vw;
+  position: absolute;
+  left: 69%;
+  background-color: white;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivInterest #interestTitlePlusBar #bar #divOfDivs {
+  width: 100%;
+  height: 1vw;
+  border-radius: 3px;
+  border: 1px solid #c7c7c7;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-right: 1vw;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivInterest #interestTitlePlusBar #bar #divOfDivs .barDiv {
+  border: 1px solid #c7c7c7;
+  width: 25%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataFirstDiv #secondaryDataFirstDivInterest #interestTitlePlusBar #bar #porcentualInterestSelect {
+  height: 3.175vw;
+  width: 6vw;
+  background-position-y: 10px;
+  border-radius: 3px;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv {
+  margin: 0 0 0 2vw;
+  position: relative;
+  top: 13vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv #secondaryDataSecondDivChannel {
+  width: 16%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv #secondaryDataSecondDivChannel #secondaryDataSecondDivChannelTitle {
+  font-size: 90%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv #secondaryDataSecondDivChannel #secondaryDataSecondDivChannelSelect {
+  width: 90%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv #secondaryDataSecondDivUsername {
+  width: 16.865%;
+  margin-left: 1.5vw;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv #secondaryDataSecondDivUsername #secondaryDataSecondDivUsernameTitle {
+  font-size: 90%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv #secondaryDataSecondDivUsername #secondaryDataSecondDivUsernameInput {
+  width: 72.46%;
+  background-color: #d5d5d5;
+  border-radius: 2px;
+  padding: 1vw;
+  border: 1px solid #c7c7c7;
+  font-size: 80%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv #secondaryDataSecondDivPreferences {
+  width: 16%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv #secondaryDataSecondDivPreferences #secondaryDataSecondDivPreferencesTitle {
+  font-size: 90%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv #secondaryDataSecondDivPreferences #secondaryDataSecondDivPreferencesSelect {
+  width: 90%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv #secondaryDataSecondDivAddChannel {
+  border: 1px solid #c7c7c7;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 12vw;
+  height: 50%;
+  margin-left: 1.5vw;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv #secondaryDataSecondDivAddChannel #secondaryDataSecondDivAddChannelIcon {
+  width: 30%;
+  height: 100%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #secondaryDataSecondDiv #secondaryDataSecondDivAddChannel #secondaryDataSecondDivAddChannelText {
+  font-size: 80%;
+  color: #c7c7c7;
+  margin-right: 1vw;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #finalButtons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  z-index: 0;
+  position: absolute;
+  height: 5vw;
+  background-color: white;
+  top: 80%;
+  margin: 0 0 0 60%;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #finalButtons #cancelButton {
+  background: white;
+  border: none;
+  color: #b9b9b9;
+  font-weight: 700;
+  height: 3.5vw;
+  padding: 0.5vw;
+  width: 10vw;
+}
+
+#blurSection #createContactContainer #secondaryDataContainer #finalButtons #saveContactButton {
+  background: #b9b9b9;
+  color: white;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  height: 3.5vw;
+  padding: 0.5vw;
+  width: 13vw;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 98%;
+  background-position-y: 10px;
+  border: 1px solid #c7c7c7;
+  border-radius: 2px;
+  padding: 1vw;
 }
 /*# sourceMappingURL=style.css.map */
