@@ -3,6 +3,7 @@ const addContact = document.getElementById("addContact");
 const blurSection = document.getElementById("blurSection");
 const contactSection = document.getElementById("contactSection");
 const contactsDashboardContactsOrderImg = document.getElementById("contactsDashboardContactsOrderImg");
+const contactsDashboardCountryRegionOrderImg = document.getElementById("contactsDashboardCountryRegionOrderImg");
 
 const contactsFullData = [
     { name: "Carolina Almagro", email: "caroGG@gmail.com", country: "Argentina", region: "South America", company: "Crunchyroll", position: "UI/UX", channels: ["WhatsApp", "Telegram", "Slack", "Discord", "Facebook"], interest: "75%", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg/800px-2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg" },
@@ -642,9 +643,43 @@ function deleteChildren(element) {
 
 }
 
+
+
 contactsDashboardContactsOrderImg.addEventListener("click", () => {
     contactsFullData.sort((a, b) => {
         return (a.name > b.name) ? 1 : -1
     })
     console.log(contactsFullData);
+    contactDashboardDynamic.innerHTML="";
+    showContacts();
+})
+
+contactsDashboardContactsOrderImg.addEventListener("dblclick", () => {
+    contactsFullData.sort((a, b) => {
+        return (a.name > b.name) ? 1 : -1
+    })
+    contactsFullData.reverse();
+    console.log(contactsFullData);
+    contactDashboardDynamic.innerHTML="";
+    showContacts();
+})
+
+
+contactsDashboardCountryRegionOrderImg.addEventListener("click", () => {
+    contactsFullData.sort((a, b) => {
+        return (a.country > b.country) ? 1 : -1
+    })
+    console.log(contactsFullData);
+    contactDashboardDynamic.innerHTML="";
+    showContacts();
+})
+
+contactsDashboardCountryRegionOrderImg.addEventListener("dblclick", () => {
+    contactsFullData.sort((a, b) => {
+        return (a.country > b.country) ? 1 : -1
+    })
+    contactsFullData.reverse();
+    console.log(contactsFullData);
+    contactDashboardDynamic.innerHTML="";
+    showContacts();
 })
