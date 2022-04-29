@@ -165,8 +165,8 @@ body {
   display: grid;
   -ms-grid-columns: 12vw 20vw;
       grid-template-columns: 12vw 20vw;
-  -ms-grid-rows: 3vw 3vw 3vw 3vw 3vw 3vw;
-      grid-template-rows: 3vw 3vw 3vw 3vw 3vw 3vw;
+  -ms-grid-rows: 3vw 3vw 3vw 3vw 3vw 3vw 3vw;
+      grid-template-rows: 3vw 3vw 3vw 3vw 3vw 3vw 3vw;
   row-gap: 1.5vw;
   margin: 0 0 3vw 0;
 }
@@ -838,7 +838,6 @@ body {
 #contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactPreferedChannelContainer .contactPreferedChannelDiv {
   background-color: #cbf2ff;
   width: 40%;
-  height: 30%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -848,10 +847,13 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-right: 0.5vw;
+  border-radius: 3px;
 }
 
 #contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactPreferedChannelContainer .contactPreferedChannelDiv .contactPrefreredChannelText {
   color: #8183ee;
+  margin: 0.5vw 0.5vw;
 }
 
 #contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactInterestConteiner {
@@ -862,6 +864,9 @@ body {
       -ms-flex-align: center;
           align-items: center;
   width: 12%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 #contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactInterestConteiner .contactInterestNumber {
@@ -870,7 +875,7 @@ body {
 }
 
 #contactSection #contactsDashboard #contactDashboardDynamic .contactDiv .contactInterestConteiner .contactInterestBar {
-  height: 8%;
+  height: 0.6vw;
   width: 70%;
   border-radius: 50vw;
   display: -webkit-box;

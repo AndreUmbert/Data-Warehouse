@@ -98,15 +98,14 @@ app.post("/login", async (req, res) => {
         },
         include: [{ model: Rol }],
     });
-
+    console.log(posibleUser.rol.dataValues.id);
     if (posibleUser == null) {
         res.status(401).json({ error: "user or password incorrect" });
     } else {
         const token = jwt.sign({
             posibleUser
         }, JWT_SECRET, { expiresIn: '60m' })
-
-        res.json({ token, id: posibleUser.id });
+        res.json({ token, id: posibleUser.id, rol: posibleUser.rol.dataValues.id });
     }
     //Pushear id de usuario a localstorage para obtenerlo en el front y traer los contactos de este idusuario. (AXIOS)
 });
@@ -115,10 +114,11 @@ app.post("/login", async (req, res) => {
 app.post("/signup", async (req, res) => {
     try {
         const newUser = await db.query(
-            "INSERT INTO userTable (name, lastname, email, password, rePassword, profile) values (?,?,?,?,?,?)",
+            "INSERT INTO userTable (name, lastname, email, password, rePassword, profile, rolId) values (?,?,?,?,?,?,?)",
+            //establecer rol
             {
                 type: db.QueryTypes.INSERT,
-                replacements: [req.body.name, req.body.lastname, req.body.email, req.body.password, req.body.rePassword, req.body.profile]
+                replacements: [req.body.name, req.body.lastname, req.body.email, req.body.password, req.body.rePassword, req.body.profile, req.body.rol]
             }
         );
         res.status(200).json(newUser);

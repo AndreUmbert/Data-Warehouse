@@ -228,12 +228,15 @@
           .contactPreferedChannelDiv {
             background-color: rgb(203, 242, 255);
             width: 40%;
-            height: 30%;
+
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-right: 0.5vw;
+            border-radius: 3px;
             .contactPrefreredChannelText {
               color: rgb(129, 131, 238);
+              margin: 0.5vw 0.5vw;
             }
           }
         }
@@ -241,12 +244,13 @@
           display: flex;
           align-items: center;
           width: 12%;
+          justify-content: space-between;
           .contactInterestNumber {
             width: 25%;
             font-size: 80%;
           }
           .contactInterestBar {
-            height: 8%;
+            height: 0.6vw;
             width: 70%;
             border-radius: 50vw;
             display: flex;

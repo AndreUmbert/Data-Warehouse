@@ -18,6 +18,8 @@ function login() {
         .then(function logear(response) {
             console.log(response);
             console.log("Logeado correctamente");
+            console.log();
+            window.localStorage.setItem("rolUsuario", response.data.rol);
             window.localStorage.setItem('token', response.data.token);
             location.href = './dashboard.html';
         }, function error(params) {

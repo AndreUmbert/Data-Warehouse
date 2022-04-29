@@ -2,12 +2,13 @@ const contactDashboardDynamic = document.getElementById("contactDashboardDynamic
 const addContact = document.getElementById("addContact");
 const blurSection = document.getElementById("blurSection");
 const contactSection = document.getElementById("contactSection");
+const contactsDashboardContactsOrderImg = document.getElementById("contactsDashboardContactsOrderImg");
 
 const contactsFullData = [
-    { name: "Carolina Almagro", email: "caroGG@gmail.com", country: "Argentina", region: "South America", company: "Crunchyroll", position: "UI/UX", channels: ["WhatsApp"], interest: "75%", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg/800px-2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg" },
+    { name: "Carolina Almagro", email: "caroGG@gmail.com", country: "Argentina", region: "South America", company: "Crunchyroll", position: "UI/UX", channels: ["WhatsApp", "Telegram", "Slack", "Discord", "Facebook"], interest: "75%", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg/800px-2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg" },
     { name: "Jorge Charulo", email: "jorgelitochar@hotmail.com", country: "Estados Unidos", region: "North America", company: "SpaceX", position: "RRHH", channels: ["SMS"], interest: "25%", image: "https://pbs.twimg.com/profile_images/1034722421528518656/NCb2tkr8_400x400.jpg" },
     { name: "Eduardo Polimera", email: "eledu27@gmail.com", country: "Mexico", region: "North America", company: "Acamica", position: "Web Developer", channels: ["Telegram"], interest: "100%", image: "https://img.a.transfermarkt.technology/portrait/big/8198-1631656078.jpg?lm=1" },
-    { name: "Milagros Sabrina Orione", email: "milasao@outlook.com", country: "Chile", region: "South America", company: "Starlink", position: "Accountant", channels: ["Slack", "WhatsApp"], interest: "50%", image: "https://img.a.transfermarkt.technology/portrait/big/28003-1631171950.jpg?lm=1" }
+    { name: "Milagros Sabrina Orione", email: "milasao@outlook.com", country: "Chile", region: "South America", company: "Starlink", position: "Accountant", channels: ["Slack", "WhatsApp", "Discord"], interest: "50%", image: "https://img.a.transfermarkt.technology/portrait/big/28003-1631171950.jpg?lm=1" }
 ];
 
 
@@ -498,18 +499,84 @@ function showContacts(contacts) {
         contactDiv.appendChild(contactPreferedChannelContainer);
         if (contact.channels.length > 2) {
             //Agregar boton ... en el caso de que el usuario tenga mas de 2 canales preferidos de contatos y que al apretar agrande el div y los muestre.
-        } else {
-            const contactPreferedChannelDiv = document.createElement("div");
-            contactPreferedChannelDiv.setAttribute("class", "contactPreferedChannelDiv");
-            contactPreferedChannelContainer.appendChild(contactPreferedChannelDiv);
-            const contactPrefreredChannelText = document.createElement("p");
-            contactPrefreredChannelText.setAttribute("class", "contactPrefreredChannelText");
-            contactPreferedChannelDiv.appendChild(contactPrefreredChannelText);
-            contactPrefreredChannelText.appendChild(document.createTextNode(contact.channels));
-            //sacar las "," entre cada uno de los elementos.
-            // for (const iterator of object) {
+            //div
+            let channel1 = document.createElement("div")
+            channel1.setAttribute("attribute", "channel1");
+            contactPreferedChannelContainer.appendChild(channel1);
+            channel1.setAttribute("class", "contactPreferedChannelDiv");
+            //p
+            let channel1Text = document.createElement("p");
+            channel1.appendChild(channel1Text);
+            channel1Text.setAttribute("attribute", "channel1Text");
+            channel1Text.setAttribute("class", "contactPrefreredChannelText");
+            channel1Text.appendChild(document.createTextNode(contact.channels[0]));
+            //div
+            let channel2 = document.createElement("div")
+            channel2.setAttribute("attribute", "channel2");
+            contactPreferedChannelContainer.appendChild(channel2);
+            channel2.setAttribute("class", "contactPreferedChannelDiv");
+            //p
+            let channel2Text = document.createElement("p");
+            channel2.appendChild(channel2Text);
+            channel2Text.setAttribute("attribute", "channel2Text");
+            channel2Text.setAttribute("class", "contactPrefreredChannelText");
+            channel2Text.appendChild(document.createTextNode(contact.channels[1]));
+            //button
+            const channelsButton = document.createElement("button");
+            channelsButton.appendChild(document.createTextNode("..."));
+            contactPreferedChannelContainer.appendChild(channelsButton);
+            channelsButton.addEventListener("click", (channelsButtonEvent) => {
+                currentContactDiv = contactDiv;
+                currentContactDiv.style.height = "auto";
+                channel1.style.display = "none";
+                channel2.style.display = "none";
+                channelsButton.style.display = "none";
+                contactPreferedChannelContainer.style.margin = "1vw 0.5vw"
+                contactPreferedChannelContainer.style.flexWrap = "wrap";
+                contactImg.style.display = "none";
+                contact.channels.forEach(channel => {
+                    //father
+                    contactPreferedChannelContainer.setAttribute("class", `contactPreferedChannelContainer current`);
+                    //children
+                    const contactPreferedChannelDiv = document.createElement("div");
+                    contactPreferedChannelDiv.setAttribute("class", `contactPreferedChannelDiv created ${contact.name}`);
+                    contactPreferedChannelContainer.appendChild(contactPreferedChannelDiv);
+                    //text
+                    const contactPrefreredChannelText = document.createElement("p");
+                    contactPrefreredChannelText.setAttribute("class", "contactPrefreredChannelText");
+                    contactPreferedChannelDiv.appendChild(contactPrefreredChannelText);
+                    contactPrefreredChannelText.appendChild(document.createTextNode(channel));
+                    contactPreferedChannelDiv.style.margin = "0.5vw";
+                });
 
-            // }
+                const revertButton = document.createElement("button");
+                revertButton.setAttribute("class", "revertButton");
+                revertButton.setAttribute("id", `${contact.name}`)
+                revertButton.appendChild(document.createTextNode("<<<"));
+                revertButton.setAttribute("onclick", "deleteChildren(this)");
+                revertButton.addEventListener('click', () => {
+                    console.log(channel1);
+                    channel1.style.display = "flex";
+                    channel2.style.display = "flex";
+                    channelsButton.style.display = "flex";
+                    revertButton.remove();
+                    contactImg.style.display = "block";
+                    contactDiv.style.height = "6vw";
+                })
+                contactPreferedChannelContainer.appendChild(revertButton);
+            })
+
+        } else {
+            contact.channels.forEach(channel => {
+                // console.log(channel);
+                const contactPreferedChannelDiv = document.createElement("div");
+                contactPreferedChannelDiv.setAttribute("class", "contactPreferedChannelDiv");
+                contactPreferedChannelContainer.appendChild(contactPreferedChannelDiv);
+                const contactPrefreredChannelText = document.createElement("p");
+                contactPrefreredChannelText.setAttribute("class", "contactPrefreredChannelText");
+                contactPreferedChannelDiv.appendChild(contactPrefreredChannelText);
+                contactPrefreredChannelText.appendChild(document.createTextNode(channel));
+            });
         }
         //contactInterest:
         //contactInterestContainer:
@@ -558,10 +625,26 @@ function showContacts(contacts) {
         contactAccionsButtonText.setAttribute("class", "contactAccionsButtonText");
         contactAccionsButtonText.appendChild(document.createTextNode("..."));
         contactAccionsButtonDiv.appendChild(contactAccionsButtonText);
+
+
+
     }
 };
 
 
+function deleteChildren(element) {
+    console.log(element);
+    const currentContainer = document.getElementsByClassName(element.id);
+    for (var i = 0; i <= currentContainer.length; i++) {
+        i = 0;
+        currentContainer[i].remove();
+    }
 
+}
 
-
+contactsDashboardContactsOrderImg.addEventListener("click", () => {
+    contactsFullData.sort((a, b) => {
+        return (a.name > b.name) ? 1 : -1
+    })
+    console.log(contactsFullData);
+})
