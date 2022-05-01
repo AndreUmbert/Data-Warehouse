@@ -13,7 +13,6 @@ const getCompanies = async () => {
         config
     );
 
-
     //get companyCountry:
     let countries = await axios.get(
         "http://localhost:3000/country/dashboard",

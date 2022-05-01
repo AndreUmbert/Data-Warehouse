@@ -1,24 +1,48 @@
+const id = window.localStorage.getItem("id");
+const token = localStorage.getItem("token");
+const config = { headers: { Authorization: `Bearer ${token}` } };
 const contactDashboardDynamic = document.getElementById("contactDashboardDynamic");
 const addContact = document.getElementById("addContact");
 const blurSection = document.getElementById("blurSection");
 const contactSection = document.getElementById("contactSection");
 const contactsDashboardContactsOrderImg = document.getElementById("contactsDashboardContactsOrderImg");
 const contactsDashboardCountryRegionOrderImg = document.getElementById("contactsDashboardCountryRegionOrderImg");
+const contactsDashboardCompanyOrderImg = document.getElementById("contactsDashboardCompanyOrderImg");
+const contactsDashboardPositionsOrderImg = document.getElementById("contactsDashboardPositionsOrderImg");
+const contactsDashboardInterestsOrderImg = document.getElementById("contactsDashboardInterestsOrderImg");
 
-const contactsFullData = [
-    { name: "Carolina Almagro", email: "caroGG@gmail.com", country: "Argentina", region: "South America", company: "Crunchyroll", position: "UI/UX", channels: ["WhatsApp", "Telegram", "Slack", "Discord", "Facebook"], interest: "75%", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg/800px-2019-07-17_SG_Dynamo_Dresden_vs._Paris_Saint-Germain_by_Sandro_Halank%E2%80%93129_%28cropped%29.jpg" },
-    { name: "Jorge Charulo", email: "jorgelitochar@hotmail.com", country: "Estados Unidos", region: "North America", company: "SpaceX", position: "RRHH", channels: ["SMS"], interest: "25%", image: "https://pbs.twimg.com/profile_images/1034722421528518656/NCb2tkr8_400x400.jpg" },
-    { name: "Eduardo Polimera", email: "eledu27@gmail.com", country: "Mexico", region: "North America", company: "Acamica", position: "Web Developer", channels: ["Telegram"], interest: "100%", image: "https://img.a.transfermarkt.technology/portrait/big/8198-1631656078.jpg?lm=1" },
-    { name: "Milagros Sabrina Orione", email: "milasao@outlook.com", country: "Chile", region: "South America", company: "Starlink", position: "Accountant", channels: ["Slack", "WhatsApp", "Discord"], interest: "50%", image: "https://img.a.transfermarkt.technology/portrait/big/28003-1631171950.jpg?lm=1" }
-];
+const contactsFullData = [];
 
+//==========================================================
+// CONTACT GET:
+//==========================================================
 
-//Get contacts:
 const getContacts = async () => {
-    for (let indexContact = 0; indexContact < contactsFullData.length; indexContact++) {
-        contactsFullData[indexContact];
-    }
-    showContacts();
+    console.log(contactsFullData);
+    //get contacts:
+    let contacts = await axios.get(
+        "http://localhost:3000/contact/dashboard",
+        config
+    );
+    console.log(contacts);
+
+    let countries = await axios.get(
+        "http://localhost:3000/country/dashboard",
+        config
+    );
+    console.log(countries);
+
+    let companies = await axios.get(
+        "http://localhost:3000/company/dashboard",
+        config
+    );
+
+
+    // if (contacts.data[contactIndex].usertableId == id) {
+    //     contactsFullData.push(contacts.data[contactIndex]);
+    //     console.log(contactsFullData);
+    // }
+    showContacts(contacts.data);
 };
 
 getContacts();
@@ -434,6 +458,7 @@ function addContactFunction() {
 }
 
 function showContacts(contacts) {
+    console.log(contacts);
     for (let contact of contactsFullData) {
         // create contactDiv
         const contactDiv = document.createElement("div");
@@ -463,7 +488,7 @@ function showContacts(contacts) {
         // contactName:
         const contactName = document.createElement("p");
         contactName.setAttribute("class", "contactName");
-        contactName.appendChild(document.createTextNode(contact.name));
+        contactName.appendChild(document.createTextNode(contact.name + " " + contact.lastname));
         contactNamePlusEmail.appendChild(contactName);
         // ContactEmail:
         const contactEmail = document.createElement("p");
@@ -494,7 +519,9 @@ function showContacts(contacts) {
         contactPosition.setAttribute("class", "contactPosition");
         contactDiv.appendChild(contactPosition);
         contactPosition.appendChild(document.createTextNode(contact.position));
+        //-------------------------------------------------------------
         //contactPreferedChannel:
+        //-------------------------------------------------------------
         const contactPreferedChannelContainer = document.createElement("div");
         contactPreferedChannelContainer.setAttribute("class", "contactPreferedChannelContainer");
         contactDiv.appendChild(contactPreferedChannelContainer);
@@ -587,7 +614,7 @@ function showContacts(contacts) {
         //contactInterestNumber:
         const contactInterestNumber = document.createElement("p");
         contactInterestNumber.setAttribute("class", "contactInterestNumber");
-        contactInterestNumber.appendChild(document.createTextNode(contact.interest));
+        contactInterestNumber.appendChild(document.createTextNode(contact.interest.toString() + "%"));
         contactInterestConteiner.appendChild(contactInterestNumber);
         //contactInterestBar:
         const contactInterestBar = document.createElement("div");
@@ -595,20 +622,20 @@ function showContacts(contacts) {
         contactInterestConteiner.appendChild(contactInterestBar);
         const contactInterestColoredBar = document.createElement("div");
         contactInterestColoredBar.setAttribute("class", "contactInterestColoredBar");
-        if (contact.interest == "0%") {
+        if (contact.interest == 0) {
             contactInterestColoredBar.style.width = "0%";
             contactInterestColoredBar.style.background = "none";
-        } if (contact.interest == "25%") {
+        } if (contact.interest == 25) {
             contactInterestColoredBar.style.width = "25%";
             contactInterestColoredBar.style.background = "blue";
-        } if (contact.interest == "50%") {
+        } if (contact.interest == 50) {
             contactInterestColoredBar.style.width = "50%";
             contactInterestColoredBar.style.background = "yellow";
-        } if (contact.interest == "75%") {
+        } if (contact.interest == 75) {
             contactInterestColoredBar.style.width = "75%";
             contactInterestColoredBar.style.background = "orange";
         }
-        if (contact.interest == "100%") {
+        if (contact.interest == 100) {
             contactInterestColoredBar.style.width = "100%";
             contactInterestColoredBar.style.background = "red";
         }
@@ -632,7 +659,6 @@ function showContacts(contacts) {
     }
 };
 
-
 function deleteChildren(element) {
     console.log(element);
     const currentContainer = document.getElementsByClassName(element.id);
@@ -642,15 +668,15 @@ function deleteChildren(element) {
     }
 
 }
-
-
-
+//===================================================================
+//  SORTS:
+//===================================================================
 contactsDashboardContactsOrderImg.addEventListener("click", () => {
     contactsFullData.sort((a, b) => {
         return (a.name > b.name) ? 1 : -1
     })
     console.log(contactsFullData);
-    contactDashboardDynamic.innerHTML="";
+    contactDashboardDynamic.innerHTML = "";
     showContacts();
 })
 
@@ -660,17 +686,16 @@ contactsDashboardContactsOrderImg.addEventListener("dblclick", () => {
     })
     contactsFullData.reverse();
     console.log(contactsFullData);
-    contactDashboardDynamic.innerHTML="";
+    contactDashboardDynamic.innerHTML = "";
     showContacts();
 })
-
 
 contactsDashboardCountryRegionOrderImg.addEventListener("click", () => {
     contactsFullData.sort((a, b) => {
         return (a.country > b.country) ? 1 : -1
     })
     console.log(contactsFullData);
-    contactDashboardDynamic.innerHTML="";
+    contactDashboardDynamic.innerHTML = "";
     showContacts();
 })
 
@@ -680,6 +705,67 @@ contactsDashboardCountryRegionOrderImg.addEventListener("dblclick", () => {
     })
     contactsFullData.reverse();
     console.log(contactsFullData);
-    contactDashboardDynamic.innerHTML="";
+    contactDashboardDynamic.innerHTML = "";
     showContacts();
 })
+
+contactsDashboardCompanyOrderImg.addEventListener("click", () => {
+    contactsFullData.sort((a, b) => {
+        return (a.company > b.company) ? 1 : -1
+    })
+    console.log(contactsFullData);
+    contactDashboardDynamic.innerHTML = "";
+    showContacts();
+})
+
+contactsDashboardCompanyOrderImg.addEventListener("dblclick", () => {
+    contactsFullData.sort((a, b) => {
+        return (a.company > b.company) ? 1 : -1
+    })
+    contactsFullData.reverse();
+    console.log(contactsFullData);
+    contactDashboardDynamic.innerHTML = "";
+    showContacts();
+})
+
+contactsDashboardPositionsOrderImg.addEventListener("click", () => {
+    contactsFullData.sort((a, b) => {
+        return (a.position > b.position) ? 1 : -1
+    })
+    console.log(contactsFullData);
+    contactDashboardDynamic.innerHTML = "";
+    showContacts();
+})
+
+contactsDashboardPositionsOrderImg.addEventListener("dblclick", () => {
+    contactsFullData.sort((a, b) => {
+        return (a.position > b.position) ? 1 : -1
+    })
+    contactsFullData.reverse();
+    console.log(contactsFullData);
+    contactDashboardDynamic.innerHTML = "";
+    showContacts();
+})
+
+contactsDashboardInterestsOrderImg.addEventListener("click", () => {
+    contactsFullData.sort((a, b) => {
+        return (a.interest > b.interest) ? 1 : -1
+    })
+    console.log(contactsFullData);
+    contactDashboardDynamic.innerHTML = "";
+    showContacts();
+})
+
+contactsDashboardInterestsOrderImg.addEventListener("dblclick", () => {
+    contactsFullData.sort((a, b) => {
+        return (a.interest > b.interest) ? 1 : -1
+    })
+    contactsFullData.reverse();
+    console.log(contactsFullData);
+    contactDashboardDynamic.innerHTML = "";
+    showContacts();
+})
+
+
+
+

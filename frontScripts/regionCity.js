@@ -6,7 +6,6 @@
 const blur = document.getElementById("blurSection");
 const token = localStorage.getItem("token");
 const config = { headers: { Authorization: `Bearer ${token}` } };
-console.log(config);
 const regionCity = document.getElementById("regionCity");
 const regionUl = document.getElementById("regionCityUl");
 const addRegionCityButton = document.getElementById("addRegionCityButton");

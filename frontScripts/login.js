@@ -21,6 +21,7 @@ function login() {
             console.log();
             window.localStorage.setItem("rolUsuario", response.data.rol);
             window.localStorage.setItem('token', response.data.token);
+            window.localStorage.setItem("id", response.data.id);
             location.href = './dashboard.html';
         }, function error(params) {
             console.error("Nombre o Contraseña incorrecta");

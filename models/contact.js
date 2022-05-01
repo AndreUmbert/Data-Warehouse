@@ -23,10 +23,10 @@ const Contact = sequelize.define("contact", {
         allowNull: false,
     },
     interest: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
-    preferences: {
+    channels: {
         type: DataTypes.STRING,
         allowNull: false,
     }

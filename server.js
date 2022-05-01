@@ -73,7 +73,7 @@ app.use(expressJwt({
 //----------------------------------------------------
 // 5.1 USERS:
 //----------------------------------------------------
-app.get("/user/dashboard", async (req, res) => {
+app.get("/user/dashboard", adminVerification, async (req, res) => {
     try {
         const users = await db.query(
             'SELECT * FROM userTable',
@@ -111,7 +111,7 @@ app.post("/login", async (req, res) => {
 });
 
 
-app.post("/signup", async (req, res) => {
+app.post("/signup", adminVerification, async (req, res) => {
     try {
         const newUser = await db.query(
             "INSERT INTO userTable (name, lastname, email, password, rePassword, profile, rolId) values (?,?,?,?,?,?,?)",
@@ -128,7 +128,7 @@ app.post("/signup", async (req, res) => {
     }
 });
 
-app.put("/user/changes/:idUser", async (req, res) => {
+app.put("/user/changes/:idUser", adminVerification, async (req, res) => {
     const idUser = req.params.idUser;
     const name = req.body.name;
     const lastname = req.body.lastname;
@@ -152,7 +152,7 @@ app.put("/user/changes/:idUser", async (req, res) => {
     };
 });
 
-app.delete("/user/delete/:idUser", async (req, res) => {
+app.delete("/user/delete/:idUser", adminVerification, async (req, res) => {
     const idUser = req.params.idUser;
     console.log(req.params);
     db.models.userTable.destroy({
@@ -193,7 +193,7 @@ app.get("/city/dashboard", async (req, res) => {
     }
 });
 
-app.put("/city/update/:cityName", async (req, res) => {
+app.put("/city/update/:cityName", adminVerification, async (req, res) => {
     const cityName = req.params.cityName;
     const newName = req.body.newName;
     console.log(cityName);
@@ -215,7 +215,7 @@ app.put("/city/update/:cityName", async (req, res) => {
     }
 });
 
-app.post("/city/create", async (req, res) => {
+app.post("/city/create", adminVerification, async (req, res) => {
     try {
         const city = await db.query(
             "INSERT INTO city (name, countryId) values (?,?)",
@@ -231,7 +231,7 @@ app.post("/city/create", async (req, res) => {
     }
 });
 
-app.delete("/city/delete/:cityName", async (req, res) => {
+app.delete("/city/delete/:cityName", adminVerification, async (req, res) => {
     const cityName = req.params.cityName;
     console.log(req.params);
     db.models.city.destroy({
@@ -272,7 +272,7 @@ app.get("/country/dashboard", async (req, res) => {
     }
 });
 
-app.put("/country/update/:countryName", async (req, res) => {
+app.put("/country/update/:countryName", adminVerification, async (req, res) => {
     const countryName = req.params.countryName;
     const newName = req.body.newName;
     console.log(countryName);
@@ -294,7 +294,7 @@ app.put("/country/update/:countryName", async (req, res) => {
     }
 });
 
-app.post("/country/create", async (req, res) => {
+app.post("/country/create", adminVerification, async (req, res) => {
     try {
         const country = await db.query(
             "INSERT INTO country (name, regionId) values (?,?)",
@@ -310,7 +310,7 @@ app.post("/country/create", async (req, res) => {
     }
 });
 
-app.delete("/country/delete/:countryName", async (req, res) => {
+app.delete("/country/delete/:countryName", adminVerification, async (req, res) => {
     const countryName = req.params.countryName;
     console.log(req.params);
     db.models.country.destroy({
@@ -335,7 +335,7 @@ app.delete("/country/delete/:countryName", async (req, res) => {
 
 // http://localhost:3000/country/deleteAllCities/
 
-app.delete("/country/deleteAllCities/:countryId", async (req, res) => {
+app.delete("/country/deleteAllCities/:countryId", adminVerification, async (req, res) => {
     const countryId = req.params.countryId;
     console.log(req.params);
     db.models.city.destroy({
@@ -375,7 +375,7 @@ app.get("/region/dashboard", async (req, res) => {
     }
 });
 
-app.put("/region/update/:regionId", async (req, res) => {
+app.put("/region/update/:regionId", adminVerification, async (req, res) => {
     const regionId = req.params.regionId;
     const regionName = req.body.regionName;
     console.log(regionId);
@@ -397,7 +397,7 @@ app.put("/region/update/:regionId", async (req, res) => {
     }
 });
 
-app.post("/region/create", async (req, res) => {
+app.post("/region/create", adminVerification, async (req, res) => {
     try {
         const region = await db.query(
             "INSERT INTO region (regionName) values (?)",
@@ -413,7 +413,7 @@ app.post("/region/create", async (req, res) => {
     }
 });
 
-app.delete("/region/delete/:regionId", async (req, res) => {
+app.delete("/region/delete/:regionId", adminVerification, async (req, res) => {
     const regionId = req.params.regionId;
     console.log(req.params);
     db.models.region.destroy({
@@ -453,7 +453,7 @@ app.get("/company/dashboard", async (req, res) => {
     }
 });
 
-app.put("/company/update/:companyName", async (req, res) => {
+app.put("/company/update/:companyName", adminVerification, async (req, res) => {
     const companyName = req.params.companyName;
     const newName = req.body.newName;
     const address = req.body.address;
@@ -473,7 +473,7 @@ app.put("/company/update/:companyName", async (req, res) => {
     };
 });
 
-app.post("/company/create", async (req, res) => {
+app.post("/company/create", adminVerification, async (req, res) => {
     try {
         const company = await db.query(
             "INSERT INTO company (name, address, email, phoneNumber, countryId) values (?,?,?,?,?)",
@@ -489,7 +489,7 @@ app.post("/company/create", async (req, res) => {
     }
 });
 
-app.delete("/company/delete/:companyName", async (req, res) => {
+app.delete("/company/delete/:companyName", adminVerification, async (req, res) => {
     const companyName = req.params.companyName;
     db.models.company.destroy({
         where: {

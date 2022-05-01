@@ -686,6 +686,7 @@ body {
   height: 1vw;
   -webkit-transform: rotate(270deg);
           transform: rotate(270deg);
+  cursor: pointer;
 }
 
 #contactSection #contactsDashboard #contactDashboardStatic #contactDashboardTitlesDBInfo #contactsDashboardActionTitleDiv {
