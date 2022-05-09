@@ -27,6 +27,7 @@ const getDemographics = async () => {
         config
     );
 
+    console.log(paises.data);
     let cities = await axios.get("http://localhost:3000/city/dashboard", config);
 
     for (let pIndex = 0; pIndex < paises.data.length; pIndex++) {

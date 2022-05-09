@@ -24,24 +24,55 @@ const getContacts = async () => {
         "http://localhost:3000/contact/dashboard",
         config
     );
-    console.log(contacts);
+    console.log(contacts.data);
 
-    let countries = await axios.get(
-        "http://localhost:3000/country/dashboard",
+    let regions = await axios.get(
+        "http://localhost:3000/region/dashboard",
         config
     );
-    console.log(countries);
+    console.log(regions);
 
     let companies = await axios.get(
         "http://localhost:3000/company/dashboard",
         config
     );
 
+    let countries = await axios.get(
+        "http://localhost:3000/country/dashboard",
+        config
+    );
 
-    // if (contacts.data[contactIndex].usertableId == id) {
-    //     contactsFullData.push(contacts.data[contactIndex]);
-    //     console.log(contactsFullData);
-    // }
+    for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
+        for (let companyIndex = 0; companyIndex < companies.data.length; companyIndex++) {
+            if (contacts.data[contactIndex].companyId == companies.data[companyIndex].id) {
+                contacts.data[contactIndex].companyName = companies.data[companyIndex].name;
+            }
+        }
+    }
+
+    for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
+        for (let regionIndex = 0; regionIndex < regions.data.length; regionIndex++) {
+            if (contacts.data[contactIndex].regionId == regions.data[regionIndex].id) {
+                contacts.data[contactIndex].regionName = regions.data[regionIndex].regionName;
+            }
+        }
+    }
+
+    for (let regionIndex = 0; regionIndex < regions.data.length; regionIndex++) {
+        regions.data[regionIndex].countries = [];
+        for (let countryIndex = 0; countryIndex < countries.data.length; countryIndex++) {
+            if (regions.data[regionIndex].id == countries.data[countryIndex].regionId) {
+                regions.data[regionIndex].countries.push(countries.data[countryIndex]);
+            }
+        }
+    }
+
+
+    if (contacts.data[contactIndex].usertableId == id) {
+        contactsFullData.push(contacts.data[contactIndex]);
+        console.log(contactsFullData);
+    }
+
     showContacts(contacts.data);
 };
 
@@ -458,7 +489,7 @@ function addContactFunction() {
 }
 
 function showContacts(contacts) {
-    console.log(contacts);
+    // console.log(contacts);
     for (let contact of contactsFullData) {
         // create contactDiv
         const contactDiv = document.createElement("div");
@@ -765,7 +796,5 @@ contactsDashboardInterestsOrderImg.addEventListener("dblclick", () => {
     contactDashboardDynamic.innerHTML = "";
     showContacts();
 })
-
-
 
 
