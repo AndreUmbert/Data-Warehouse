@@ -86,6 +86,20 @@ app.get("/user/dashboard", adminVerification, async (req, res) => {
     }
 });
 
+app.get("/user/dashboard/:userId", adminVerification, async (req, res) => {
+    try {
+        const users = await db.query(
+            `SELECT * FROM contact WHERE usertableId = "${req.params.userId}
+"`,
+            { type: db.QueryTypes.SELECT }
+        );
+        res.status(200).json(users);
+    } catch (error) {
+        console.error(error.message);
+        response.status(500).json({ error: "Please try again in a few minutes" });
+    }
+});
+
 app.post("/login", async (req, res) => {
 
     const { name, password } = req.body;

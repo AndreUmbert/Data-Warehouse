@@ -18,7 +18,7 @@ const contactsFullData = [];
 //==========================================================
 
 const getContacts = async () => {
-    console.log(contactsFullData);
+    // console.log(contactsFullData);
     //get contacts:
     let contacts = await axios.get(
         "http://localhost:3000/contact/dashboard",
@@ -30,7 +30,6 @@ const getContacts = async () => {
         "http://localhost:3000/region/dashboard",
         config
     );
-    console.log(regions);
 
     let companies = await axios.get(
         "http://localhost:3000/company/dashboard",
@@ -39,6 +38,11 @@ const getContacts = async () => {
 
     let countries = await axios.get(
         "http://localhost:3000/country/dashboard",
+        config
+    );
+
+    let users = await axios.get(
+        "http://localhost:3000/user/dashboard",
         config
     );
 
@@ -62,17 +66,26 @@ const getContacts = async () => {
         regions.data[regionIndex].countries = [];
         for (let countryIndex = 0; countryIndex < countries.data.length; countryIndex++) {
             if (regions.data[regionIndex].id == countries.data[countryIndex].regionId) {
-                regions.data[regionIndex].countries.push(countries.data[countryIndex]);
+                regions.data[regionIndex].countries.push(countries.data[countryIndex].name);
+                console.log(countries.data[countryIndex].name);
+
             }
         }
     }
 
 
-    if (contacts.data[contactIndex].usertableId == id) {
-        contactsFullData.push(contacts.data[contactIndex]);
-        console.log(contactsFullData);
+    for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
+        if (contacts.data[contactIndex].usertableId == id) {
+            contactsFullData.push(contacts.data[contactIndex]);
+        }
     }
+    // console.log(contactsFullData);
 
+    // console.log();
+    // if (contacts.data[contactIndex].usertableId == id) {
+    //     contactsFullData.push(contacts.data[contactIndex]);
+    //     console.log(contactsFullData);
+    // }
     showContacts(contacts.data);
 };
 
@@ -491,6 +504,7 @@ function addContactFunction() {
 function showContacts(contacts) {
     // console.log(contacts);
     for (let contact of contactsFullData) {
+        console.log(contact);
         // create contactDiv
         const contactDiv = document.createElement("div");
         contactDiv.setAttribute("class", "contactDiv");
@@ -534,7 +548,7 @@ function showContacts(contacts) {
         const contactCountry = document.createElement("p");
         contactCountry.setAttribute("class", "contactCountry");
         contactCountryPlusRegion.appendChild(contactCountry);
-        contactCountry.appendChild(document.createTextNode(contact.country));
+        contactCountry.appendChild(document.createTextNode(contact.countryName));
         //contactRegion:
         const contactRegion = document.createElement("p");
         contactRegion.setAttribute("class", "contactRegion");
