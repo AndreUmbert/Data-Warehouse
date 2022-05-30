@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `data-warehouse`.`usertable` (
   `profile` VARCHAR(45) NOT NULL,
   `rolId` INT(11) NOT NULL DEFAULT 2,
   PRIMARY KEY (`id`),
-  INDEX `fk_User_Rol1_idx` (`rolId` ASC) VISIBLE,
+  INDEX `fk_User_Rol1_idx` (`rolId` ASC),
   CONSTRAINT `fk_User_Rol1`
     FOREIGN KEY (`rolId`)
     REFERENCES `data-warehouse`.`rol` (`id`)
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `data-warehouse`.`country` (
   `name` VARCHAR(45) NOT NULL,
   `regionId` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_country_region1_idx` (`regionId` ASC) VISIBLE,
+  INDEX `fk_country_region1_idx` (`regionId` ASC),
   CONSTRAINT `fk_country_region1`
     FOREIGN KEY (`regionId`)
     REFERENCES `data-warehouse`.`region` (`id`)
@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `data-warehouse`.`company` (
   `phoneNumber` INT(11) NOT NULL,
   `countryId` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_company_country1_idx` (`countryId` ASC) VISIBLE,
+  INDEX `fk_company_country1_idx` (`countryId` ASC),
   CONSTRAINT `fk_company_country1`
     FOREIGN KEY (`countryId`)
     REFERENCES `data-warehouse`.`country` (`id`)
@@ -117,14 +117,13 @@ CREATE TABLE IF NOT EXISTS `data-warehouse`.`contact` (
   `username` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `interest` INT(11) NOT NULL,
-  `channels` VARCHAR(45) NOT NULL,
   `companyId` INT(11) NOT NULL,
   `regionId` INT(11) NOT NULL,
   `usertableId` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_contacts_company1_idx` (`companyId` ASC) VISIBLE,
-  INDEX `fk_contact_region1_idx` (`regionId` ASC) VISIBLE,
-  INDEX `fk_contact_usertable1_idx` (`usertableId` ASC) VISIBLE,
+  INDEX `fk_contacts_company1_idx` (`companyId` ASC),
+  INDEX `fk_contact_region1_idx` (`regionId` ASC),
+  INDEX `fk_contact_usertable1_idx` (`usertableId` ASC),
   CONSTRAINT `fk_contact_region1`
     FOREIGN KEY (`regionId`)
     REFERENCES `data-warehouse`.`region` (`id`)
@@ -153,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `data-warehouse`.`channel` (
   `name` VARCHAR(45) NOT NULL,
   `contactId` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_channel_contacts1_idx` (`contactId` ASC) VISIBLE,
+  INDEX `fk_channel_contacts1_idx` (`contactId` ASC),
   CONSTRAINT `fk_channel_contacts1`
     FOREIGN KEY (`contactId`)
     REFERENCES `data-warehouse`.`contact` (`id`)
@@ -171,7 +170,7 @@ CREATE TABLE IF NOT EXISTS `data-warehouse`.`city` (
   `name` VARCHAR(45) NOT NULL,
   `countryId` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_city_country1_idx` (`countryId` ASC) VISIBLE,
+  INDEX `fk_city_country1_idx` (`countryId` ASC),
   CONSTRAINT `fk_city_country1`
     FOREIGN KEY (`countryId`)
     REFERENCES `data-warehouse`.`country` (`id`)
