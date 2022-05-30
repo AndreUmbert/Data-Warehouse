@@ -6,6 +6,14 @@ const Channel = sequelize.define("channel", {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    channelUser: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    preferences: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
 }, {
     tableName: 'channel',
     timestamps: false

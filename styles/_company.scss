@@ -37,31 +37,47 @@
       }
     }
     #companiesListInfoGrid {
-      .companyDiv{
+      .companyDiv {
         display: grid;
         grid-template-columns: 25% 23% 27% 25%;
-        margin: 1vw  0; 
-        .companyName{
+        margin: 1vw 0;
+        .companyName {
           text-align: center;
         }
-        .companyCountry{
+        .companyCountry {
           text-align: center;
         }
-        .companyAddress{
+        .companyAddress {
           text-align: center;
         }
-        .companyButtonsDiv{
+        .companyButtonsDiv {
           display: flex;
           justify-content: space-between;
           margin: 0 32.5%;
-          .companyEditButton{
+          .companyEditButton {
             width: 60%;
           }
-          .companyDeleteButton{
+          .companyDeleteButton {
             width: 30%;
           }
         }
       }
     }
+  }
+}
+
+#blurSection {
+  .selectCompanyCountry {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: white;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position-x: 98%;
+    background-position-y: -5px;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 0px;
+    padding: 1px 2px;
+    color: rgb(118, 118, 118);
   }
 }

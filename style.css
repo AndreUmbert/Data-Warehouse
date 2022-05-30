@@ -428,7 +428,7 @@ body {
   display: grid;
   -ms-grid-columns: 25% 23% 27% 25%;
       grid-template-columns: 25% 23% 27% 25%;
-  margin: 1vw  0;
+  margin: 1vw 0;
 }
 
 #companySection #companiesList #companiesListInfoGrid .companyDiv .companyName {
@@ -459,6 +459,20 @@ body {
 
 #companySection #companiesList #companiesListInfoGrid .companyDiv .companyButtonsDiv .companyDeleteButton {
   width: 30%;
+}
+
+#blurSection .selectCompanyCountry {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: white;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 98%;
+  background-position-y: -5px;
+  border: 1px solid #767676;
+  border-radius: 0px;
+  padding: 1px 2px;
+  color: #767676;
 }
 
 #contactSection {
