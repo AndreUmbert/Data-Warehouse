@@ -309,7 +309,7 @@ function createCity(element) {
     inputCityContainer.appendChild(buttonsContainer);
     const createButton = document.createElement("button");
     createButton.setAttribute("id", "createButton");
-    buttonsContainer.appendChild(createButton);
+    buttonsContainpostdeler.appendChild(createButton);
     createButton.setAttribute("type", "button");
     createButton.appendChild(document.createTextNode("Create"));
     const cancelButton = document.createElement("button");

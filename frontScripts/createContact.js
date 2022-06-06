@@ -1,14 +1,7 @@
 const saveContactButton = document.getElementById("saveContactButton");
 
-//principal data
-const contactPrincipalDataNameInput = document.getElementById("contactPrincipalDataNameInput");
-const contactPrincipalDataLastnameInput = document.getElementById("contactPrincipalDataLastnameInput");
-const contactPrincipalDataPositionInput = document.getElementById("contactPrincipalDataPositionInput");
-const contactPrincipalDataEmailInput = document.getElementById("contactPrincipalDataEmailInput");
-const contactPrincipalDataCompanyInput = document.getElementById("contactPrincipalDataCompanyInput");
 
-
-function createPrimaryData() {
+async function createPrimaryData() {
     //----------------------------------------
     // PRINCIPAL DATA
     //----------------------------------------
@@ -64,6 +57,7 @@ function createPrimaryData() {
     asteriscoRedName.appendChild(document.createTextNode("*"));
     //input
     const contactPrincipalDataNameInput = document.createElement("input");
+    contactPrincipalDataNameInput.setAttribute("type", "text");
     contactPrincipalDataNameInput.setAttribute("id", "contactPrincipalDataNameInput");
     contactPrincipalDataNameContainer.appendChild(contactPrincipalDataNameInput);
     //contactLastname:
@@ -154,12 +148,23 @@ function createPrimaryData() {
     asteriscoRedCompany.setAttribute("class", "asteriscoRed");
     contactPrincipalDataCompanyTitleDiv.appendChild(asteriscoRedCompany);
     asteriscoRedCompany.appendChild(document.createTextNode("*"));
-    //input
-    const contactPrincipalDataCompanyInput = document.createElement("input");
+    //select
+    const contactPrincipalDataCompanyInput = document.createElement("select");
     contactPrincipalDataCompanyInput.setAttribute("id", "contactPrincipalDataCompanyInput");
     contactPrincipalDataCompanyContainer.appendChild(contactPrincipalDataCompanyInput);
-    contactPrincipalDataCompanyInput.setAttribute("placeholder", "Ingresar nombre de compañia");
+    const companyPlaceholder = document.createElement("option", "Ingrese nombre de compañia");
+    companyPlaceholder.appendChild(document.createTextNode("Ingrese nombre de compañia"));
 
+    let companies = await axios.get("http://localhost:3000/company/dashboard", config);
+
+
+    for (let companyIndex = 0; companyIndex < companies.data.length; companyIndex++) {
+        contactPrincipalDataCompanyInput.appendChild(companyPlaceholder);
+        const option = document.createElement("option", companies.data[companyIndex].value);
+        option.setAttribute("value", companies.data[companyIndex].id);
+        option.setAttribute("name", companies.data[companyIndex].name);
+        contactPrincipalDataCompanyInput.appendChild(option).appendChild(document.createTextNode(companies.data[companyIndex].name));
+    }
 }
 
 async function createSecondaryData() {
@@ -514,7 +519,7 @@ function createChannel() {
     const channelPlaceholder = document.createElement("option", "Seleccionar Canal");
     channelPlaceholder.appendChild(document.createTextNode("Seleccionar Canal"));
 
-    const channels = ["Discord", "LinkedIn", "Telegram", "FaceBook", "Instagram", "WhatsApp", "Email", "SMS", "Slack", "Teléfono"];
+    const channels = ["Discord", "LinkedIn", "Telegram", "FaceBook", "Instagram", "WhatsApp", "Email", "Slack", "Teléfono"];
 
     for (let channelIndex = 0; channelIndex < channels.length; channelIndex++) {
         secondaryDataSecondDivChannelSelect.appendChild(channelPlaceholder);
@@ -527,8 +532,10 @@ function createChannel() {
     secondaryDataSecondDivChannelSelect.addEventListener("click", () => {
         if (secondaryDataSecondDivChannelSelect.value != "Seleccionar Canal") {
             secondaryDataSecondDivUsernameInput.disabled = false;
+            secondaryDataSecondDivUsernameInput.style.backgroundColor = "white";
             if (secondaryDataSecondDivChannelSelect.value == "Teléfono") {
                 secondaryDataSecondDivUsernameInput.placeholder = "Ingresar numero teléfonico";
+                secondaryDataSecondDivUsernameInput.style.backgroundColor = "white";
             } else {
                 secondaryDataSecondDivUsernameInput.placeholder = "Ingresar URL red social";
             }
@@ -536,6 +543,7 @@ function createChannel() {
             secondaryDataSecondDivUsernameInput.disabled = true;
             secondaryDataSecondDivPreferencesSelect.disabled = true;
             secondaryDataSecondDivUsernameInput.placeholder = "@ejemplo";
+            secondaryDataSecondDivUsernameInput.style.backgroundColor = "#d5d5d5";
         }
     })
 
@@ -558,25 +566,37 @@ function createChannel() {
         secondaryDataSecondDivPreferencesSelect.appendChild(option).appendChild(document.createTextNode(option.value));
     }
 
-
-
     //------------------------------------------------------------------
     //Add channel:
     //------------------------------------------------------------------
-    //div
-    // const secondaryDataSecondDivAddChannel = document.createElement("div");
-    // secondaryDataSecondDivAddChannel.setAttribute("id", "secondaryDataSecondDivAddChannel");
-    // secondaryDataSecondDiv.appendChild(secondaryDataSecondDivAddChannel);
-    // //plusIcon:
-    // const secondaryDataSecondDivAddChannelIcon = document.createElement("img");
-    // secondaryDataSecondDivAddChannelIcon.setAttribute("id", "secondaryDataSecondDivAddChannelIcon");
-    // secondaryDataSecondDivAddChannel.appendChild(secondaryDataSecondDivAddChannelIcon);
-    // secondaryDataSecondDivAddChannelIcon.setAttribute("src", "./assets/plus.png");
-    // //text:
-    // const secondaryDataSecondDivAddChannelText = document.createElement("p");
-    // secondaryDataSecondDivAddChannelText.setAttribute("id", "secondaryDataSecondDivAddChannelText");
-    // secondaryDataSecondDivAddChannel.appendChild(secondaryDataSecondDivAddChannelText);
-    // secondaryDataSecondDivAddChannelText.appendChild(document.createTextNode("Agregar canal"));
+    secondaryDataSecondDivPreferencesSelect.addEventListener("change", () => {
+        if (secondaryDataSecondDivChannelSelect.value && secondaryDataSecondDivUsernameInput.value && secondaryDataSecondDivPreferencesSelect.value != "") {
+            const secondaryDataSecondDivAddChannel = document.createElement("div");
+            secondaryDataSecondDivAddChannel.setAttribute("id", "secondaryDataSecondDivAddChannel");
+            secondaryDataSecondDiv.appendChild(secondaryDataSecondDivAddChannel);
+            //plusIcon:
+            const secondaryDataSecondDivAddChannelIcon = document.createElement("img");
+            secondaryDataSecondDivAddChannelIcon.setAttribute("id", "secondaryDataSecondDivAddChannelIcon");
+            secondaryDataSecondDivAddChannel.appendChild(secondaryDataSecondDivAddChannelIcon);
+            secondaryDataSecondDivAddChannelIcon.setAttribute("src", "./assets/plus.png");
+            //text:
+            const secondaryDataSecondDivAddChannelText = document.createElement("p");
+            secondaryDataSecondDivAddChannelText.setAttribute("id", "secondaryDataSecondDivAddChannelText");
+            secondaryDataSecondDivAddChannel.appendChild(secondaryDataSecondDivAddChannelText);
+            secondaryDataSecondDivAddChannelText.appendChild(document.createTextNode("Agregar canal"));
+            secondaryDataSecondDivAddChannel.style.cursor = "pointer";
+            //------------------------
+            //createOtherChannel
+            //------------------------
+            secondaryDataSecondDivAddChannel.addEventListener("click", () => {
+                createChannel();
+                let finalButtons = document.getElementById("finalButtons");
+                finalButtons.style.marginLeft = "70%";
+            }, { once: true });
+        } else {
+            console.log("nope");
+        }
+    }, { once: true });
 }
 
 
@@ -611,6 +631,10 @@ function addContactFunction() {
     newContactCloseButton.setAttribute("id", "newContactCloseButton");
     titleAndClose.appendChild(newContactCloseButton);
     newContactCloseButton.appendChild(document.createTextNode("x"));
+    newContactCloseButton.style.cursor = "pointer";
+    newContactCloseButton.addEventListener("click", () => {
+        location.reload();
+    })
     //============================================
     // PIMARY DATA:
     //============================================
@@ -629,23 +653,43 @@ function addContactFunction() {
     const finalButtons = document.createElement("div");
     finalButtons.setAttribute("id", "finalButtons");
     secondaryDataContainer.appendChild(finalButtons);
+    //------------------------------------------------------------------
     //cancelButton:
+    //------------------------------------------------------------------
     const cancelButton = document.createElement("button");
     cancelButton.setAttribute("id", "cancelButton");
     finalButtons.appendChild(cancelButton)
     cancelButton.appendChild(document.createTextNode("Cancelar"));
+    cancelButton.style.cursor = "pointer";
+    cancelButton.addEventListener("click", () => {
+        location.reload();
+    })
+    //------------------------------------------------------------------
     //saveContactButton:
+    //------------------------------------------------------------------
     const saveContactButton = document.createElement("button");
     saveContactButton.setAttribute("id", "saveContactButton");
     finalButtons.appendChild(saveContactButton)
     saveContactButton.appendChild(document.createTextNode("Guardar contacto"));
+    saveContactButton.style.cursor = "pointer";
+    saveContactButton.addEventListener("click", async () => {
+        console.log(contactPrincipalDataNameInput.value);
+        console.log(contactPrincipalDataLastnameInput.value);
+        console.log(contactPrincipalDataPositionInput.value);
+        console.log(contactPrincipalDataEmailInput.value);
+        console.log(secondaryDataFirstDivAddressInput.value);
+        console.log(contactPrincipalDataCompanyInput.value);
+        console.log(secondaryDataFirstDivRegionSelect.value);
+        console.log(secondaryDataFirstDivCountrySelect.value);
+        console.log(secondaryDataFirstDivCitySelect.value);
+        console.log(porcentualInterestSelect.value);
+        console.log(id);
+
+
+        let contactPost = await axios.post(`http://localhost:3000/contact/create/${id}`, { "name": contactPrincipalDataNameInput.value, "lastname": contactPrincipalDataLastnameInput.value, "position": contactPrincipalDataPositionInput.value, "address": secondaryDataFirstDivAddressInput.value, "email": contactPrincipalDataEmailInput.value, "companyId": contactPrincipalDataCompanyInput.value, "regionId": secondaryDataFirstDivRegionSelect.value, "countryId": secondaryDataFirstDivCountrySelect.value, "cityId": secondaryDataFirstDivCitySelect.value, "interest": porcentualInterestSelect.value, "usertableId": id }, config);
+        // let channelsPost = await axios.post(`http://localhost:3000/contact/channelCreate/${}`)
+    });
 }
 
 
-
-
-
-// saveContactButton.addEventListener("click", () => {
-//     let save = axios.post(`http://localhost:3000/contact/create/${id}`, { "name": contactPrincipalDataNameInput.value, "lastname", "position", "username", "email", "interest", "preferences", "companyId", "regionId", "userTableId" })
-// });
 

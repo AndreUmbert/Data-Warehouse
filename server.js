@@ -572,10 +572,10 @@ app.post("/contact/create/:userTableId", async (req, res) => {
     const userTableId = req.params.userTableId;
     try {
         const contact = await db.query(
-            "INSERT INTO contact (name, lastname, position, username, email, interest, preferences, companyId, regionId, userTableId) values (?,?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO contact (name, lastname, position, address, email, interest, companyId, regionId, countryId, cityId, userTableId) values (?,?,?,?,?,?,?,?,?,?,?)",
             {
                 type: db.QueryTypes.INSERT,
-                replacements: [req.body.name, req.body.lastname, req.body.position, req.body.username, req.body.email, req.body.interest, req.body.preferences, req.body.companyId, req.body.regionId, req.params.userTableId]
+                replacements: [req.body.name, req.body.lastname, req.body.position, req.body.address, req.body.email, req.body.interest, req.body.companyId, req.body.regionId, req.body.countryId, req.body.cityId, req.params.userTableId]
             }
         );
         res.status(200).json(contact);
@@ -624,10 +624,25 @@ app.get("/contact/dashbord/:userTableId", async (req, res) => {
 })
 
 //----------------------------------------------------
-//5.6 USERTABLEHASCONTACTS:
+//5.6 channels:
 //----------------------------------------------------
+app.post("/contact/channelCreate/:contactId", async (req, res) => {
+    const contactId = req.params.contactId;
+    try {
+        const contact = await db.query(
+            "INSERT INTO channel (name, userAccount, preferences, contactId) values (?,?,?,?)",
+            {
+                type: db.QueryTypes.INSERT,
+                replacements: [req.body.name, req.body.userAccount, req.body.preferences, req.params.contactId]
+            }
+        );
+        res.status(200).json(contact);
+    } catch (error) {
+        console.error(error.message);
+        response.status(500).json({ error: "Please try again in a few minutes" });
+    }
+});
 
-app.post("/userTableHasContact/create",)
 
 //----------------------------------------------------
 //6. PUT THE SERVER ON

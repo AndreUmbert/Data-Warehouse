@@ -387,6 +387,7 @@ body {
   width: 15vw;
   height: 3.8vw;
   border: 1px solid #5555d1;
+  cursor: pointer;
 }
 
 #companySection #companyTitlePlusAddButton #addCompanyButton #addCompanyButtonText {
@@ -455,10 +456,12 @@ body {
 
 #companySection #companiesList #companiesListInfoGrid .companyDiv .companyButtonsDiv .companyEditButton {
   width: 60%;
+  cursor: pointer;
 }
 
 #companySection #companiesList #companiesListInfoGrid .companyDiv .companyButtonsDiv .companyDeleteButton {
   width: 30%;
+  cursor: pointer;
 }
 
 #blurSection .selectCompanyCountry {
@@ -546,6 +549,7 @@ body {
   height: 1.5vw;
   border-radius: 0.2vw;
   margin-left: 0.6vw;
+  cursor: pointer;
 }
 
 #contactSection #contactSearchActionsContainer #contactsActionsDiv {
@@ -562,6 +566,7 @@ body {
 }
 
 #contactSection #contactSearchActionsContainer #contactsActionsDiv #exportContactArrowIcon {
+  cursor: pointer;
   width: 1.3vw;
   height: 1.3vw;
   -webkit-transform: rotate(180deg);
@@ -1145,6 +1150,9 @@ body {
   border: 1px solid #c7c7c7;
   overflow: visible;
   width: 14vw;
+  padding: 0 0 0 0.2vw;
+  background-position-x: 99%;
+  background-position-y: 5px;
 }
 
 #blurSection #createContactContainer #secondaryDataContainer {

@@ -14,6 +14,7 @@
       width: 15vw;
       height: 3.8vw;
       border: 1px solid rgb(85, 85, 209);
+      cursor: pointer;
       #addCompanyButtonText {
         display: flex;
         font-size: 1.8vw;
@@ -56,9 +57,11 @@
           margin: 0 32.5%;
           .companyEditButton {
             width: 60%;
+            cursor: pointer;
           }
           .companyDeleteButton {
             width: 30%;
+            cursor: pointer;
           }
         }
       }

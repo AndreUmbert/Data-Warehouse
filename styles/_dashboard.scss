@@ -43,6 +43,7 @@
         height: 1.5vw;
         border-radius: 0.2vw;
         margin-left: 0.6vw;
+        cursor: pointer;
       }
     }
     #contactsActionsDiv {
@@ -52,6 +53,7 @@
       margin: 0 2vw 0 0;
       width: 26vw;
       #exportContactArrowIcon {
+        cursor: pointer;
         width: 1.3vw;
         height: 1.3vw;
         transform: rotate(180deg);
@@ -439,6 +441,9 @@
           border: 1px solid rgb(199, 199, 199);
           overflow: visible;
           width: 14vw;
+          padding: 0 0 0 0.2vw;
+          background-position-x: 99%;
+          background-position-y: 5px;
         }
       }
     }

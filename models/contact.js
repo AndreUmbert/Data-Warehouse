@@ -14,7 +14,7 @@ const Contact = sequelize.define("contact", {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    username: {
+    address: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -22,14 +22,22 @@ const Contact = sequelize.define("contact", {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    regionId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    countryId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    cityId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
     interest: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    channels: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    }
 }, {
     tableName: 'contact',
     timestamps: false

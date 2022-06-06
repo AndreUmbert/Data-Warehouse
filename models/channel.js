@@ -10,6 +10,10 @@ const Channel = sequelize.define("channel", {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    userAccount: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     preferences: {
         type: DataTypes.STRING,
         allowNull: false,
