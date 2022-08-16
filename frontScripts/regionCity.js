@@ -136,7 +136,7 @@ function showRegions(regions) {
             addCity.setAttribute("class", "addCity");
             countryEntry.appendChild(addCity);
             const addCityText = document.createElement("p");
-            addCityText.setAttribute("class", " addCityText");
+            addCityText.setAttribute("class", "addCityText");
             addCityText.appendChild(document.createTextNode("Add City"));
             addCity.appendChild(addCityText);
             const cities = document.createElement("div");
@@ -154,7 +154,7 @@ function showRegions(regions) {
                 editCity.setAttribute("class", "editCity");
                 cityEntry.appendChild(editCity);
                 const editCityText = document.createElement("p");
-                editCityText.setAttribute("class", " editCityText");
+                editCityText.setAttribute("class", "editCityText");
                 editCityText.appendChild(document.createTextNode("Edit"));
                 editCity.appendChild(editCityText);
                 editCity.setAttribute("onclick", "editCity(this)");
@@ -166,31 +166,13 @@ function showRegions(regions) {
                 deleteCity.setAttribute("cityName", city.name);
                 cityEntry.appendChild(deleteCity);
                 const deleteCityText = document.createElement("p");
-                deleteCityText.setAttribute("class", " deleteCityText");
+                deleteCityText.setAttribute("class", "deleteCityText");
                 deleteCityText.appendChild(document.createTextNode("Delete"));
                 deleteCity.appendChild(deleteCityText);
             }
         }
     }
 }
-
-// const demoForLoop = (topLevel, bottomLevel, flag) => {
-//     for (let i = 0; i < topLevel.data.length; i++) {
-//         flag ? (topLevel.data[i].cities = []) : (topLevel.data[i].countries = []);
-//         for (let j = 0; j < bottomLevel.data.length; j++) {
-//             if (
-//                 flag
-//                     ? topLevel.data[i].id == bottomLevel.data[j].countryId
-//                     : topLevel.data[i].id == bottomLevel.data[j].regionId
-//             ) {
-//                 flag
-//                     ? topLevel.data[i].cities.push(bottomLevel.data[j])
-//                     : topLevel.data[i].countries.push(bottomLevel.data[j]);
-//             }
-//         }
-//     }
-//     return topLevel;
-// };
 
 //Add Region Button:
 addRegionCityButton.addEventListener("click", () => {
@@ -309,7 +291,7 @@ function createCity(element) {
     inputCityContainer.appendChild(buttonsContainer);
     const createButton = document.createElement("button");
     createButton.setAttribute("id", "createButton");
-    buttonsContainpostdeler.appendChild(createButton);
+    buttonsContainer.appendChild(createButton);
     createButton.setAttribute("type", "button");
     createButton.appendChild(document.createTextNode("Create"));
     const cancelButton = document.createElement("button");

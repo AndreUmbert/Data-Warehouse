@@ -592,6 +592,7 @@ function createChannel() {
                 createChannel();
                 let finalButtons = document.getElementById("finalButtons");
                 finalButtons.style.marginLeft = "70%";
+                finalButtons.style.zIndex = 1;
             }, { once: true });
         } else {
             console.log("nope");
@@ -684,8 +685,6 @@ function addContactFunction() {
         console.log(secondaryDataFirstDivCitySelect.value);
         console.log(porcentualInterestSelect.value);
         console.log(id);
-
-
         let contactPost = await axios.post(`http://localhost:3000/contact/create/${id}`, { "name": contactPrincipalDataNameInput.value, "lastname": contactPrincipalDataLastnameInput.value, "position": contactPrincipalDataPositionInput.value, "address": secondaryDataFirstDivAddressInput.value, "email": contactPrincipalDataEmailInput.value, "companyId": contactPrincipalDataCompanyInput.value, "regionId": secondaryDataFirstDivRegionSelect.value, "countryId": secondaryDataFirstDivCountrySelect.value, "cityId": secondaryDataFirstDivCitySelect.value, "interest": porcentualInterestSelect.value, "usertableId": id }, config);
         // let channelsPost = await axios.post(`http://localhost:3000/contact/channelCreate/${}`)
     });

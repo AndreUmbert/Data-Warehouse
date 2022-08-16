@@ -62,16 +62,25 @@ const getContacts = async () => {
         }
     }
 
-    for (let regionIndex = 0; regionIndex < regions.data.length; regionIndex++) {
-        regions.data[regionIndex].countries = [];
+    for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
         for (let countryIndex = 0; countryIndex < countries.data.length; countryIndex++) {
-            if (regions.data[regionIndex].id == countries.data[countryIndex].regionId) {
-                regions.data[regionIndex].countries.push(countries.data[countryIndex].name);
-                // console.log(countries.data[countryIndex].name);
-
+            if (contacts.data[contactIndex].regionId == countries.data[countryIndex].id) {
+                contacts.data[contactIndex].regionName = countries.data[countryIndex].regionName;
             }
         }
     }
+
+
+    // for (let regionIndex = 0; regionIndex < regions.data.length; regionIndex++) {
+    //     regions.data[regionIndex].countries = [];
+    //     for (let countryIndex = 0; countryIndex < countries.data.length; countryIndex++) {
+    //         if (regions.data[regionIndex].id == countries.data[countryIndex].regionId) {
+    //             regions.data[regionIndex].countries.push(countries.data[countryIndex].name);
+    //             // console.log(countries.data[countryIndex].name);
+
+    //         }
+    //     }
+    // }
 
 
     for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
@@ -94,7 +103,7 @@ getContacts();
 
 
 function showContacts(contacts) {
-    // console.log(contacts);
+    console.log(contacts);
     for (let contact of contactsFullData) {
         // console.log(contact);
         // create contactDiv
@@ -114,10 +123,10 @@ function showContacts(contacts) {
         contactPersonalInfo.setAttribute("class", "contactPersonalInfo");
         contactDiv.appendChild(contactPersonalInfo);
         //contactImg:
-        const contactImg = document.createElement("img");
-        contactImg.setAttribute("src", contact.image);
-        contactImg.setAttribute("class", "contactImg");
-        contactPersonalInfo.appendChild(contactImg);
+        // const contactImg = document.createElement("img");
+        // contactImg.setAttribute("src", contact.image);
+        // contactImg.setAttribute("class", "contactImg");
+        // contactPersonalInfo.appendChild(contactImg);
         // contactNamePlusEmail:
         const contactNamePlusEmail = document.createElement("div");
         contactNamePlusEmail.setAttribute("class", "contactNamePlusEmail");
