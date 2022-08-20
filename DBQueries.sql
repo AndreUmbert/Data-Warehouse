@@ -1,3 +1,4 @@
+USE data_house;
 SELECT * FROM usertable;
 SELECT * FROM contact;
 SELECT * FROM region;

@@ -14,13 +14,13 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema data-warehouse
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `data-warehouse` DEFAULT CHARACTER SET utf8mb4 ;
-USE `data-warehouse` ;
+CREATE SCHEMA IF NOT EXISTS `data_warehouse` DEFAULT CHARACTER SET utf8mb4 ;
+USE `data_warehouse` ;
 
 -- -----------------------------------------------------
 -- Table `data-warehouse`.`region`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `data-warehouse`.`region` (
+CREATE TABLE IF NOT EXISTS `data_warehouse`.`region` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `regionName` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -32,7 +32,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `data-warehouse`.`rol`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `data-warehouse`.`rol` (
+CREATE TABLE IF NOT EXISTS `data_warehouse`.`rol` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -44,7 +44,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `data-warehouse`.`usertable`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `data-warehouse`.`usertable` (
+CREATE TABLE IF NOT EXISTS `data_warehouse`.`usertable` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NOT NULL,
   `lastname` VARCHAR(50) NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `data-warehouse`.`usertable` (
   INDEX `fk_User_Rol1_idx` (`rolId` ASC),
   CONSTRAINT `fk_User_Rol1`
     FOREIGN KEY (`rolId`)
-    REFERENCES `data-warehouse`.`rol` (`id`)
+    REFERENCES `data_warehouse`.`rol` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -68,7 +68,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `data-warehouse`.`country`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `data-warehouse`.`country` (
+CREATE TABLE IF NOT EXISTS `data_warehouse`.`country` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `regionId` INT(11) NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `data-warehouse`.`country` (
   INDEX `fk_country_region1_idx` (`regionId` ASC),
   CONSTRAINT `fk_country_region1`
     FOREIGN KEY (`regionId`)
-    REFERENCES `data-warehouse`.`region` (`id`)
+    REFERENCES `data_warehouse`.`region` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -87,7 +87,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `data-warehouse`.`company`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `data-warehouse`.`company` (
+CREATE TABLE IF NOT EXISTS `data_warehouse`.`company` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(200) NOT NULL,
   `address` VARCHAR(200) NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `data-warehouse`.`company` (
   INDEX `fk_company_country1_idx` (`countryId` ASC),
   CONSTRAINT `fk_company_country1`
     FOREIGN KEY (`countryId`)
-    REFERENCES `data-warehouse`.`country` (`id`)
+    REFERENCES `data_warehouse`.`country` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -109,7 +109,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `data-warehouse`.`contact`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `data-warehouse`.`contact` (
+CREATE TABLE IF NOT EXISTS `data_warehouse`.`contact` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
@@ -126,17 +126,17 @@ CREATE TABLE IF NOT EXISTS `data-warehouse`.`contact` (
   INDEX `fk_contact_usertable1_idx` (`usertableId` ASC),
   CONSTRAINT `fk_contact_region1`
     FOREIGN KEY (`regionId`)
-    REFERENCES `data-warehouse`.`region` (`id`)
+    REFERENCES `data_warehouse`.`region` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_contact_usertable1`
     FOREIGN KEY (`usertableId`)
-    REFERENCES `data-warehouse`.`usertable` (`id`)
+    REFERENCES `data_warehouse`.`usertable` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_contacts_company1`
     FOREIGN KEY (`companyId`)
-    REFERENCES `data-warehouse`.`company` (`id`)
+    REFERENCES `data_warehouse`.`company` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -147,7 +147,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `data-warehouse`.`channel`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `data-warehouse`.`channel` (
+CREATE TABLE IF NOT EXISTS `data_warehouse`.`channel` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `contactId` INT(11) NOT NULL,
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `data-warehouse`.`channel` (
   INDEX `fk_channel_contacts1_idx` (`contactId` ASC),
   CONSTRAINT `fk_channel_contacts1`
     FOREIGN KEY (`contactId`)
-    REFERENCES `data-warehouse`.`contact` (`id`)
+    REFERENCES `data_warehouse`.`contact` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -165,7 +165,7 @@ DEFAULT CHARACTER SET = utf8mb4;
 -- -----------------------------------------------------
 -- Table `data-warehouse`.`city`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `data-warehouse`.`city` (
+CREATE TABLE IF NOT EXISTS `data_warehouse`.`city` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `countryId` INT(11) NOT NULL,
@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `data-warehouse`.`city` (
   INDEX `fk_city_country1_idx` (`countryId` ASC),
   CONSTRAINT `fk_city_country1`
     FOREIGN KEY (`countryId`)
-    REFERENCES `data-warehouse`.`country` (`id`)
+    REFERENCES `data_warehouse`.`country` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
