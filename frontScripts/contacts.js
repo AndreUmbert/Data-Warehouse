@@ -36,6 +36,11 @@ const getContacts = async () => {
         config
     );
 
+    let cities = await axios.get(
+        "http://localhost:3000/city/dashboard",
+        config
+    )
+
     let countries = await axios.get(
         "http://localhost:3000/country/dashboard",
         config
@@ -49,38 +54,28 @@ const getContacts = async () => {
     for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
         for (let companyIndex = 0; companyIndex < companies.data.length; companyIndex++) {
             if (contacts.data[contactIndex].companyId == companies.data[companyIndex].id) {
-                contacts.data[contactIndex].companyName = companies.data[companyIndex].name;
+                contacts.data[contactIndex].companyName = companies.data[companyIndex].companyName;
             }
         }
     }
 
-    for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
-        for (let regionIndex = 0; regionIndex < regions.data.length; regionIndex++) {
-            if (contacts.data[contactIndex].regionId == regions.data[regionIndex].id) {
-                contacts.data[contactIndex].regionName = regions.data[regionIndex].regionName;
-            }
-        }
-    }
-
-    for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
-        for (let countryIndex = 0; countryIndex < countries.data.length; countryIndex++) {
-            if (contacts.data[contactIndex].regionId == countries.data[countryIndex].id) {
-                contacts.data[contactIndex].regionName = countries.data[countryIndex].regionName;
-            }
-        }
-    }
-
-
-    // for (let regionIndex = 0; regionIndex < regions.data.length; regionIndex++) {
-    //     regions.data[regionIndex].countries = [];
-    //     for (let countryIndex = 0; countryIndex < countries.data.length; countryIndex++) {
-    //         if (regions.data[regionIndex].id == countries.data[countryIndex].regionId) {
-    //             regions.data[regionIndex].countries.push(countries.data[countryIndex].name);
-    //             // console.log(countries.data[countryIndex].name);
-
+    // for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
+    //     for (let regionIndex = 0; regionIndex < regions.data.length; regionIndex++) {
+    //         if (contacts.data[contactIndex].regionId == regions.data[regionIndex].id) {
+    //             contacts.data[contactIndex].regionName = regions.data[regionIndex].regionName;
     //         }
     //     }
     // }
+
+
+    // for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
+    //     for (let countryIndex = 0; countryIndex < countries.data.length; countryIndex++) {
+    //         if (contacts.data[contactIndex].regionId == regions.data[regionIndex].id) {
+    //             contacts.data[contactIndex].regionName = regions.data[regionIndex].regionName;
+    //         }
+    //     }
+    // }
+
 
 
     for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
@@ -134,7 +129,7 @@ function showContacts(contacts) {
         // contactName:
         const contactName = document.createElement("p");
         contactName.setAttribute("class", "contactName");
-        contactName.appendChild(document.createTextNode(contact.name + " " + contact.lastname));
+        contactName.appendChild(document.createTextNode(contact.contactName + " " + contact.lastname));
         contactNamePlusEmail.appendChild(contactName);
         // ContactEmail:
         const contactEmail = document.createElement("p");
@@ -154,12 +149,12 @@ function showContacts(contacts) {
         const contactRegion = document.createElement("p");
         contactRegion.setAttribute("class", "contactRegion");
         contactCountryPlusRegion.appendChild(contactRegion);
-        contactRegion.appendChild(document.createTextNode(contact.region));
+        contactRegion.appendChild(document.createTextNode(contact.regionName));
         //contactCompany:
         const contactCompany = document.createElement("p");
         contactCompany.setAttribute("class", "contactCompany");
         contactDiv.appendChild(contactCompany);
-        contactCompany.appendChild(document.createTextNode(contact.company));
+        contactCompany.appendChild(document.createTextNode(contact.companyName));
         //contactPosition:
         const contactPosition = document.createElement("p");
         contactPosition.setAttribute("class", "contactPosition");

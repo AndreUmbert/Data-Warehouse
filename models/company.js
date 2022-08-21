@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 
 const Company = sequelize.define("company", {
-    name: {
+    companyName: {
         type: DataTypes.STRING,
         allowNull: false,
     },

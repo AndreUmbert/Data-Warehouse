@@ -532,15 +532,17 @@ app.delete("/company/delete/:companyName", adminVerification, async (req, res) =
 app.get("/contact/dashboard", async (req, res) => {
     try {
         const contact = await db.query(
-            'SELECT * FROM contact',
+            'SELECT t1.*, t2.*, t3.*, t4.* FROM contact as t1 INNER JOIN city as t2 ON t1.cityId = t2.id INNER JOIN country as t3 ON t2.countryId = t3.id INNER JOIN region as t4 ON t3.regionId = t4.id;',
             { type: db.QueryTypes.SELECT }
         );
+        console.log(contact);
         res.status(200).json(contact);
     } catch (error) {
         console.error(error.message);
         response.status(500).json({ error: "Please try again in a few minutes" });
     }
 });
+
 
 app.put("/contact/update/:contactId", async (req, res) => {
     const contactId = req.params.contactId;

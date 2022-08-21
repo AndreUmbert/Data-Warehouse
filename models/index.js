@@ -27,6 +27,14 @@ Contact.belongsTo(Region, {
     foreignKey: "regionId"
 });
 
+// Contact.belongsTo(Region, {
+//     foreignKey: "countryId"
+// });
+
+Contact.belongsTo(Region, {
+    foreignKey: "cityId"
+});
+
 Country.belongsTo(Region, {
     foreignKey: "regionId"
 });

@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 
 const Channel = sequelize.define("channel", {
-    name: {
+    channelName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
