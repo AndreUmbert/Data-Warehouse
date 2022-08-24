@@ -993,7 +993,7 @@ function addContactFunction() {
     let contactPost = await axios.post(
       `http://localhost:3000/contact/create/${id}`,
       {
-        name: contactPrincipalDataNameInput.value,
+        contactName: contactPrincipalDataNameInput.value,
         lastname: contactPrincipalDataLastnameInput.value,
         position: contactPrincipalDataPositionInput.value,
         address: secondaryDataFirstDivAddressInput.value,

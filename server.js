@@ -587,11 +587,11 @@ app.put("/contact/update/:contactId", async (req, res) => {
   const interest = req.body.interest;
   const preferences = req.body.position;
   const companyId = req.body.companyId;
-  const regionId = req.body.regionId;
+  const cityId = req.body.cityId;
   console.log(req.body);
   try {
     const contact = await db.query(
-      "UPDATE contact SET contactName= :contactName, lastname= :lastname, position= :position, username= :username, email= :email, interest= :interest, preferences = :preferences, companyId = :companyId, regionId= :regionId",
+      "UPDATE contact SET contactName= :contactName, lastname= :lastname, position= :position, username= :username, email= :email, interest= :interest, preferences = :preferences, companyId = :companyId, cityId= :cityId",
       {
         replacements: {
           id: contactId,
@@ -603,7 +603,7 @@ app.put("/contact/update/:contactId", async (req, res) => {
           interest: interest,
           preferences: preferences,
           companyId: companyId,
-          regionId: regionId,
+          cityId: cityId,
         },
       }
     );
@@ -618,7 +618,7 @@ app.post("/contact/create/:userTableId", async (req, res) => {
   const userTableId = req.params.userTableId;
   try {
     const contact = await db.query(
-      "INSERT INTO contact (contactName, lastname, position, address, email, interest, companyId, regionId, countryId, cityId, userTableId) values (?,?,?,?,?,?,?,?,?,?,?)",
+      "INSERT INTO contact (contactName, lastname, position, address, email, interest, companyId,cityId, userTableId) values (?,?,?,?,?,?,?,?,?)",
       {
         type: db.QueryTypes.INSERT,
         replacements: [
@@ -629,8 +629,6 @@ app.post("/contact/create/:userTableId", async (req, res) => {
           req.body.email,
           req.body.interest,
           req.body.companyId,
-          req.body.regionId,
-          req.body.countryId,
           req.body.cityId,
           req.params.userTableId,
         ],
