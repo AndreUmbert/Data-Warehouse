@@ -24,14 +24,6 @@ const Contact = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // regionId: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false,
-    // },
-    // countryId: {
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false,
-    // },
     cityId: {
       type: DataTypes.INTEGER,
       allowNull: false,
