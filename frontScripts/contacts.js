@@ -472,15 +472,27 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
         contacts.data[index].contactName + " " + contacts.data[index].lastname
       );
     }
+  }
+
+  for (let index = 0; index < countries.data.length; index++) {
     if (countries.data[index].countryName.includes(value)) {
       searchCountry.push(countries.data[index].countryName);
     }
+  }
+
+  for (let index = 0; index < companies.data.length; index++) {
     if (companies.data[index].companyName.includes(value)) {
       searchCompany.push(companies.data[index].companyName);
     }
+  }
+
+  for (let index = 0; index < cities.data.length; index++) {
     if (cities.data[index].cityName.includes(value)) {
       searchCity.push(cities.data[index].cityName);
     }
+  }
+
+  for (let index = 0; index < regions.data.length; index++) {
     if (regions.data[index].regionName.includes(value)) {
       searchRegion.push(regions.data[index].regionName);
     }
