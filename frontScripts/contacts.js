@@ -486,19 +486,23 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
     }
   }
 
-  //SHOW INFO IN SEARCHBAR:
-  if (
-    searchContact.length ||
-    searchCity.length ||
-    searchCountry.length ||
-    searchRegion.length ||
-    searchCompany.length != 0
-  ) {
-    //show info in searchbar div
-    const showInfoDiv = document.createElement("div");
-    showInfoDiv.setAttribute("id", "showInfoDiv");
-    //show info list items
-  }
+  // //SHOW INFO IN SEARCHBAR:
+  // if (
+  //   searchContact.length ||
+  //   searchCity.length ||
+  //   searchCountry.length ||
+  //   searchRegion.length ||
+  //   searchCompany.length != 0
+  // ) {
+  //   //show info in searchbar div
+  //   const showInfoDiv = document.createElement("div");
+  //   showInfoDiv.setAttribute("id", "showInfoDiv");
+  //   //show info list items
+  //   for (let index = 0; index < array.length; index++) {
+  //     const element = array[index];
+  //     array.forEach((element) => {});
+  //   }
+  // }
 
   console.log(searchInfo);
 });
