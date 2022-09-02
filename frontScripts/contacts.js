@@ -464,10 +464,13 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
   );
 
   for (let index = 0; index < contacts.data.length; index++) {
-    if (
-      contacts.data[index].contactName.includes(value) ||
-      contacts.data[index].lastname.includes(value)
-    ) {
+    const fullName =
+      contacts.data[index].contactName + " " + contacts.data[index].lastname;
+
+    const reverseFullname =
+      contacts.data[index].lastname + " " + contacts.data[index].contactName;
+
+    if (fullName.includes(value) || reverseFullname.includes(value)) {
       searchContact.push(
         contacts.data[index].contactName + " " + contacts.data[index].lastname
       );
@@ -499,22 +502,36 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
   }
 
   // //SHOW INFO IN SEARCHBAR:
-  // if (
-  //   searchContact.length ||
-  //   searchCity.length ||
-  //   searchCountry.length ||
-  //   searchRegion.length ||
-  //   searchCompany.length != 0
-  // ) {
-  //   //show info in searchbar div
-  //   const showInfoDiv = document.createElement("div");
-  //   showInfoDiv.setAttribute("id", "showInfoDiv");
-  //   //show info list items
-  //   for (let index = 0; index < array.length; index++) {
-  //     const element = array[index];
-  //     array.forEach((element) => {});
-  //   }
-  // }
+  if (
+    searchContact.length ||
+    searchCity.length ||
+    searchCountry.length ||
+    searchRegion.length ||
+    searchCompany.length != 0
+  ) {
+    //show info in searchbar div:
+    console.log("Si tengo algun valor te saludo!");
+    for (
+      let index = 0;
+      index <
+      searchContact.length +
+        searchCity.length +
+        searchCountry.length +
+        searchRegion.length +
+        searchCompany.length;
+      index++
+    ) {
+      if (condition) {
+        console.log("hola");
+      }
+    }
+    const showInfoDiv = document.createElement("div");
+    showInfoDiv.setAttribute("id", "showInfoDiv");
+    //show info list items:
+    // for (let index = 0; index < array.length; index++) {
+    //   const element = array[index];
+    // }
+  }
 
   console.log(searchInfo);
 });
