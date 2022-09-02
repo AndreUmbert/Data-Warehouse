@@ -13,26 +13,62 @@
       #contactsSearchBarPlusIcon {
         display: flex;
         align-items: center;
-        #contactsSearchBar {
-          border: 1px solid rgb(130, 174, 255);
-          margin: 0 0 0 0vw;
-          border-radius: 0.3vw;
+        #searchBar {
           width: 70%;
-          height: 2.5vw;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          #contactsSearchBarTextInput {
-            font-size: 1.3vw;
-            border: none;
-            width: 92%;
-            font-weight: 300;
+          #contactsSearchBar {
+            border: 1px solid rgb(130, 174, 255);
+            margin: 0 0 0 0vw;
+            border-radius: 0.3vw;
+            height: 2.5vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            #contactsSearchBarTextInput {
+              font-size: 1.3vw;
+              border: none;
+              width: 92%;
+              font-weight: 300;
+            }
+            #contactsSearchBarArrowIcon {
+              width: 0.7vw;
+              height: 0.7vw;
+              transform: rotate(180deg);
+              padding: 0.557vw;
+            }
           }
-          #contactsSearchBarArrowIcon {
-            width: 0.7vw;
-            height: 0.7vw;
-            transform: rotate(180deg);
-            padding: 0.557vw;
+          #contatsSearchBarResults {
+            height: 10vw;
+            width: 28vw;
+            z-index: 3;
+            background-color: white;
+            position: absolute;
+            display: none;
+            overflow: hidden;
+            box-shadow: -3px 3px 3px rgb(204, 204, 204);
+            border-radius: 0.3vw;
+            border: 1px solid rgb(233, 233, 233);
+            border-top: none;
+            margin-top: 0.2vw;
+            .resultDiv {
+              display: flex;
+              margin: 0.5vw 0;
+              .liTitle {
+                margin: 0;
+                margin-left: 0.5vw;
+                font-size: 0.8vw;
+                color: rgb(204, 204, 204);
+              }
+              .midLine {
+                margin: 0;
+                margin-left: 0.5vw;
+                font-size: 0.8vw;
+              }
+              .liValue {
+                list-style: none;
+                margin-left: 0.5vw;
+                font-size: 0.8vw;
+              }
+            }
           }
         }
       }

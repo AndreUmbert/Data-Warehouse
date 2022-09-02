@@ -22,6 +22,11 @@ const contactsDashboardPositionsOrderImg = document.getElementById(
 const contactsDashboardInterestsOrderImg = document.getElementById(
   "contactsDashboardInterestsOrderImg"
 );
+const contactsSearchBarTextInput = document.getElementById(
+  "contactsSearchBarTextInput"
+);
+const contatsSearchBarResults = document.getElementById("contatsSearchBarResults");
+const contactsSearchBarArrowIcon = document.getElementById("contactsSearchBarArrowIcon");
 
 const contactsFullData = [];
 
@@ -416,31 +421,18 @@ contactsDashboardInterestsOrderImg.addEventListener("dblclick", () => {
 //  SEARCH BAR:
 //===================================================================
 
-const contactsSearchBarTextInput = document.getElementById(
-  "contactsSearchBarTextInput"
-);
+contactsSearchBarArrowIcon.setAttribute("boolean", "false");
 
-const allContactsArray = [];
+//FIND WORDS AND SHOW EVENT:
 
 contactsSearchBarTextInput.addEventListener("input", async (e) => {
+
+  contatsSearchBarResults.innerHTML = "";
+
   //search bar value.
   let value = e.target.value;
 
-  //GET INFO FROM CONTACTS IN SEARCHBAR:
-  let searchContact = [];
-  let searchCompany = [];
-  let searchCountry = [];
-  let searchCity = [];
-  let searchRegion = [];
-
-  let searchInfo = [
-    searchContact,
-    searchCompany,
-    searchCity,
-    searchCountry,
-    searchRegion,
-  ];
-
+  //get data from DB whit axios:
   let contacts = await axios.get(
     "http://localhost:3000/contact/dashboard",
     config
@@ -463,6 +455,16 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
     config
   );
 
+  //Empty arrays, i need to put in these the results of the search:
+  let searchContact = [];
+  let searchCompany = [];
+  let searchCountry = [];
+  let searchCity = [];
+  let searchRegion = [];
+
+
+  //PRINT INFO IN DIV CONTAINER:
+
   for (let index = 0; index < contacts.data.length; index++) {
     const fullName =
       contacts.data[index].contactName + " " + contacts.data[index].lastname;
@@ -472,66 +474,176 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
 
     if (fullName.includes(value) || reverseFullname.includes(value)) {
       searchContact.push(
-        contacts.data[index].contactName + " " + contacts.data[index].lastname
+        fullName
       );
+      //creo el div del li:
+      const resultDiv = document.createElement("div");
+      resultDiv.setAttribute("class", "resultDiv");
+      contatsSearchBarResults.appendChild(resultDiv);
+
+      //le pongo el titulo:
+      const liTitle = document.createElement("p");
+      liTitle.setAttribute("class", "liTitle");
+      liTitle.appendChild(document.createTextNode("Nombre"));
+      resultDiv.appendChild(liTitle);
+
+      //separador:
+      const midLine = document.createElement("p");
+      midLine.setAttribute("class", "midLine");
+      midLine.appendChild(document.createTextNode("-"));
+      resultDiv.appendChild(midLine);
+
+      //Le agrego el valor
+      const liValue = document.createElement("li");
+      liValue.setAttribute("class", "liValue");
+      liValue.appendChild(document.createTextNode(fullName));
+      resultDiv.appendChild(liValue);
     }
+
   }
 
   for (let index = 0; index < countries.data.length; index++) {
-    if (countries.data[index].countryName.includes(value)) {
-      searchCountry.push(countries.data[index].countryName);
+    const countryNameLi = countries.data[index].countryName;
+    if (countryNameLi.includes(value)) {
+      searchCountry.push(countryNameLi);
+      //creo el div del li:
+      const resultDiv = document.createElement("div");
+      resultDiv.setAttribute("class", "resultDiv");
+      contatsSearchBarResults.appendChild(resultDiv);
+
+      //le pongo el titulo:
+      const liTitle = document.createElement("p");
+      liTitle.setAttribute("class", "liTitle");
+      liTitle.appendChild(document.createTextNode("País "));
+      resultDiv.appendChild(liTitle);
+
+      //separador:
+      const midLine = document.createElement("p");
+      midLine.setAttribute("class", "midLine");
+      midLine.appendChild(document.createTextNode("-"));
+      resultDiv.appendChild(midLine);
+
+      //Le agrego el valor
+      const liValue = document.createElement("li");
+      liValue.setAttribute("class", "liValue");
+      liValue.appendChild(document.createTextNode(countryNameLi));
+      resultDiv.appendChild(liValue);
     }
   }
 
   for (let index = 0; index < companies.data.length; index++) {
-    if (companies.data[index].companyName.includes(value)) {
-      searchCompany.push(companies.data[index].companyName);
+    const companyNameLi = companies.data[index].companyName;
+    if (companyNameLi.includes(value)) {
+      searchCompany.push(companyNameLi);
+      //creo el div del li:
+      const resultDiv = document.createElement("div");
+      resultDiv.setAttribute("class", "resultDiv");
+      contatsSearchBarResults.appendChild(resultDiv);
+
+      //le pongo el titulo:
+      const liTitle = document.createElement("p");
+      liTitle.setAttribute("class", "liTitle");
+      liTitle.appendChild(document.createTextNode("Compañia "));
+      resultDiv.appendChild(liTitle);
+
+      //separador:
+      const midLine = document.createElement("p");
+      midLine.setAttribute("class", "midLine");
+      midLine.appendChild(document.createTextNode("-"));
+      resultDiv.appendChild(midLine);
+
+      //Le agrego el valor
+      const liValue = document.createElement("li");
+      liValue.setAttribute("class", "liValue");
+      liValue.appendChild(document.createTextNode(companyNameLi));
+      resultDiv.appendChild(liValue);
     }
   }
 
   for (let index = 0; index < cities.data.length; index++) {
-    if (cities.data[index].cityName.includes(value)) {
-      searchCity.push(cities.data[index].cityName);
+    const cityNameLi = cities.data[index].cityName;
+    if (cityNameLi.includes(value)) {
+      searchCity.push(cityNameLi);
+
+      //creo el div del li:
+      const resultDiv = document.createElement("div");
+      resultDiv.setAttribute("class", "resultDiv");
+      contatsSearchBarResults.appendChild(resultDiv);
+
+      //le pongo el titulo:
+      const liTitle = document.createElement("p");
+      liTitle.setAttribute("class", "liTitle");
+      liTitle.appendChild(document.createTextNode("Ciudad "));
+      resultDiv.appendChild(liTitle);
+
+      //separador:
+      const midLine = document.createElement("p");
+      midLine.setAttribute("class", "midLine");
+      midLine.appendChild(document.createTextNode("-"));
+      resultDiv.appendChild(midLine);
+
+      //Le agrego el valor
+      const liValue = document.createElement("li");
+      liValue.setAttribute("class", "liValue");
+      liValue.appendChild(document.createTextNode(cityNameLi));
+      resultDiv.appendChild(liValue);
     }
   }
 
   for (let index = 0; index < regions.data.length; index++) {
-    if (regions.data[index].regionName.includes(value)) {
-      searchRegion.push(regions.data[index].regionName);
+    const regionNameLi = regions.data[index].regionName;
+    if (regionNameLi.includes(value)) {
+      searchRegion.push(regionNameLi);
+
+      //creo el div del li:
+      const resultDiv = document.createElement("div");
+      resultDiv.setAttribute("class", "resultDiv");
+      contatsSearchBarResults.appendChild(resultDiv);
+
+      //le pongo el titulo:
+      const liTitle = document.createElement("p");
+      liTitle.setAttribute("class", "liTitle");
+      liTitle.appendChild(document.createTextNode("Region "));
+      resultDiv.appendChild(liTitle);
+
+      //separador:
+      const midLine = document.createElement("p");
+      midLine.setAttribute("class", "midLine");
+      midLine.appendChild(document.createTextNode("-"));
+      resultDiv.appendChild(midLine);
+
+      //Le agrego el valor
+      const liValue = document.createElement("li");
+      liValue.setAttribute("class", "liValue");
+      liValue.appendChild(document.createTextNode(regionNameLi));
+      resultDiv.appendChild(liValue);
     }
   }
 
-  // //SHOW INFO IN SEARCHBAR:
-  if (
-    searchContact.length ||
-    searchCity.length ||
-    searchCountry.length ||
-    searchRegion.length ||
-    searchCompany.length != 0
-  ) {
-    //show info in searchbar div:
-    console.log("Si tengo algun valor te saludo!");
-    for (
-      let index = 0;
-      index <
-      searchContact.length +
-        searchCity.length +
-        searchCountry.length +
-        searchRegion.length +
-        searchCompany.length;
-      index++
-    ) {
-      if (condition) {
-        console.log("hola");
-      }
-    }
-    const showInfoDiv = document.createElement("div");
-    showInfoDiv.setAttribute("id", "showInfoDiv");
-    //show info list items:
-    // for (let index = 0; index < array.length; index++) {
-    //   const element = array[index];
-    // }
+
+
+  if (searchContact.length + searchCompany.length + searchCountry.length + searchCity.length + searchRegion.length != 0 && value != "") {
+    contatsSearchBarResults.style.display = "block";
+    contactsSearchBarArrowIcon.setAttribute("boolean", "true")
+  } else {
+    contatsSearchBarResults.style.display = "none";
+    contactsSearchBarArrowIcon.setAttribute("boolean", "false")
   }
 
-  console.log(searchInfo);
 });
+
+//SHOW HIDE EVENT:
+
+contactsSearchBarArrowIcon.addEventListener("click", () => {
+  const boolean = contactsSearchBarArrowIcon.getAttribute("boolean");
+  console.log(boolean);
+  if (contactsSearchBarTextInput.value) {
+    if (boolean == "true") {
+      contatsSearchBarResults.style.display = "none";
+      contactsSearchBarArrowIcon.setAttribute("boolean", "false");
+    } else {
+      contatsSearchBarResults.style.display = "block";
+      contactsSearchBarArrowIcon.setAttribute("boolean", "true");
+    }
+  }
+})
