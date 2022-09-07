@@ -25,8 +25,12 @@ const contactsDashboardInterestsOrderImg = document.getElementById(
 const contactsSearchBarTextInput = document.getElementById(
   "contactsSearchBarTextInput"
 );
-const contatsSearchBarResults = document.getElementById("contatsSearchBarResults");
-const contactsSearchBarArrowIcon = document.getElementById("contactsSearchBarArrowIcon");
+const contatsSearchBarResults = document.getElementById(
+  "contatsSearchBarResults"
+);
+const contactsSearchBarArrowIcon = document.getElementById(
+  "contactsSearchBarArrowIcon"
+);
 
 const contactsFullData = [];
 
@@ -426,7 +430,6 @@ contactsSearchBarArrowIcon.setAttribute("boolean", "false");
 //FIND WORDS AND SHOW EVENT:
 
 contactsSearchBarTextInput.addEventListener("input", async (e) => {
-
   contatsSearchBarResults.innerHTML = "";
 
   //search bar value.
@@ -462,7 +465,6 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
   let searchCity = [];
   let searchRegion = [];
 
-
   //PRINT INFO IN DIV CONTAINER:
 
   for (let index = 0; index < contacts.data.length; index++) {
@@ -473,9 +475,7 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       contacts.data[index].lastname + " " + contacts.data[index].contactName;
 
     if (fullName.includes(value) || reverseFullname.includes(value)) {
-      searchContact.push(
-        fullName
-      );
+      searchContact.push(fullName);
       //creo el div del li:
       const resultDiv = document.createElement("div");
       resultDiv.setAttribute("class", "resultDiv");
@@ -499,7 +499,6 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       liValue.appendChild(document.createTextNode(fullName));
       resultDiv.appendChild(liValue);
     }
-
   }
 
   for (let index = 0; index < countries.data.length; index++) {
@@ -599,7 +598,7 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       const resultDiv = document.createElement("div");
       resultDiv.setAttribute("class", "resultDiv");
       contatsSearchBarResults.appendChild(resultDiv);
-
+      resultDiv.onclick = getBySearchClick;
       //le pongo el titulo:
       const liTitle = document.createElement("p");
       liTitle.setAttribute("class", "liTitle");
@@ -620,16 +619,21 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
     }
   }
 
-
-
-  if (searchContact.length + searchCompany.length + searchCountry.length + searchCity.length + searchRegion.length != 0 && value != "") {
+  if (
+    searchContact.length +
+      searchCompany.length +
+      searchCountry.length +
+      searchCity.length +
+      searchRegion.length !=
+      0 &&
+    value != ""
+  ) {
     contatsSearchBarResults.style.display = "block";
-    contactsSearchBarArrowIcon.setAttribute("boolean", "true")
+    contactsSearchBarArrowIcon.setAttribute("boolean", "true");
   } else {
     contatsSearchBarResults.style.display = "none";
-    contactsSearchBarArrowIcon.setAttribute("boolean", "false")
+    contactsSearchBarArrowIcon.setAttribute("boolean", "false");
   }
-
 });
 
 //SHOW HIDE EVENT:
@@ -646,4 +650,12 @@ contactsSearchBarArrowIcon.addEventListener("click", () => {
       contactsSearchBarArrowIcon.setAttribute("boolean", "true");
     }
   }
-})
+});
+
+//===================================================================
+// CLICK SEARCH:
+//===================================================================
+
+const resultDiv = document.getElementsByClassName("resultDiv");
+
+function getBySearchClick() {}
