@@ -114,7 +114,7 @@ function showContacts(contacts) {
     contactDiv.appendChild(contactCheckBoxDiv);
     const contactCheckBox = document.createElement("input");
     contactCheckBox.setAttribute("type", "checkbox");
-    contactCheckBox.setAttribute("class", " contactCheckBox");
+    contactCheckBox.setAttribute("class", "contactCheckBox");
     contactCheckBoxDiv.appendChild(contactCheckBox);
     //contactPersonalInfo:
     const contactPersonalInfo = document.createElement("div");
