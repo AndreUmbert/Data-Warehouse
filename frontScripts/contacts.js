@@ -25,8 +25,8 @@ const contactsDashboardInterestsOrderImg = document.getElementById(
 const contactsSearchBarTextInput = document.getElementById(
   "contactsSearchBarTextInput"
 );
-const contatsSearchBarResults = document.getElementById(
-  "contatsSearchBarResults"
+const contactsSearchBarResults = document.getElementById(
+  "contactsSearchBarResults"
 );
 const contactsSearchBarArrowIcon = document.getElementById(
   "contactsSearchBarArrowIcon"
@@ -174,7 +174,7 @@ function showContacts(contacts) {
     // contactPreferedChannelContainer.setAttribute("class", "contactPreferedChannelContainer");
     // contactDiv.appendChild(contactPreferedChannelContainer);
     // if (contact.channels.length > 2) {
-    //     //Agregar boton ... en el caso de que el usuario tenga mas de 2 canales preferidos de contatos y que al apretar agrande el div y los muestre.
+    //     //Agregar boton ... en el caso de que el usuario tenga mas de 2 canales preferidos de contactos y que al apretar agrande el div y los muestre.
     //     //div
     //     let channel1 = document.createElement("div")
     //     channel1.setAttribute("attribute", "channel1");
@@ -430,7 +430,7 @@ contactsSearchBarArrowIcon.setAttribute("boolean", "false");
 //FIND WORDS AND SHOW EVENT:
 
 contactsSearchBarTextInput.addEventListener("input", async (e) => {
-  contatsSearchBarResults.innerHTML = "";
+  contactsSearchBarResults.innerHTML = "";
 
   //search bar value.
   let value = e.target.value;
@@ -479,7 +479,7 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       //creo el div del li:
       const resultDiv = document.createElement("div");
       resultDiv.setAttribute("class", "resultDiv");
-      contatsSearchBarResults.appendChild(resultDiv);
+      contactsSearchBarResults.appendChild(resultDiv);
 
       //le pongo el titulo:
       const liTitle = document.createElement("p");
@@ -508,7 +508,7 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       //creo el div del li:
       const resultDiv = document.createElement("div");
       resultDiv.setAttribute("class", "resultDiv");
-      contatsSearchBarResults.appendChild(resultDiv);
+      contactsSearchBarResults.appendChild(resultDiv);
 
       //le pongo el titulo:
       const liTitle = document.createElement("p");
@@ -537,7 +537,7 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       //creo el div del li:
       const resultDiv = document.createElement("div");
       resultDiv.setAttribute("class", "resultDiv");
-      contatsSearchBarResults.appendChild(resultDiv);
+      contactsSearchBarResults.appendChild(resultDiv);
 
       //le pongo el titulo:
       const liTitle = document.createElement("p");
@@ -567,7 +567,7 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       //creo el div del li:
       const resultDiv = document.createElement("div");
       resultDiv.setAttribute("class", "resultDiv");
-      contatsSearchBarResults.appendChild(resultDiv);
+      contactsSearchBarResults.appendChild(resultDiv);
 
       //le pongo el titulo:
       const liTitle = document.createElement("p");
@@ -597,8 +597,9 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       //creo el div del li:
       const resultDiv = document.createElement("div");
       resultDiv.setAttribute("class", "resultDiv");
-      contatsSearchBarResults.appendChild(resultDiv);
+      contactsSearchBarResults.appendChild(resultDiv);
       resultDiv.onclick = getBySearchClick;
+
       //le pongo el titulo:
       const liTitle = document.createElement("p");
       liTitle.setAttribute("class", "liTitle");
@@ -621,17 +622,17 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
 
   if (
     searchContact.length +
-      searchCompany.length +
-      searchCountry.length +
-      searchCity.length +
-      searchRegion.length !=
-      0 &&
+    searchCompany.length +
+    searchCountry.length +
+    searchCity.length +
+    searchRegion.length !=
+    0 &&
     value != ""
   ) {
-    contatsSearchBarResults.style.display = "block";
+    contactsSearchBarResults.style.display = "block";
     contactsSearchBarArrowIcon.setAttribute("boolean", "true");
   } else {
-    contatsSearchBarResults.style.display = "none";
+    contactsSearchBarResults.style.display = "none";
     contactsSearchBarArrowIcon.setAttribute("boolean", "false");
   }
 });
@@ -640,13 +641,13 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
 
 contactsSearchBarArrowIcon.addEventListener("click", () => {
   const boolean = contactsSearchBarArrowIcon.getAttribute("boolean");
-  console.log(boolean);
+  // console.log(boolean);
   if (contactsSearchBarTextInput.value) {
     if (boolean == "true") {
-      contatsSearchBarResults.style.display = "none";
+      contactsSearchBarResults.style.display = "none";
       contactsSearchBarArrowIcon.setAttribute("boolean", "false");
     } else {
-      contatsSearchBarResults.style.display = "block";
+      contactsSearchBarResults.style.display = "block";
       contactsSearchBarArrowIcon.setAttribute("boolean", "true");
     }
   }
@@ -658,4 +659,14 @@ contactsSearchBarArrowIcon.addEventListener("click", () => {
 
 const resultDiv = document.getElementsByClassName("resultDiv");
 
-function getBySearchClick() {}
+
+function getBySearchClick() {
+
+  console.log("hola");
+
+  // const liTitle = document.getElementsByClassName("liTitle ");
+  // function preventPropagation(propagation) {
+  //   propagation.stopPropagation();
+  // }
+  // liTitle.onclick = preventPropagation;
+}
