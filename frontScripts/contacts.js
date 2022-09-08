@@ -498,6 +498,11 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       liValue.setAttribute("class", "liValue");
       liValue.appendChild(document.createTextNode(fullName));
       resultDiv.appendChild(liValue);
+
+      //click function
+      resultDiv.addEventListener("click", () => {
+        getBySearchClick(fullName);
+      })
     }
   }
 
@@ -527,6 +532,11 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       liValue.setAttribute("class", "liValue");
       liValue.appendChild(document.createTextNode(countryNameLi));
       resultDiv.appendChild(liValue);
+
+      //click function
+      resultDiv.addEventListener("click", () => {
+        getBySearchClick(countryNameLi);
+      })
     }
   }
 
@@ -556,6 +566,11 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       liValue.setAttribute("class", "liValue");
       liValue.appendChild(document.createTextNode(companyNameLi));
       resultDiv.appendChild(liValue);
+
+      //click function
+      resultDiv.addEventListener("click", () => {
+        getBySearchClick(companyNameLi);
+      })
     }
   }
 
@@ -586,6 +601,11 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       liValue.setAttribute("class", "liValue");
       liValue.appendChild(document.createTextNode(cityNameLi));
       resultDiv.appendChild(liValue);
+
+      //click function
+      resultDiv.addEventListener("click", () => {
+        getBySearchClick(cityNameLi);
+      })
     }
   }
 
@@ -598,7 +618,6 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       const resultDiv = document.createElement("div");
       resultDiv.setAttribute("class", "resultDiv");
       contactsSearchBarResults.appendChild(resultDiv);
-      resultDiv.onclick = getBySearchClick;
 
       //le pongo el titulo:
       const liTitle = document.createElement("p");
@@ -617,6 +636,12 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       liValue.setAttribute("class", "liValue");
       liValue.appendChild(document.createTextNode(regionNameLi));
       resultDiv.appendChild(liValue);
+
+      //click function
+      resultDiv.addEventListener("click", () => {
+        getBySearchClick(regionNameLi);
+      })
+
     }
   }
 
@@ -657,16 +682,300 @@ contactsSearchBarArrowIcon.addEventListener("click", () => {
 // CLICK SEARCH:
 //===================================================================
 
-const resultDiv = document.getElementsByClassName("resultDiv");
+let newSearchContact = [];
 
+async function getBySearchClick(name) {
 
-function getBySearchClick() {
+  console.log(name);
 
-  console.log("hola");
+  newSearchContact = []
 
-  // const liTitle = document.getElementsByClassName("liTitle ");
-  // function preventPropagation(propagation) {
-  //   propagation.stopPropagation();
-  // }
-  // liTitle.onclick = preventPropagation;
+  let contacts = await axios.get(
+    "http://localhost:3000/contact/dashboard",
+    config
+  );
+
+  let companies = await axios.get(
+    "http://localhost:3000/company/dashboard",
+    config
+  );
+
+  for (
+    let contactIndex = 0;
+    contactIndex < contacts.data.length;
+    contactIndex++
+  ) {
+    for (
+      let companyIndex = 0;
+      companyIndex < companies.data.length;
+      companyIndex++
+    ) {
+      if (
+        contacts.data[contactIndex].companyId == companies.data[companyIndex].id
+      ) {
+        contacts.data[contactIndex].companyName =
+          companies.data[companyIndex].companyName;
+      }
+    }
+  }
+
+  // console.log(contacts);
+
+  //Click on city:
+  for (let index = 0; index < contacts.data.length; index++) {
+    if (name == contacts.data[index].cityName) {
+      newSearchContact.push(contacts.data[index]);
+    }
+  }
+
+  //Click on country:
+  for (let index = 0; index < contacts.data.length; index++) {
+    if (name == contacts.data[index].countryName) {
+      newSearchContact.push(contacts.data[index]);
+    }
+  }
+
+  //Click on region:
+  for (let index = 0; index < contacts.data.length; index++) {
+    if (name == contacts.data[index].regionName) {
+      newSearchContact.push(contacts.data[index]);
+    }
+  }
+
+  //Click on contact name:
+  for (let index = 0; index < contacts.data.length; index++) {
+    if (name == contacts.data[index].contactName + " " + contacts.data[index].lastname) {
+      newSearchContact.push(contacts.data[index]);
+    }
+  }
+
+  //Click on company:
+  for (let companyIndex = 0; companyIndex < companies.data.length; companyIndex++) {
+    for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
+      if (companies.data[companyIndex].id == contacts.data[contactIndex].companyId && name === companies.data[companyIndex].companyName) {
+        newSearchContact.push(contacts.data[contactIndex])
+      }
+    }
+  }
+
+  console.log(newSearchContact);
+  showContactsClickLi(newSearchContact.data);
+}
+
+//===================================================================
+//Esta funcion se encuentra mas arriba, preguntarle a juampa como pasarle los params para poder usarla y no tener que repetir
+//===================================================================
+function showContactsClickLi(newContacts) {
+  contactDashboardDynamic.innerHTML = "";
+  for (let contact of newSearchContact) {
+    console.log(contact);
+    // create contactDiv
+    const contactDiv = document.createElement("div");
+    contactDiv.setAttribute("class", "contactDiv");
+    contactDashboardDynamic.appendChild(contactDiv);
+    //createCheckBox:
+    const contactCheckBoxDiv = document.createElement("div");
+    contactCheckBoxDiv.setAttribute("class", "contactCheckBoxDiv");
+    contactDiv.appendChild(contactCheckBoxDiv);
+    const contactCheckBox = document.createElement("input");
+    contactCheckBox.setAttribute("type", "checkbox");
+    contactCheckBox.setAttribute("class", " contactCheckBox");
+    contactCheckBoxDiv.appendChild(contactCheckBox);
+    //contactPersonalInfo:
+    const contactPersonalInfo = document.createElement("div");
+    contactPersonalInfo.setAttribute("class", "contactPersonalInfo");
+    contactDiv.appendChild(contactPersonalInfo);
+    //contactImg:
+    // const contactImg = document.createElement("img");
+    // contactImg.setAttribute("src", contact.image);
+    // contactImg.setAttribute("class", "contactImg");
+    // contactPersonalInfo.appendChild(contactImg);
+    // contactNamePlusEmail:
+    const contactNamePlusEmail = document.createElement("div");
+    contactNamePlusEmail.setAttribute("class", "contactNamePlusEmail");
+    contactPersonalInfo.appendChild(contactNamePlusEmail);
+    // contactName:
+    const contactName = document.createElement("p");
+    contactName.setAttribute("class", "contactName");
+    contactName.appendChild(
+      document.createTextNode(contact.contactName + " " + contact.lastname)
+    );
+    contactNamePlusEmail.appendChild(contactName);
+    // ContactEmail:
+    const contactEmail = document.createElement("p");
+    contactEmail.setAttribute("class", "contactEmail");
+    contactEmail.appendChild(document.createTextNode(contact.email));
+    contactNamePlusEmail.appendChild(contactEmail);
+    //ContactCountryPlusRegion:
+    const contactCountryPlusRegion = document.createElement(
+      "ccontactCountryPlusRegion"
+    );
+    contactCountryPlusRegion.setAttribute("class", "contactCountryPlusRegion");
+    contactDiv.appendChild(contactCountryPlusRegion);
+    //contactCountry:
+    const contactCountry = document.createElement("p");
+    contactCountry.setAttribute("class", "contactCountry");
+    contactCountryPlusRegion.appendChild(contactCountry);
+    contactCountry.appendChild(document.createTextNode(contact.countryName));
+    //contactRegion:
+    const contactRegion = document.createElement("p");
+    contactRegion.setAttribute("class", "contactRegion");
+    contactCountryPlusRegion.appendChild(contactRegion);
+    contactRegion.appendChild(document.createTextNode(contact.regionName));
+    //contactCompany:
+    const contactCompany = document.createElement("p");
+    contactCompany.setAttribute("class", "contactCompany");
+    contactDiv.appendChild(contactCompany);
+    contactCompany.appendChild(document.createTextNode(contact.companyName));
+    //contactPosition:
+    const contactPosition = document.createElement("p");
+    contactPosition.setAttribute("class", "contactPosition");
+    contactDiv.appendChild(contactPosition);
+    contactPosition.appendChild(document.createTextNode(contact.position));
+    //-------------------------------------------------------------
+    //contactPreferedChannel:
+    //-------------------------------------------------------------
+    // const contactPreferedChannelContainer = document.createElement("div");
+    // contactPreferedChannelContainer.setAttribute("class", "contactPreferedChannelContainer");
+    // contactDiv.appendChild(contactPreferedChannelContainer);
+    // if (contact.channels.length > 2) {
+    //     //Agregar boton ... en el caso de que el usuario tenga mas de 2 canales preferidos de contactos y que al apretar agrande el div y los muestre.
+    //     //div
+    //     let channel1 = document.createElement("div")
+    //     channel1.setAttribute("attribute", "channel1");
+    //     contactPreferedChannelContainer.appendChild(channel1);
+    //     channel1.setAttribute("class", "contactPreferedChannelDiv");
+    //     //p
+    //     let channel1Text = document.createElement("p");
+    //     channel1.appendChild(channel1Text);
+    //     channel1Text.setAttribute("attribute", "channel1Text");
+    //     channel1Text.setAttribute("class", "contactPrefreredChannelText");
+    //     channel1Text.appendChild(document.createTextNode(contact.channels[0]));
+    //     //div
+    //     let channel2 = document.createElement("div")
+    //     channel2.setAttribute("attribute", "channel2");
+    //     contactPreferedChannelContainer.appendChild(channel2);
+    //     channel2.setAttribute("class", "contactPreferedChannelDiv");
+    //     //p
+    //     let channel2Text = document.createElement("p");
+    //     channel2.appendChild(channel2Text);
+    //     channel2Text.setAttribute("attribute", "channel2Text");
+    //     channel2Text.setAttribute("class", "contactPrefreredChannelText");
+    //     channel2Text.appendChild(document.createTextNode(contact.channels[1]));
+    //     //button
+    //     const channelsButton = document.createElement("button");
+    //     channelsButton.appendChild(document.createTextNode("..."));
+    //     contactPreferedChannelContainer.appendChild(channelsButton);
+    //     channelsButton.addEventListener("click", (channelsButtonEvent) => {
+    //         currentContactDiv = contactDiv;
+    //         currentContactDiv.style.height = "auto";
+    //         channel1.style.display = "none";
+    //         channel2.style.display = "none";
+    //         channelsButton.style.display = "none";
+    //         contactPreferedChannelContainer.style.margin = "1vw 0.5vw"
+    //         contactPreferedChannelContainer.style.flexWrap = "wrap";
+    //         contactImg.style.display = "none";
+    //         contact.channels.forEach(channel => {
+    //             //father
+    //             contactPreferedChannelContainer.setAttribute("class", `contactPreferedChannelContainer current`);
+    //             //children
+    //             const contactPreferedChannelDiv = document.createElement("div");
+    //             contactPreferedChannelDiv.setAttribute("class", `contactPreferedChannelDiv created ${contact.name}`);
+    //             contactPreferedChannelContainer.appendChild(contactPreferedChannelDiv);
+    //             //text
+    //             const contactPrefreredChannelText = document.createElement("p");
+    //             contactPrefreredChannelText.setAttribute("class", "contactPrefreredChannelText");
+    //             contactPreferedChannelDiv.appendChild(contactPrefreredChannelText);
+    //             contactPrefreredChannelText.appendChild(document.createTextNode(channel));
+    //             contactPreferedChannelDiv.style.margin = "0.5vw";
+    //         });
+
+    //         const revertButton = document.createElement("button");
+    //         revertButton.setAttribute("class", "revertButton");
+    //         revertButton.setAttribute("id", `${contact.name}`)
+    //         revertButton.appendChild(document.createTextNode("<<<"));
+    //         revertButton.setAttribute("onclick", "deleteChildren(this)");
+    //         revertButton.addEventListener('click', () => {
+    //             console.log(channel1);
+    //             channel1.style.display = "flex";
+    //             channel2.style.display = "flex";
+    //             channelsButton.style.display = "flex";
+    //             revertButton.remove();
+    //             contactImg.style.display = "block";
+    //             contactDiv.style.height = "6vw";
+    //         })
+    //         contactPreferedChannelContainer.appendChild(revertButton);
+    //     })
+
+    // } else {
+    //     contact.channels.forEach(channel => {
+    //         // console.log(channel);
+    //         const contactPreferedChannelDiv = document.createElement("div");
+    //         contactPreferedChannelDiv.setAttribute("class", "contactPreferedChannelDiv");
+    //         contactPreferedChannelContainer.appendChild(contactPreferedChannelDiv);
+    //         const contactPrefreredChannelText = document.createElement("p");
+    //         contactPrefreredChannelText.setAttribute("class", "contactPrefreredChannelText");
+    //         contactPreferedChannelDiv.appendChild(contactPrefreredChannelText);
+    //         contactPrefreredChannelText.appendChild(document.createTextNode(channel));
+    //     });
+    // }
+    //contactInterest:
+    //contactInterestContainer:
+    const contactInterestConteiner = document.createElement("div");
+    contactInterestConteiner.setAttribute("class", "contactInterestConteiner");
+    contactDiv.appendChild(contactInterestConteiner);
+    //contactInterestNumber:
+    const contactInterestNumber = document.createElement("p");
+    contactInterestNumber.setAttribute("class", "contactInterestNumber");
+    contactInterestNumber.appendChild(
+      document.createTextNode(contact.interest.toString() + "%")
+    );
+    contactInterestConteiner.appendChild(contactInterestNumber);
+    //contactInterestBar:
+    const contactInterestBar = document.createElement("div");
+    contactInterestBar.setAttribute("class", "contactInterestBar");
+    contactInterestConteiner.appendChild(contactInterestBar);
+    const contactInterestColoredBar = document.createElement("div");
+    contactInterestColoredBar.setAttribute(
+      "class",
+      "contactInterestColoredBar"
+    );
+    if (contact.interest == 0) {
+      contactInterestColoredBar.style.width = "0%";
+      contactInterestColoredBar.style.background = "none";
+    }
+    if (contact.interest == 25) {
+      contactInterestColoredBar.style.width = "25%";
+      contactInterestColoredBar.style.background = "blue";
+    }
+    if (contact.interest == 50) {
+      contactInterestColoredBar.style.width = "50%";
+      contactInterestColoredBar.style.background = "yellow";
+    }
+    if (contact.interest == 75) {
+      contactInterestColoredBar.style.width = "75%";
+      contactInterestColoredBar.style.background = "orange";
+    }
+    if (contact.interest == 100) {
+      contactInterestColoredBar.style.width = "100%";
+      contactInterestColoredBar.style.background = "red";
+    }
+    contactInterestBar.appendChild(contactInterestColoredBar);
+    //contactAccionsButtonContainer:
+    const contactAccionsButtonContainer = document.createElement("div");
+    contactAccionsButtonContainer.setAttribute(
+      "class",
+      "contactAccionsButtonContainer"
+    );
+    contactDiv.appendChild(contactAccionsButtonContainer);
+    //contactAccionsButtonDiv:
+    const contactAccionsButtonDiv = document.createElement("div");
+    contactAccionsButtonDiv.setAttribute("class", "contactAccionsButtonDiv");
+    contactAccionsButtonContainer.appendChild(contactAccionsButtonDiv);
+    //contactAccionsButtonText:
+    const contactAccionsButtonText = document.createElement("p");
+    contactAccionsButtonText.setAttribute("class", "contactAccionsButtonText");
+    contactAccionsButtonText.appendChild(document.createTextNode("..."));
+    contactAccionsButtonDiv.appendChild(contactAccionsButtonText);
+  }
 }
