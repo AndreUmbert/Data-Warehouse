@@ -34,6 +34,9 @@ const contactsSearchBarArrowIcon = document.getElementById(
 
 const contactsFullData = [];
 
+const checkBoxChecked = [];
+
+
 //==========================================================
 // CONTACT GET:
 //==========================================================
@@ -115,7 +118,23 @@ function showContacts(contacts) {
     const contactCheckBox = document.createElement("input");
     contactCheckBox.setAttribute("type", "checkbox");
     contactCheckBox.setAttribute("class", "contactCheckBox");
+    contactCheckBox.setAttribute("check", "notChecked");
     contactCheckBoxDiv.appendChild(contactCheckBox);
+    //checkBox Event:
+    contactCheckBox.addEventListener("click", () => {
+      const check = contactCheckBox.getAttribute("check");
+      if (check === "notChecked") {
+        contactCheckBox.setAttribute("check", "checked");
+        console.log("checked");
+        contactDiv.style.backgroundColor = "lightblue";
+        checkBoxChecked.push(contactCheckBox)
+      } else {
+        contactCheckBox.setAttribute("check", "notChecked");
+        console.log("notChecked");
+        contactDiv.style.backgroundColor = "white";
+      }
+      console.log(checkBoxChecked);
+    });
     //contactPersonalInfo:
     const contactPersonalInfo = document.createElement("div");
     contactPersonalInfo.setAttribute("class", "contactPersonalInfo");
@@ -688,7 +707,7 @@ async function getBySearchClick(name) {
 
   console.log(name);
 
-  newSearchContact = []
+  newSearchContact = [];
 
   let contacts = await axios.get(
     "http://localhost:3000/contact/dashboard",
@@ -979,3 +998,5 @@ function showContactsClickLi(newContacts) {
     contactAccionsButtonDiv.appendChild(contactAccionsButtonText);
   }
 }
+
+
