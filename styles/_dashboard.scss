@@ -88,7 +88,7 @@
       align-items: flex-end;
       margin: 0 2vw 0 0;
       width: 26vw;
-      #exportContactArrowIcon {
+      #importContactArrowIcon {
         cursor: pointer;
         width: 1.3vw;
         height: 1.3vw;
@@ -98,22 +98,38 @@
         border-radius: 0.2vw;
         padding: 0.6vw;
       }
-      #exportContact {
-        display: flex;
-        align-items: center;
-        height: 2.5vw;
-        border: 1px solid rgb(130, 174, 255);
-        border-radius: 0.3vw;
-        #exportContactText {
-          margin: 0;
-          padding: 0.6vw 1vw;
-          font-size: 0.8vw;
-          color: rgb(130, 174, 255);
+      #exportContactContainer {
+        #exportContact {
+          display: flex;
+          align-items: center;
+          height: 2.5vw;
+          border: 1px solid rgb(130, 174, 255);
+          border-radius: 0.3vw;
+          #exportContactText {
+            margin: 0;
+            padding: 0.6vw 1vw;
+            font-size: 0.8vw;
+            color: rgb(130, 174, 255);
+          }
+          #exportContactDownArrow {
+            width: 1vw;
+            height: 1vw;
+            padding: 0.557vw;
+          }
         }
-        #exportContactDownArrow {
-          width: 1vw;
-          height: 1vw;
-          padding: 0.557vw;
+        #exportContactDownDivs {
+          position: absolute;
+          display: none;
+          #exportSelectedContacts {
+            font-size: 1vw;
+            color: #82aeff;
+            margin-top: 0.5vw;
+          }
+          #exportAllFilteredContacts {
+            font-size: 1vw;
+            color: #82aeff;
+            margin-top: 0.5vw;
+          }
         }
       }
       #addContact {

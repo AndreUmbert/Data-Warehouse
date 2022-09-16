@@ -83,17 +83,23 @@
         </div>
         <div id="contactsActionsDiv">
           <img
-            id="exportContactArrowIcon"
+            id="importContactArrowIcon"
             src="./assets/exportIcon.png"
             alt="Icono de exportar contactos"
           />
-          <div id="exportContact">
-            <p id="exportContactText">Exportar contactos</p>
-            <img
-              id="exportContactDownArrow"
-              src="./assets/downArrowBlue.png"
-              alt="exportContactDownArrow"
-            />
+          <div id="exportContactContainer">
+            <div id="exportContact">
+              <p id="exportContactText">Exportar contactos</p>
+              <img
+                id="exportContactDownArrow"
+                src="./assets/downArrowBlue.png"
+                alt="exportContactDownArrow"
+              />
+            </div>
+            <div id="exportContactDownDivs">
+              <div id="exportSelectedContacts">Exportar Seleccionados</div>
+              <div id="exportAllFilteredContacts">Todos los filtrados</div>
+            </div>
           </div>
           <div id="addContact" onclick="addContactFunction(this)">
             <p id="addContactText">Agregar Contacto</p>

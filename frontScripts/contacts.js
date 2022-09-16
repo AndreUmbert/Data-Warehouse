@@ -37,6 +37,7 @@ const contactDashboardContainer = document.getElementById(
 );
 const counterCheckboxes = document.getElementById("counterCheckboxes");
 const counterCheckboxesText = document.getElementById("counterCheckboxesText");
+const exportContactDownDivs = document.getElementById("exportContactDownDivs");
 
 const contactsFullData = [];
 
@@ -137,24 +138,28 @@ function showContacts(contacts) {
           //Create things
           //create counter checkboxes checked
           counterCheckboxes.setAttribute("value", checkBoxChecked.length);
+          console.log(checkBoxChecked.length);
           counterCheckboxesText.innerHTML =
             checkBoxChecked.length + " " + "Seleccionados";
           contactDashboardContainer.appendChild(counterCheckboxes);
           counterCheckboxes.style.display = "flex";
+          exportContactDownDivs.style.display = "block";
         }
       } else {
         contactCheckBox.setAttribute("check", "notChecked");
         console.log("notChecked");
         contactDiv.style.backgroundColor = "white";
         checkBoxChecked.pop(contactCheckBox);
-        if (checkBoxChecked.length < 2) {
+        if (checkBoxChecked.length >= 2) {
           //Create things
           //create counter checkboxes checked
           counterCheckboxes.setAttribute("value", checkBoxChecked.length);
           counterCheckboxesText.innerHTML =
-            counterCheckboxes.value + " " + "Seleccionados";
+            checkBoxChecked.length + " " + "Seleccionados";
           contactDashboardContainer.appendChild(counterCheckboxes);
+        } else if (checkBoxChecked.length < 2) {
           counterCheckboxes.style.display = "none";
+          exportContactDownDivs.style.display = "none";
         }
       }
       console.log(checkBoxChecked);
