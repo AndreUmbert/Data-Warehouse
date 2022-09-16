@@ -31,11 +31,16 @@ const contactsSearchBarResults = document.getElementById(
 const contactsSearchBarArrowIcon = document.getElementById(
   "contactsSearchBarArrowIcon"
 );
+const contactsDashboard = document.getElementById("contactsDashboard");
+const contactDashboardContainer = document.getElementById(
+  "contactDashboardContainer"
+);
+const counterCheckboxes = document.getElementById("counterCheckboxes");
+const counterCheckboxesText = document.getElementById("counterCheckboxesText");
 
 const contactsFullData = [];
 
 const checkBoxChecked = [];
-
 
 //==========================================================
 // CONTACT GET:
@@ -127,11 +132,30 @@ function showContacts(contacts) {
         contactCheckBox.setAttribute("check", "checked");
         console.log("checked");
         contactDiv.style.backgroundColor = "lightblue";
-        checkBoxChecked.push(contactCheckBox)
+        checkBoxChecked.push(contactCheckBox);
+        if (checkBoxChecked.length >= 2) {
+          //Create things
+          //create counter checkboxes checked
+          counterCheckboxes.setAttribute("value", checkBoxChecked.length);
+          counterCheckboxesText.innerHTML =
+            checkBoxChecked.length + " " + "Seleccionados";
+          contactDashboardContainer.appendChild(counterCheckboxes);
+          counterCheckboxes.style.display = "flex";
+        }
       } else {
         contactCheckBox.setAttribute("check", "notChecked");
         console.log("notChecked");
         contactDiv.style.backgroundColor = "white";
+        checkBoxChecked.pop(contactCheckBox);
+        if (checkBoxChecked.length < 2) {
+          //Create things
+          //create counter checkboxes checked
+          counterCheckboxes.setAttribute("value", checkBoxChecked.length);
+          counterCheckboxesText.innerHTML =
+            counterCheckboxes.value + " " + "Seleccionados";
+          contactDashboardContainer.appendChild(counterCheckboxes);
+          counterCheckboxes.style.display = "none";
+        }
       }
       console.log(checkBoxChecked);
     });
@@ -521,7 +545,7 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       //click function
       resultDiv.addEventListener("click", () => {
         getBySearchClick(fullName);
-      })
+      });
     }
   }
 
@@ -555,7 +579,7 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       //click function
       resultDiv.addEventListener("click", () => {
         getBySearchClick(countryNameLi);
-      })
+      });
     }
   }
 
@@ -589,7 +613,7 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       //click function
       resultDiv.addEventListener("click", () => {
         getBySearchClick(companyNameLi);
-      })
+      });
     }
   }
 
@@ -624,7 +648,7 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       //click function
       resultDiv.addEventListener("click", () => {
         getBySearchClick(cityNameLi);
-      })
+      });
     }
   }
 
@@ -659,18 +683,17 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
       //click function
       resultDiv.addEventListener("click", () => {
         getBySearchClick(regionNameLi);
-      })
-
+      });
     }
   }
 
   if (
     searchContact.length +
-    searchCompany.length +
-    searchCountry.length +
-    searchCity.length +
-    searchRegion.length !=
-    0 &&
+      searchCompany.length +
+      searchCountry.length +
+      searchCity.length +
+      searchRegion.length !=
+      0 &&
     value != ""
   ) {
     contactsSearchBarResults.style.display = "block";
@@ -704,7 +727,6 @@ contactsSearchBarArrowIcon.addEventListener("click", () => {
 let newSearchContact = [];
 
 async function getBySearchClick(name) {
-
   console.log(name);
 
   newSearchContact = [];
@@ -763,16 +785,31 @@ async function getBySearchClick(name) {
 
   //Click on contact name:
   for (let index = 0; index < contacts.data.length; index++) {
-    if (name == contacts.data[index].contactName + " " + contacts.data[index].lastname) {
+    if (
+      name ==
+      contacts.data[index].contactName + " " + contacts.data[index].lastname
+    ) {
       newSearchContact.push(contacts.data[index]);
     }
   }
 
   //Click on company:
-  for (let companyIndex = 0; companyIndex < companies.data.length; companyIndex++) {
-    for (let contactIndex = 0; contactIndex < contacts.data.length; contactIndex++) {
-      if (companies.data[companyIndex].id == contacts.data[contactIndex].companyId && name === companies.data[companyIndex].companyName) {
-        newSearchContact.push(contacts.data[contactIndex])
+  for (
+    let companyIndex = 0;
+    companyIndex < companies.data.length;
+    companyIndex++
+  ) {
+    for (
+      let contactIndex = 0;
+      contactIndex < contacts.data.length;
+      contactIndex++
+    ) {
+      if (
+        companies.data[companyIndex].id ==
+          contacts.data[contactIndex].companyId &&
+        name === companies.data[companyIndex].companyName
+      ) {
+        newSearchContact.push(contacts.data[contactIndex]);
       }
     }
   }
@@ -998,5 +1035,3 @@ function showContactsClickLi(newContacts) {
     contactAccionsButtonDiv.appendChild(contactAccionsButtonText);
   }
 }
-
-
