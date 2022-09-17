@@ -38,10 +38,13 @@ const contactDashboardContainer = document.getElementById(
 const counterCheckboxes = document.getElementById("counterCheckboxes");
 const counterCheckboxesText = document.getElementById("counterCheckboxesText");
 const exportContactDownDivs = document.getElementById("exportContactDownDivs");
+const deleteSelectedContacts = document.getElementById("deleteSelectedContacts");
+const exportContactDownArrow = document.getElementById("exportContactDownArrow");
+
 
 const contactsFullData = [];
 
-const checkBoxChecked = [];
+let checkBoxChecked = [];
 
 //==========================================================
 // CONTACT GET:
@@ -54,7 +57,7 @@ const getContacts = async () => {
     "http://localhost:3000/contact/dashboard",
     config
   );
-  // console.log(contacts.data);
+  console.log(contacts.data);
 
   let regions = await axios.get(
     "http://localhost:3000/region/dashboard",
@@ -112,7 +115,7 @@ getContacts();
 function showContacts(contacts) {
   // console.log(contacts);
   for (let contact of contactsFullData) {
-    // console.log(contact);
+    console.log(contact);
     // create contactDiv
     const contactDiv = document.createElement("div");
     contactDiv.setAttribute("class", "contactDiv");
@@ -125,15 +128,18 @@ function showContacts(contacts) {
     contactCheckBox.setAttribute("type", "checkbox");
     contactCheckBox.setAttribute("class", "contactCheckBox");
     contactCheckBox.setAttribute("check", "notChecked");
+    contactCheckBox.setAttribute("key", contact.id);
     contactCheckBoxDiv.appendChild(contactCheckBox);
+    contactCheckBox.style.cursor = "pointer";
     //checkBox Event:
     contactCheckBox.addEventListener("click", () => {
       const check = contactCheckBox.getAttribute("check");
       if (check === "notChecked") {
         contactCheckBox.setAttribute("check", "checked");
-        console.log("checked");
-        contactDiv.style.backgroundColor = "lightblue";
-        checkBoxChecked.push(contactCheckBox);
+        // console.log("checked");
+        contactDiv.style.backgroundColor = "rgb(229 242 255)";
+        console.log(contactCheckBox);
+        checkBoxChecked.push(contactCheckBox.attributes.key.nodeValue);
         if (checkBoxChecked.length >= 2) {
           //Create things
           //create counter checkboxes checked
@@ -144,12 +150,17 @@ function showContacts(contacts) {
           contactDashboardContainer.appendChild(counterCheckboxes);
           counterCheckboxes.style.display = "flex";
           exportContactDownDivs.style.display = "block";
+          deleteSelectedContacts.style.display = "flex"
+          exportContactDownArrow.style.transform = "rotate(180deg)";
+          exportContactDownArrow.setAttribute("toggle", "on");
+          document.getElementById("contactsDashboardTitleCheckBox").checked = true;
+          document.getElementById("contactsDashboardTitleCheckBox").style.opacity = "0.5";
         }
       } else {
         contactCheckBox.setAttribute("check", "notChecked");
-        console.log("notChecked");
+        // console.log("notChecked");
         contactDiv.style.backgroundColor = "white";
-        checkBoxChecked.pop(contactCheckBox);
+        checkBoxChecked.pop(contactCheckBox.attributes.key.nodeValue);
         if (checkBoxChecked.length >= 2) {
           //Create things
           //create counter checkboxes checked
@@ -160,6 +171,11 @@ function showContacts(contacts) {
         } else if (checkBoxChecked.length < 2) {
           counterCheckboxes.style.display = "none";
           exportContactDownDivs.style.display = "none";
+          deleteSelectedContacts.style.display = "none";
+          exportContactDownArrow.style.transform = "rotate(0deg)";
+          exportContactDownArrow.setAttribute("toggle", "off");
+          document.getElementById("contactsDashboardTitleCheckBox").checked = false;
+          document.getElementById("contactsDashboardTitleCheckBox").style.opacity = "1";
         }
       }
       console.log(checkBoxChecked);
@@ -355,6 +371,7 @@ function showContacts(contacts) {
     const contactAccionsButtonDiv = document.createElement("div");
     contactAccionsButtonDiv.setAttribute("class", "contactAccionsButtonDiv");
     contactAccionsButtonContainer.appendChild(contactAccionsButtonDiv);
+    contactAccionsButtonDiv.style.cursor = "pointer";
     //contactAccionsButtonText:
     const contactAccionsButtonText = document.createElement("p");
     contactAccionsButtonText.setAttribute("class", "contactAccionsButtonText");
@@ -694,11 +711,11 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
 
   if (
     searchContact.length +
-      searchCompany.length +
-      searchCountry.length +
-      searchCity.length +
-      searchRegion.length !=
-      0 &&
+    searchCompany.length +
+    searchCountry.length +
+    searchCity.length +
+    searchRegion.length !=
+    0 &&
     value != ""
   ) {
     contactsSearchBarResults.style.display = "block";
@@ -811,7 +828,7 @@ async function getBySearchClick(name) {
     ) {
       if (
         companies.data[companyIndex].id ==
-          contacts.data[contactIndex].companyId &&
+        contacts.data[contactIndex].companyId &&
         name === companies.data[companyIndex].companyName
       ) {
         newSearchContact.push(contacts.data[contactIndex]);
@@ -819,6 +836,14 @@ async function getBySearchClick(name) {
     }
   }
 
+  counterCheckboxes.style.display = "none";
+  exportContactDownDivs.style.display = "none";
+  deleteSelectedContacts.style.display = "none";
+  exportContactDownArrow.style.transform = "rotate(0deg)";
+  exportContactDownArrow.setAttribute("toggle", "off");
+  document.getElementById("contactsDashboardTitleCheckBox").checked = false;
+  document.getElementById("contactsDashboardTitleCheckBox").style.opacity = "1";
+  checkBoxChecked = [];
   console.log(newSearchContact);
   showContactsClickLi(newSearchContact.data);
 }
@@ -826,6 +851,7 @@ async function getBySearchClick(name) {
 //===================================================================
 //Esta funcion se encuentra mas arriba, preguntarle a juampa como pasarle los params para poder usarla y no tener que repetir
 //===================================================================
+
 function showContactsClickLi(newContacts) {
   contactDashboardDynamic.innerHTML = "";
   for (let contact of newSearchContact) {
@@ -840,8 +866,60 @@ function showContactsClickLi(newContacts) {
     contactDiv.appendChild(contactCheckBoxDiv);
     const contactCheckBox = document.createElement("input");
     contactCheckBox.setAttribute("type", "checkbox");
-    contactCheckBox.setAttribute("class", " contactCheckBox");
+    contactCheckBox.setAttribute("class", "contactCheckBox");
+    contactCheckBox.setAttribute("check", "notChecked");
+    contactCheckBox.setAttribute("key", contact.id);
     contactCheckBoxDiv.appendChild(contactCheckBox);
+    console.log(contactCheckBox);
+    contactCheckBox.style.cursor = "pointer";
+    //checkBox Event:
+    contactCheckBox.addEventListener("click", () => {
+      const check = contactCheckBox.getAttribute("check");
+      if (check === "notChecked") {
+        contactCheckBox.setAttribute("check", "checked");
+        // console.log("checked");
+        contactDiv.style.backgroundColor = "rgb(229 242 255)";
+        checkBoxChecked.push(contactCheckBox.attributes.key.nodeValue);
+        if (checkBoxChecked.length >= 2) {
+          //Create things
+          //create counter checkboxes checked
+          counterCheckboxes.setAttribute("value", checkBoxChecked.length);
+          console.log(checkBoxChecked.length);
+          counterCheckboxesText.innerHTML =
+            checkBoxChecked.length + " " + "Seleccionados";
+          contactDashboardContainer.appendChild(counterCheckboxes);
+          counterCheckboxes.style.display = "flex";
+          exportContactDownDivs.style.display = "block";
+          deleteSelectedContacts.style.display = "flex"
+          exportContactDownArrow.style.transform = "rotate(180deg)";
+          exportContactDownArrow.setAttribute("toggle", "on");
+          document.getElementById("contactsDashboardTitleCheckBox").checked = true;
+          document.getElementById("contactsDashboardTitleCheckBox").style.opacity = "0.5";
+        }
+      } else {
+        contactCheckBox.setAttribute("check", "notChecked");
+        // console.log("notChecked");
+        contactDiv.style.backgroundColor = "white";
+        checkBoxChecked.pop(contactCheckBox.attributes.key.nodeValue);
+        if (checkBoxChecked.length >= 2) {
+          //Create things
+          //create counter checkboxes checked
+          counterCheckboxes.setAttribute("value", checkBoxChecked.length);
+          counterCheckboxesText.innerHTML =
+            checkBoxChecked.length + " " + "Seleccionados";
+          contactDashboardContainer.appendChild(counterCheckboxes);
+        } else if (checkBoxChecked.length < 2) {
+          counterCheckboxes.style.display = "none";
+          exportContactDownDivs.style.display = "none";
+          deleteSelectedContacts.style.display = "none";
+          exportContactDownArrow.style.transform = "rotate(0deg)";
+          exportContactDownArrow.setAttribute("toggle", "off");
+          document.getElementById("contactsDashboardTitleCheckBox").checked = false;
+          document.getElementById("contactsDashboardTitleCheckBox").style.opacity = "1";
+        }
+      }
+      console.log(checkBoxChecked);
+    });
     //contactPersonalInfo:
     const contactPersonalInfo = document.createElement("div");
     contactPersonalInfo.setAttribute("class", "contactPersonalInfo");
@@ -1033,6 +1111,7 @@ function showContactsClickLi(newContacts) {
     const contactAccionsButtonDiv = document.createElement("div");
     contactAccionsButtonDiv.setAttribute("class", "contactAccionsButtonDiv");
     contactAccionsButtonContainer.appendChild(contactAccionsButtonDiv);
+    contactAccionsButtonDiv.style.cursor = "pointer";
     //contactAccionsButtonText:
     const contactAccionsButtonText = document.createElement("p");
     contactAccionsButtonText.setAttribute("class", "contactAccionsButtonText");
@@ -1040,3 +1119,34 @@ function showContactsClickLi(newContacts) {
     contactAccionsButtonDiv.appendChild(contactAccionsButtonText);
   }
 }
+
+//================================================================
+//export toggle
+//================================================================
+
+exportContactDownArrow.addEventListener("click", () => {
+  const exportToggle = exportContactDownArrow.getAttribute("toggle");
+  if (exportToggle === "on") {
+    exportContactDownDivs.style.display = "none";
+    exportContactDownArrow.setAttribute("toggle", "off");
+    exportContactDownArrow.style.transform = "rotate(0deg)";
+  } else {
+    exportContactDownArrow.setAttribute("toggle", "on");
+    exportContactDownDivs.style.display = "block";
+    exportContactDownArrow.style.transform = "rotate(180deg)";
+  }
+});
+
+//================================================================
+//deleteSelectedContacts event:
+//================================================================
+
+deleteSelectedContacts.addEventListener("click", async (element) => {
+  console.log(checkBoxChecked);
+  for (let index = 0; index < checkBoxChecked.length; index++) {
+    const contact = checkBoxChecked[index];
+    console.log(contact);
+    axios.delete(`http://localhost:3000/contact/delete/${contact}`, config);
+  }
+  // location.reload();
+});
