@@ -38,9 +38,12 @@ const contactDashboardContainer = document.getElementById(
 const counterCheckboxes = document.getElementById("counterCheckboxes");
 const counterCheckboxesText = document.getElementById("counterCheckboxesText");
 const exportContactDownDivs = document.getElementById("exportContactDownDivs");
-const deleteSelectedContacts = document.getElementById("deleteSelectedContacts");
-const exportContactDownArrow = document.getElementById("exportContactDownArrow");
-
+const deleteSelectedContacts = document.getElementById(
+  "deleteSelectedContacts"
+);
+const exportContactDownArrow = document.getElementById(
+  "exportContactDownArrow"
+);
 
 const contactsFullData = [];
 
@@ -150,11 +153,15 @@ function showContacts(contacts) {
           contactDashboardContainer.appendChild(counterCheckboxes);
           counterCheckboxes.style.display = "flex";
           exportContactDownDivs.style.display = "block";
-          deleteSelectedContacts.style.display = "flex"
+          deleteSelectedContacts.style.display = "flex";
           exportContactDownArrow.style.transform = "rotate(180deg)";
           exportContactDownArrow.setAttribute("toggle", "on");
-          document.getElementById("contactsDashboardTitleCheckBox").checked = true;
-          document.getElementById("contactsDashboardTitleCheckBox").style.opacity = "0.5";
+          document.getElementById(
+            "contactsDashboardTitleCheckBox"
+          ).checked = true;
+          document.getElementById(
+            "contactsDashboardTitleCheckBox"
+          ).style.opacity = "0.5";
         }
       } else {
         contactCheckBox.setAttribute("check", "notChecked");
@@ -174,8 +181,12 @@ function showContacts(contacts) {
           deleteSelectedContacts.style.display = "none";
           exportContactDownArrow.style.transform = "rotate(0deg)";
           exportContactDownArrow.setAttribute("toggle", "off");
-          document.getElementById("contactsDashboardTitleCheckBox").checked = false;
-          document.getElementById("contactsDashboardTitleCheckBox").style.opacity = "1";
+          document.getElementById(
+            "contactsDashboardTitleCheckBox"
+          ).checked = false;
+          document.getElementById(
+            "contactsDashboardTitleCheckBox"
+          ).style.opacity = "1";
         }
       }
       console.log(checkBoxChecked);
@@ -386,22 +397,31 @@ function showContacts(contacts) {
       // =============
       const deleteAction = document.createElement("div");
       deleteAction.setAttribute("class", "deleteAction");
+      deleteAction.setAttribute("key", contact.id);
       const deleteActionText = document.createElement("p");
       deleteActionText.setAttribute("class", "deleteAction");
       deleteActionText.appendChild(document.createTextNode("Eliminar"));
       deleteAction.appendChild(deleteActionText);
       contactAccionsButtonDiv.appendChild(deleteAction);
+      deleteAction.addEventListener("click", () => {
+        axios.delete(
+          `http://localhost:3000/contact/delete/${contact.id}`,
+          config
+        );
+        location.reload();
+      });
       // =============
       //update
       // =============
       const updateAction = document.createElement("div");
       updateAction.setAttribute("class", "updateAction");
+      updateAction.setAttribute("key", contact.id);
       const updateActionText = document.createElement("p");
       updateActionText.setAttribute("class", "updateAction");
       updateActionText.appendChild(document.createTextNode("Actualizar"));
       updateAction.appendChild(updateActionText);
       contactAccionsButtonDiv.appendChild(updateAction);
-    })
+    });
   }
 }
 
@@ -736,11 +756,11 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
 
   if (
     searchContact.length +
-    searchCompany.length +
-    searchCountry.length +
-    searchCity.length +
-    searchRegion.length !=
-    0 &&
+      searchCompany.length +
+      searchCountry.length +
+      searchCity.length +
+      searchRegion.length !=
+      0 &&
     value != ""
   ) {
     contactsSearchBarResults.style.display = "block";
@@ -853,14 +873,13 @@ async function getBySearchClick(name) {
     ) {
       if (
         companies.data[companyIndex].id ==
-        contacts.data[contactIndex].companyId &&
+          contacts.data[contactIndex].companyId &&
         name === companies.data[companyIndex].companyName
       ) {
         newSearchContact.push(contacts.data[contactIndex]);
       }
     }
   }
-
 
   contactsSearchBarResults.style.display = "none";
   contactsSearchBarArrowIcon.setAttribute("boolean", "false");
@@ -918,11 +937,15 @@ function showContactsClickLi(newContacts) {
           contactDashboardContainer.appendChild(counterCheckboxes);
           counterCheckboxes.style.display = "flex";
           exportContactDownDivs.style.display = "block";
-          deleteSelectedContacts.style.display = "flex"
+          deleteSelectedContacts.style.display = "flex";
           exportContactDownArrow.style.transform = "rotate(180deg)";
           exportContactDownArrow.setAttribute("toggle", "on");
-          document.getElementById("contactsDashboardTitleCheckBox").checked = true;
-          document.getElementById("contactsDashboardTitleCheckBox").style.opacity = "0.5";
+          document.getElementById(
+            "contactsDashboardTitleCheckBox"
+          ).checked = true;
+          document.getElementById(
+            "contactsDashboardTitleCheckBox"
+          ).style.opacity = "0.5";
         }
       } else {
         contactCheckBox.setAttribute("check", "notChecked");
@@ -942,8 +965,12 @@ function showContactsClickLi(newContacts) {
           deleteSelectedContacts.style.display = "none";
           exportContactDownArrow.style.transform = "rotate(0deg)";
           exportContactDownArrow.setAttribute("toggle", "off");
-          document.getElementById("contactsDashboardTitleCheckBox").checked = false;
-          document.getElementById("contactsDashboardTitleCheckBox").style.opacity = "1";
+          document.getElementById(
+            "contactsDashboardTitleCheckBox"
+          ).checked = false;
+          document.getElementById(
+            "contactsDashboardTitleCheckBox"
+          ).style.opacity = "1";
         }
       }
       console.log(checkBoxChecked);

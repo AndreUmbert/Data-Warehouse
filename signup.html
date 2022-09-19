@@ -1,80 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data-Warehose Project SignUp</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="./frontScripts/signup.js"></script>
     <script defer src="./frontScripts/navbar.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <header id="header">
-        <a id="projectLogo" href="./dashboard.html">
-            <p id="projectLogoText">CONNET</p>
-        </a>
-        <div id="navBar">
-            <ul class="menu" id="navBarItems">
-                <li class="listItem" id="contactsButton"><a class="navBarAnchors" id="contactsButtonAnchor"
-                        href="./dashboard.html">Contactos</a>
-                    <div class="liBorder"></div>
-                </li>
-                <li class="listItem" id="usersButton"><a class="navBarAnchors" href="./signup.html"> Usuarios</a>
-                    <div class="liBorder"></div>
-                </li>
+      <a id="projectLogo" href="./dashboard.html">
+        <p id="projectLogoText">CONNET</p>
+      </a>
+      <div id="navBar">
+        <ul class="menu" id="navBarItems">
+          <li class="listItem" id="contactsButton">
+            <a
+              class="navBarAnchors"
+              id="contactsButtonAnchor"
+              href="./dashboard.html"
+              >Contactos</a
+            >
+            <div class="liBorder"></div>
+          </li>
+          <li class="listItem" id="usersButton">
+            <a class="navBarAnchors" href="./signup.html"> Usuarios</a>
+            <div class="liBorder"></div>
+          </li>
 
-                <li class="listItem" id="companiesButton"><a class="navBarAnchors" href="./company.html">Compañias</a>
-                    <div class="liBorder"></div>
-                </li>
+          <li class="listItem" id="companiesButton">
+            <a class="navBarAnchors" href="./company.html">Compañias</a>
+            <div class="liBorder"></div>
+          </li>
 
-                <li class="listItem" id="regionCityButton"><a class="navBarAnchors"
-                        href="./regionCity.html">Region/Ciudad</a>
-                    <div class="liBorder"></div>
-                </li>
-
-            </ul>
-        </div>
+          <li class="listItem" id="regionCityButton">
+            <a class="navBarAnchors" href="./regionCity.html">Region/Ciudad</a>
+            <div class="liBorder"></div>
+          </li>
+        </ul>
+      </div>
     </header>
     <section id="signUp">
-        <h2 id="signUpTitle">Crear usuario</h2>
-        <div id="formSignUpConteiner">
-            <form id="formDivFormSignUpContainer">
-                <!-- Name. -->
-                <label class="signUpFormTexts" for="signUpUserName">Nombre</label>
-                <input type="text" class="signUpInputFormData" id="signUpUserName" name="signUpUserName" value="">
-                <!-- Lastname. -->
-                <label class="signUpFormTexts" for="signUpUserLastname">Apellido</label>
-                <input type="text" class="signUpInputFormData" id="signUpUserLastname" name="signUpUserLastname"
-                    value="">
-                <!-- Email. -->
-                <label class="signUpFormTexts" for="signUpUserEmail">Email</label>
-                <input type="text" class="signUpInputFormData" name="signUpUserEmail" id="signUpUserEmail" value="">
-                <!-- Profile. -->
-                <label class="signUpFormTexts" for="signUpUserProfile">Perfil</label>
-                <input type="text" class="signUpInputFormData" name="signUpUserProfile" id="signUpUserProfile" value="">
-                <!-- Rol. -->
-                <label class="signUpFormTexts" for="signUpUserRol">Rol</label>
-                <input type="text" class="signUpInputFormData" id="signUpUserRol" name="signUpUserRol" value="">
-                <!-- Password. -->
-                <label class="signUpFormTexts" for="signUpUserPassword">Contraseña</label>
-                <input type="password" class="signUpInputFormData" name="signUpUserPassword" id="signUpUserPassword"
-                    value="">
-                <!-- RePassword. -->
-                <label class="signUpFormTexts" for="signUpUserRePassword">Repetir contraseña</label>
-                <input type="password" class="signUpInputFormData" name="signUpUserRePassword" id="signUpUserRePassword"
-                    value="">
-                <input id="signUpSubmitButton" type="text" value="Crear">
-            </form>
-
-        </div>
+      <h2 id="signUpTitle">Crear usuario</h2>
+      <div id="formSignUpConteiner">
+        <form id="formDivFormSignUpContainer">
+          <!-- Name. -->
+          <label class="signUpFormTexts" for="signUpUserName">Nombre</label>
+          <input
+            type="text"
+            class="signUpInputFormData"
+            id="signUpUserName"
+            name="signUpUserName"
+            value=""
+            placeholder="John"
+          />
+          <!-- Lastname. -->
+          <label class="signUpFormTexts" for="signUpUserLastname"
+            >Apellido</label
+          >
+          <input
+            type="text"
+            class="signUpInputFormData"
+            id="signUpUserLastname"
+            name="signUpUserLastname"
+            value=""
+            placeholder="Doe"
+          />
+          <!-- Email. -->
+          <label class="signUpFormTexts" for="signUpUserEmail">Email</label>
+          <input
+            type="text"
+            class="signUpInputFormData"
+            name="signUpUserEmail"
+            id="signUpUserEmail"
+            value=""
+            placeholder="johndoe@gmail.com"
+          />
+          <!-- Profile. -->
+          <label class="signUpFormTexts" for="signUpUserProfile">Perfil</label>
+          <input
+            type="text"
+            class="signUpInputFormData"
+            name="signUpUserProfile"
+            id="signUpUserProfile"
+            value=""
+            placeholder="username"
+          />
+          <!-- Rol. -->
+          <label class="signUpFormTexts" for="signUpUserRol">Rol</label>
+          <input
+            type="text"
+            class="signUpInputFormData"
+            id="signUpUserRol"
+            name="signUpUserRol"
+            value=""
+            placeholder="Admin = 1. User = 2"
+          />
+          <!-- Password. -->
+          <label class="signUpFormTexts" for="signUpUserPassword"
+            >Contraseña</label
+          >
+          <input
+            type="password"
+            class="signUpInputFormData"
+            name="signUpUserPassword"
+            id="signUpUserPassword"
+            value=""
+            placeholder="****"
+          />
+          <!-- RePassword. -->
+          <label class="signUpFormTexts" for="signUpUserRePassword"
+            >Repetir contraseña</label
+          >
+          <input
+            type="password"
+            class="signUpInputFormData"
+            name="signUpUserRePassword"
+            id="signUpUserRePassword"
+            value=""
+            placeholder="****"
+          />
+          <input id="signUpSubmitButton" type="text" value="Crear" />
+        </form>
+      </div>
     </section>
-</body>
-
+  </body>
 </html>
