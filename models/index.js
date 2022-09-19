@@ -6,6 +6,7 @@ const Region = require("./region");
 const Rol = require("./rol");
 const User = require("./user");
 const Contact = require("./contact");
+const ChannelHasContact = require("./channelHasContact");
 
 User.belongsTo(Rol, {
     foreignKey: "rolId"
@@ -27,9 +28,6 @@ Contact.belongsTo(Region, {
     foreignKey: "regionId"
 });
 
-// Contact.belongsTo(Region, {
-//     foreignKey: "countryId"
-// });
 
 Contact.belongsTo(Region, {
     foreignKey: "cityId"
@@ -51,6 +49,10 @@ Company.belongsTo(Country, {
     foreignKey: "countryId"
 });
 
+Channel.belongsToMany(Contact, {
+    through: ChannelHasContact
+});
+
 module.exports = {
     Channel,
     City,
@@ -60,4 +62,5 @@ module.exports = {
     Rol,
     User,
     Contact,
+    ChannelHasContact,
 };

@@ -12,7 +12,7 @@ const db = require("./config/db");
 const { response } = require("express");
 const APP_PORT = process.env.APP_PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET;
-const adminVerification = require("./controlers/adminVerification");
+
 
 //----------------------------------------------------
 //2. Import models
@@ -27,6 +27,7 @@ const {
   Rol,
   User,
   Contact,
+  ChannelHasContact,
 } = require("./models");
 
 //----------------------------------------------------
@@ -62,9 +63,13 @@ app.use(
 //4. Import services
 //----------------------------------------------------
 
+const { ChannelService } = require("./services/index");
+
 //----------------------------------------------------
 //4. Import controlers
 //----------------------------------------------------
+
+const adminVerification = require("./controlers/adminVerification");
 
 //----------------------------------------------------
 //5. ENDPOINTS OR PATHS
@@ -566,7 +571,7 @@ app.delete(
 app.get("/contact/dashboard", async (req, res) => {
   try {
     const contact = await db.query(
-      "SELECT t1.*, t2.*, t3.*, t4.* FROM contact as t1 INNER JOIN city as t2 ON t1.cityId = t2.id INNER JOIN country as t3 ON t2.countryId = t3.id INNER JOIN region as t4 ON t3.regionId = t4.id;",
+      "SELECT t1.*, t2.cityName, t2.countryId, t3.countryName, t3.regionId, t4.regionName FROM contact as t1 INNER JOIN city as t2 ON t1.cityId = t2.id INNER JOIN country as t3 ON t2.countryId = t3.id INNER JOIN region as t4 ON t3.regionId = t4.id;",
       { type: db.QueryTypes.SELECT }
     );
     console.log(contact);

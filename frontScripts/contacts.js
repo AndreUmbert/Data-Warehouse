@@ -115,7 +115,7 @@ getContacts();
 function showContacts(contacts) {
   // console.log(contacts);
   for (let contact of contactsFullData) {
-    console.log(contact);
+    // console.log(contact);
     // create contactDiv
     const contactDiv = document.createElement("div");
     contactDiv.setAttribute("class", "contactDiv");
@@ -237,6 +237,7 @@ function showContacts(contacts) {
     // const contactPreferedChannelContainer = document.createElement("div");
     // contactPreferedChannelContainer.setAttribute("class", "contactPreferedChannelContainer");
     // contactDiv.appendChild(contactPreferedChannelContainer);
+    console.log(contact);
     // if (contact.channels.length > 2) {
     //     //Agregar boton ... en el caso de que el usuario tenga mas de 2 canales preferidos de contactos y que al apretar agrande el div y los muestre.
     //     //div
@@ -377,6 +378,30 @@ function showContacts(contacts) {
     contactAccionsButtonText.setAttribute("class", "contactAccionsButtonText");
     contactAccionsButtonText.appendChild(document.createTextNode("..."));
     contactAccionsButtonDiv.appendChild(contactAccionsButtonText);
+    //contactAccionsButtonDiv EVENT:
+    contactAccionsButtonDiv.addEventListener("click", () => {
+      contactAccionsButtonDiv.innerHTML = "";
+      // =============
+      //delete
+      // =============
+      const deleteAction = document.createElement("div");
+      deleteAction.setAttribute("class", "deleteAction");
+      const deleteActionText = document.createElement("p");
+      deleteActionText.setAttribute("class", "deleteAction");
+      deleteActionText.appendChild(document.createTextNode("Eliminar"));
+      deleteAction.appendChild(deleteActionText);
+      contactAccionsButtonDiv.appendChild(deleteAction);
+      // =============
+      //update
+      // =============
+      const updateAction = document.createElement("div");
+      updateAction.setAttribute("class", "updateAction");
+      const updateActionText = document.createElement("p");
+      updateActionText.setAttribute("class", "updateAction");
+      updateActionText.appendChild(document.createTextNode("Actualizar"));
+      updateAction.appendChild(updateActionText);
+      contactAccionsButtonDiv.appendChild(updateAction);
+    })
   }
 }
 
@@ -836,6 +861,9 @@ async function getBySearchClick(name) {
     }
   }
 
+
+  contactsSearchBarResults.style.display = "none";
+  contactsSearchBarArrowIcon.setAttribute("boolean", "false");
   counterCheckboxes.style.display = "none";
   exportContactDownDivs.style.display = "none";
   deleteSelectedContacts.style.display = "none";
@@ -1148,5 +1176,5 @@ deleteSelectedContacts.addEventListener("click", async (element) => {
     console.log(contact);
     axios.delete(`http://localhost:3000/contact/delete/${contact}`, config);
   }
-  // location.reload();
+  location.reload();
 });

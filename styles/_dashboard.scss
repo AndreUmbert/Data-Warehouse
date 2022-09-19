@@ -375,10 +375,24 @@
             align-items: center;
             .contactAccionsButtonDiv {
               width: 20%;
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
               .contactAccionsButtonText {
                 text-align: center;
                 font-size: 130%;
                 margin: 0;
+              }
+              .deleteAction {
+                margin: 0;
+                font-size: 0.8vw;
+                color: rgb(130, 174, 255);
+              }
+              .updateAction {
+                margin: 0;
+                font-size: 0.8vw;
+                color: rgb(130, 174, 255);
               }
             }
           }
