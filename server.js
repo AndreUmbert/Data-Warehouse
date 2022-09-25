@@ -36,7 +36,7 @@ const {
 const app = express();
 
 //----------------------------------------------------
-//4. Rate limit policy
+//4.1 Rate limit policy
 //----------------------------------------------------
 const rateLimitPolicy = rateLimit({
   message: "Try again later",
@@ -45,7 +45,7 @@ const rateLimitPolicy = rateLimit({
 });
 
 //----------------------------------------------------
-//4. Use all the libraries (express was used before in 2.)
+//4.2 Use all the libraries (express was used before in 2.)
 //----------------------------------------------------
 app.use(express.json());
 app.use(helmet());
@@ -60,13 +60,13 @@ app.use(
 );
 
 //----------------------------------------------------
-//4. Import services
+//4.3 Import services
 //----------------------------------------------------
 
 const { ChannelService } = require("./services/index");
 
 //----------------------------------------------------
-//4. Import controlers
+//4.4 Import controlers
 //----------------------------------------------------
 
 const adminVerification = require("./controlers/adminVerification");

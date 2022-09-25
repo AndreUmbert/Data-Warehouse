@@ -1,4 +1,7 @@
 const saveContactButton = document.getElementById("saveContactButton");
+const id = window.localStorage.getItem("id");
+const token = localStorage.getItem("token");
+const config = { headers: { Authorization: `Bearer ${token}` } };
 
 async function createPrimaryData() {
   //----------------------------------------
