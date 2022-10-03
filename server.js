@@ -587,26 +587,23 @@ app.put("/contact/update/:contactId", async (req, res) => {
   const contactName = req.body.contactName;
   const lastname = req.body.lastname;
   const position = req.body.position;
-  const username = req.body.username;
   const email = req.body.email;
+  const address = req.body.address;
   const interest = req.body.interest;
-  const preferences = req.body.position;
   const companyId = req.body.companyId;
   const cityId = req.body.cityId;
-  console.log(req.body);
   try {
     const contact = await db.query(
-      "UPDATE contact SET contactName= :contactName, lastname= :lastname, position= :position, username= :username, email= :email, interest= :interest, preferences = :preferences, companyId = :companyId, cityId= :cityId",
+      `UPDATE contact SET contactName= :contactName, lastname= :lastname, position= :position, address= :address, email= :email, interest= :interest, companyId = :companyId, cityId= :cityId WHERE id=${contactId}`,
       {
         replacements: {
           id: contactId,
           contactName: contactName,
           lastname: lastname,
           position: position,
-          username: username,
+          address: address,
           email: email,
           interest: interest,
-          preferences: preferences,
           companyId: companyId,
           cityId: cityId,
         },

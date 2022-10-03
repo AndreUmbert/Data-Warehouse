@@ -123,6 +123,7 @@ function showContacts(contacts) {
     const contactDiv = document.createElement("div");
     contactDiv.setAttribute("class", "contactDiv");
     contactDashboardDynamic.appendChild(contactDiv);
+    contactDiv.setAttribute("contactId", contact.id);
     //createCheckBox:
     const contactCheckBoxDiv = document.createElement("div");
     contactCheckBoxDiv.setAttribute("class", "contactCheckBoxDiv");
@@ -413,6 +414,7 @@ function showContacts(contacts) {
       //update
       // =============
       const updateAction = document.createElement("div");
+      updateAction.setAttribute("contactId", contact.id);
       updateAction.setAttribute("class", "updateAction");
       updateAction.setAttribute("key", contact.id);
       const updateActionText = document.createElement("p");
@@ -421,7 +423,7 @@ function showContacts(contacts) {
       updateAction.appendChild(updateActionText);
       contactAccionsButtonDiv.appendChild(updateAction);
       updateAction.addEventListener("click", () => {
-        updateContactFunction()
+        updateContactFunction(updateAction.getAttribute("contactId"))
       })
     });
   }
@@ -909,6 +911,7 @@ function showContactsClickLi(newContacts) {
     const contactDiv = document.createElement("div");
     contactDiv.setAttribute("class", "contactDiv");
     contactDashboardDynamic.appendChild(contactDiv);
+    contactDiv.setAttribute("contactId", contact.id);
     //createCheckBox:
     const contactCheckBoxDiv = document.createElement("div");
     contactCheckBoxDiv.setAttribute("class", "contactCheckBoxDiv");
@@ -1199,6 +1202,7 @@ function showContactsClickLi(newContacts) {
       //update
       // =============
       const updateAction = document.createElement("div");
+      updateAction.setAttribute("contactId", contact.id);
       updateAction.setAttribute("class", "updateAction");
       updateAction.setAttribute("key", contact.id);
       const updateActionText = document.createElement("p");
@@ -1207,7 +1211,7 @@ function showContactsClickLi(newContacts) {
       updateAction.appendChild(updateActionText);
       contactAccionsButtonDiv.appendChild(updateAction);
       updateAction.addEventListener("click", () =>
-        updateContactFunction()
+        updateContactFunction(updateAction.getAttribute("contactId"))
       )
     });
   }
@@ -1244,7 +1248,7 @@ deleteSelectedContacts.addEventListener("click", async (element) => {
   location.reload();
 });
 
-
+console.log("1247");
 //==================================================================
 // UPDATE CONTACTS
 //================================================================
@@ -1738,6 +1742,11 @@ async function updateSecondaryData() {
     config
   );
 
+  // let contacts = await axios.get(
+  //   "http://localhost:3000/contacts/dashboard",
+  //   config
+  // )
+
   let cities = await axios.get("http://localhost:3000/city/dashboard", config);
   //---------------------------
   // PLACE HOLDERS
@@ -2157,7 +2166,8 @@ function updateChannel() {
   );
 }
 
-function updateContactFunction() {
+function updateContactFunction(contactId) {
+  console.log(contactId);
   //------------------------------------------------------------------
   //ADD CONTACT CONTAINER:
   //------------------------------------------------------------------
@@ -2237,9 +2247,8 @@ function updateContactFunction() {
     console.log(secondaryDataFirstDivCountrySelect.value);
     console.log(secondaryDataFirstDivCitySelect.value);
     console.log(porcentualInterestSelect.value);
-    console.log(id);
     let contactPost = await axios.put(
-      `http://localhost:3000/contact/create/${id}`,
+      `http://localhost:3000/contact/update/${contactId}`,
       {
         contactName: contactPrincipalDataNameInput.value,
         lastname: contactPrincipalDataLastnameInput.value,
