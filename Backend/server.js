@@ -13,7 +13,6 @@ const { response } = require("express");
 const APP_PORT = process.env.APP_PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET;
 
-
 //----------------------------------------------------
 //2. Import models
 //----------------------------------------------------
@@ -78,7 +77,7 @@ const adminVerification = require("./controlers/adminVerification");
 //----------------------------------------------------
 // 5.1 USERS:
 //----------------------------------------------------
-app.get("/user/dashboard", adminVerification, async (req, res) => {
+app.get("/user/dashboard", async (req, res) => {
   try {
     const users = await db.query("SELECT * FROM userTable", {
       type: db.QueryTypes.SELECT,
@@ -90,7 +89,7 @@ app.get("/user/dashboard", adminVerification, async (req, res) => {
   }
 });
 
-app.get("/user/dashboard/:userId", adminVerification, async (req, res) => {
+app.get("/user/dashboard/:userId", async (req, res) => {
   try {
     const users = await db.query(
       `SELECT * FROM contact WHERE usertableId = "${req.params.userId}
@@ -131,7 +130,7 @@ app.post("/login", async (req, res) => {
   //Pushear id de usuario a localstorage para obtenerlo en el front y traer los contactos de este idusuario. (AXIOS)
 });
 
-app.post("/signup", adminVerification, async (req, res) => {
+app.post("/signup", async (req, res) => {
   try {
     const newUser = await db.query(
       "INSERT INTO userTable (name, lastname, email, password, rePassword, profile, rolId) values (?,?,?,?,?,?,?)",

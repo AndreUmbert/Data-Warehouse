@@ -37,7 +37,7 @@ async function createPrimaryData() {
   //contactPrincipalDataPhoto:
   const contactPrincipalDataPhoto = document.createElement("img");
   contactPrincipalDataPhoto.setAttribute("id", "contactPrincipalDataPhoto");
-  contactPrincipalDataPhoto.setAttribute("src", "./assets/person-fill.png");
+  contactPrincipalDataPhoto.setAttribute("src", "../assets/person-fill.png");
   contactPrincipalDataPhotoPlusIcon.appendChild(contactPrincipalDataPhoto);
   //contactPrincipalDataPhotoIcon:
   const contactPrincipalDataPhotoIconDiv = document.createElement("div");
@@ -53,7 +53,10 @@ async function createPrimaryData() {
     "id",
     "contactPrincipalDataPhotoIcon"
   );
-  contactPrincipalDataPhotoIcon.setAttribute("src", "./assets/camera-fill.png");
+  contactPrincipalDataPhotoIcon.setAttribute(
+    "src",
+    "../assets/camera-fill.png"
+  );
   contactPrincipalDataPhotoIconDiv.appendChild(contactPrincipalDataPhotoIcon);
   //contactName:
   //Container:
@@ -875,7 +878,7 @@ function createChannel() {
         );
         secondaryDataSecondDivAddChannelIcon.setAttribute(
           "src",
-          "./assets/plus.png"
+          "../assets/plus.png"
         );
         //text:
         const secondaryDataSecondDivAddChannelText =

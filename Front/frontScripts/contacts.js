@@ -423,8 +423,8 @@ function showContacts(contacts) {
       updateAction.appendChild(updateActionText);
       contactAccionsButtonDiv.appendChild(updateAction);
       updateAction.addEventListener("click", () => {
-        updateContactFunction(updateAction.getAttribute("contactId"))
-      })
+        updateContactFunction(updateAction.getAttribute("contactId"));
+      });
     });
   }
 }
@@ -760,11 +760,11 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
 
   if (
     searchContact.length +
-    searchCompany.length +
-    searchCountry.length +
-    searchCity.length +
-    searchRegion.length !=
-    0 &&
+      searchCompany.length +
+      searchCountry.length +
+      searchCity.length +
+      searchRegion.length !=
+      0 &&
     value != ""
   ) {
     contactsSearchBarResults.style.display = "block";
@@ -877,7 +877,7 @@ async function getBySearchClick(name) {
     ) {
       if (
         companies.data[companyIndex].id ==
-        contacts.data[contactIndex].companyId &&
+          contacts.data[contactIndex].companyId &&
         name === companies.data[companyIndex].companyName
       ) {
         newSearchContact.push(contacts.data[contactIndex]);
@@ -1212,7 +1212,7 @@ function showContactsClickLi(newContacts) {
       contactAccionsButtonDiv.appendChild(updateAction);
       updateAction.addEventListener("click", () =>
         updateContactFunction(updateAction.getAttribute("contactId"))
-      )
+      );
     });
   }
 }
@@ -1286,7 +1286,7 @@ async function updatePrimaryData() {
   //contactPrincipalDataPhoto:
   const contactPrincipalDataPhoto = document.createElement("img");
   contactPrincipalDataPhoto.setAttribute("id", "contactPrincipalDataPhoto");
-  contactPrincipalDataPhoto.setAttribute("src", "./assets/person-fill.png");
+  contactPrincipalDataPhoto.setAttribute("src", "../assets/person-fill.png");
   contactPrincipalDataPhotoPlusIcon.appendChild(contactPrincipalDataPhoto);
   //contactPrincipalDataPhotoIcon:
   const contactPrincipalDataPhotoIconDiv = document.createElement("div");
@@ -1302,7 +1302,10 @@ async function updatePrimaryData() {
     "id",
     "contactPrincipalDataPhotoIcon"
   );
-  contactPrincipalDataPhotoIcon.setAttribute("src", "./assets/camera-fill.png");
+  contactPrincipalDataPhotoIcon.setAttribute(
+    "src",
+    "../assets/camera-fill.png"
+  );
   contactPrincipalDataPhotoIconDiv.appendChild(contactPrincipalDataPhotoIcon);
   //contactName:
   //Container:
@@ -2129,7 +2132,7 @@ function updateChannel() {
         );
         secondaryDataSecondDivAddChannelIcon.setAttribute(
           "src",
-          "./assets/plus.png"
+          "../assets/plus.png"
         );
         //text:
         const secondaryDataSecondDivAddChannelText =
