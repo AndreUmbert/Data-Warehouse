@@ -560,6 +560,7 @@ app.get("/contact/dashboard", async (req, res) => {
   }
 });
 
+
 app.put("/contact/update/:contactId", async (req, res) => {
   const contactId = req.params.contactId;
   const contactName = req.body.contactName;
@@ -646,9 +647,10 @@ app.delete("/contact/delete/:contactId", async (req, res) => {
 });
 
 app.get("/contact/dashbord/:userTableId", async (req, res) => {
+  const userTableId = req.params.userTableId;
   try {
     const contact = await db.query(
-      "SELECT t1.username, t1.interest, t2.companyName, t3.regionName FROM contact as t1 INNER JOIN company as t2 ON t1.companyId = t2.id INNER JOIN region as t3 ON t1.regionId = t3.id WHERE t1.userTableId = :id",
+      `SELECT t1.*, t2.cityName, t2.countryId, t3.countryName, t3.regionId, t4.regionName FROM contact as t1 INNER JOIN city as t2 ON t1.cityId = t2.id INNER JOIN country as t3 ON t2.countryId = t3.id INNER JOIN region as t4 ON t3.regionId = t4.id WHERE t1.userTableId = ${userTableId}`,
       { type: db.QueryTypes.SELECT }
     );
     res.status(200).json(contact);

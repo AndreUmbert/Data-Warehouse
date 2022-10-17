@@ -5,19 +5,38 @@ const token = localStorage.getItem("token");
 const config = { headers: { Authorization: `Bearer ${token}` } };
 const companySection = document.getElementById("companySection");
 
-//get companies:
 const getCompanies = async () => {
+  //get companies:
   let companies = await axios.get(
     "http://localhost:3000/company/dashboard",
     config
   );
 
-  //get companyCountry:
+  //get cities:
+  let cities = await axios.get(
+    "http://localhost:3000/city/dashboard",
+    config
+  );
+
+
+  //get countries:
   let countries = await axios.get(
     "http://localhost:3000/country/dashboard",
     config
   );
+  console.log(countries);
 
+  for (let pIndex = 0; pIndex < countries.data.length; pIndex++) {
+    countries.data[pIndex].cities = [];
+    for (let cIndex = 0; cIndex < cities.data.length; cIndex++) {
+      if (countries.data[pIndex].id == cities.data[cIndex].countryId) {
+        countries.data[pIndex].cities.push(cities.data[cIndex]);
+        cities.data[cIndex].countryName = countries.data[pIndex].countryName;
+      }
+    }
+  }
+
+  console.log(cities);
   for (
     let companyIndex = 0;
     companyIndex < companies.data.length;
@@ -25,16 +44,16 @@ const getCompanies = async () => {
   ) {
     companies.data[companyIndex].countryName = "";
     for (
-      let countryIndex = 0;
-      countryIndex < countries.data.length;
-      countryIndex++
+      let cityIndex = 0;
+      cityIndex < cities.data.length;
+      cityIndex++
     ) {
       if (
-        companies.data[companyIndex].countryId ==
-        countries.data[countryIndex].id
+        companies.data[companyIndex].cityId ==
+        cities.data[cityIndex].id
       ) {
-        companies.data[companyIndex].countryName =
-          countries.data[countryIndex].countryName;
+        companies.data[companyIndex].cityName =
+          cities.data[cityIndex].countryName;
       }
     }
   }
@@ -45,6 +64,7 @@ const getCompanies = async () => {
 getCompanies();
 
 function showCompanies(companies) {
+  console.log(companies);
   for (let company of companies.data) {
     // console.log(company.name);
     //div
@@ -59,7 +79,7 @@ function showCompanies(companies) {
     //company
     const companyCountry = document.createElement("p");
     companyCountry.setAttribute("class", "companyCountry");
-    companyCountry.appendChild(document.createTextNode(company.countryName));
+    companyCountry.appendChild(document.createTextNode(company.cityName));
     companyDiv.appendChild(companyCountry);
     //address
     const companyAddress = document.createElement("p");
@@ -123,31 +143,31 @@ async function createCompany(element) {
   inputCompanyContainer.appendChild(inputCompany);
   inputCompany.setAttribute("id", "inputCompany");
   inputCompany.style.width = "26.1%";
-  //countryName Input:
+  //cityName Input:
   const selectCompanyCountry = document.createElement("select");
   selectCompanyCountry.setAttribute("class", "selectCompanyCountry");
   selectCompanyCountry.setAttribute("placeholder", "Select Country");
   inputCompanyContainer.appendChild(selectCompanyCountry);
   selectCompanyCountry.style.width = "27.3%";
 
-  let countries = await axios.get(
-    "http://localhost:3000/country/dashboard",
+  let cities = await axios.get(
+    "http://localhost:3000/city/dashboard",
     config
   );
   for (
-    let countryIndex = 0;
-    countryIndex < countries.data.length;
-    countryIndex++
+    let cityIndex = 0;
+    cityIndex < cities.data.length;
+    cityIndex++
   ) {
     const option = document.createElement(
       "option",
-      countries.data[countryIndex].id
+      cities.data[cityIndex].id
     );
-    option.setAttribute("value", countries.data[countryIndex].id);
+    option.setAttribute("value", cities.data[cityIndex].id);
     selectCompanyCountry
       .appendChild(option)
       .appendChild(
-        document.createTextNode(countries.data[countryIndex].countryName)
+        document.createTextNode(cities.data[cityIndex].cityName)
       );
   }
   // console.log(selectCompanyCountry.options[(selectCompanyCountry.selectedIndex)].value);
@@ -194,7 +214,7 @@ async function createCompany(element) {
   //arreglar que se agregue por nombre y no por indice, ya que se rompe
   createButton.addEventListener("click", async () => {
     let count = await axios.get(
-      "http://localhost:3000/country/dashboard",
+      "http://localhost:3000/city/dashboard",
       config
     );
     console.log(
@@ -206,7 +226,7 @@ async function createCompany(element) {
       "http://localhost:3000/company/create",
       {
         companyName: inputCompany.value,
-        countryId:
+        cityId:
           selectCompanyCountry.options[selectCompanyCountry.selectedIndex]
             .value,
         address: inputAddress.value,

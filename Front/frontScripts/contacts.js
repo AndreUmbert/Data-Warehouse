@@ -1,6 +1,7 @@
 const id = window.localStorage.getItem("id");
 const token = localStorage.getItem("token");
 const config = { headers: { Authorization: `Bearer ${token}` } };
+console.log(config);
 const contactDashboardDynamic = document.getElementById(
   "contactDashboardDynamic"
 );
@@ -57,7 +58,7 @@ const getContacts = async () => {
   // console.log(contactsFullData);
   //get contacts:
   let contacts = await axios.get(
-    "http://localhost:3000/contact/dashboard",
+    `/contact/dashbord/${id}`,
     config
   );
   console.log(contacts.data);
@@ -760,11 +761,11 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
 
   if (
     searchContact.length +
-      searchCompany.length +
-      searchCountry.length +
-      searchCity.length +
-      searchRegion.length !=
-      0 &&
+    searchCompany.length +
+    searchCountry.length +
+    searchCity.length +
+    searchRegion.length !=
+    0 &&
     value != ""
   ) {
     contactsSearchBarResults.style.display = "block";
@@ -877,7 +878,7 @@ async function getBySearchClick(name) {
     ) {
       if (
         companies.data[companyIndex].id ==
-          contacts.data[contactIndex].companyId &&
+        contacts.data[contactIndex].companyId &&
         name === companies.data[companyIndex].companyName
       ) {
         newSearchContact.push(contacts.data[contactIndex]);
@@ -1269,44 +1270,44 @@ async function updatePrimaryData() {
   contactPrincipalDataContainer.style.top = "4vw";
   contactPrincipalDataContainer.style.height = "10vw";
   contactPrincipalDataContainer.style.margin = "0 0 0 2% ";
-  //contactPrincipalDataPhotoDiv:
-  const contactPrincipalDataPhotoDiv = document.createElement("div");
-  contactPrincipalDataPhotoDiv.setAttribute(
-    "id",
-    "contactPrincipalDataPhotoDiv"
-  );
-  contactPrincipalDataContainer.appendChild(contactPrincipalDataPhotoDiv);
-  //contactPrincipalDataPhotoPlusIcon:
-  const contactPrincipalDataPhotoPlusIcon = document.createElement("div");
-  contactPrincipalDataPhotoPlusIcon.setAttribute(
-    "id",
-    "contactPrincipalDataPhotoPlusIcon"
-  );
-  contactPrincipalDataPhotoDiv.appendChild(contactPrincipalDataPhotoPlusIcon);
-  //contactPrincipalDataPhoto:
-  const contactPrincipalDataPhoto = document.createElement("img");
-  contactPrincipalDataPhoto.setAttribute("id", "contactPrincipalDataPhoto");
-  contactPrincipalDataPhoto.setAttribute("src", "../assets/person-fill.png");
-  contactPrincipalDataPhotoPlusIcon.appendChild(contactPrincipalDataPhoto);
-  //contactPrincipalDataPhotoIcon:
-  const contactPrincipalDataPhotoIconDiv = document.createElement("div");
-  contactPrincipalDataPhotoIconDiv.setAttribute(
-    "id",
-    "contactPrincipalDataPhotoIconDiv"
-  );
-  contactPrincipalDataPhotoPlusIcon.appendChild(
-    contactPrincipalDataPhotoIconDiv
-  );
-  const contactPrincipalDataPhotoIcon = document.createElement("img");
-  contactPrincipalDataPhotoIcon.setAttribute(
-    "id",
-    "contactPrincipalDataPhotoIcon"
-  );
-  contactPrincipalDataPhotoIcon.setAttribute(
-    "src",
-    "../assets/camera-fill.png"
-  );
-  contactPrincipalDataPhotoIconDiv.appendChild(contactPrincipalDataPhotoIcon);
+  // //contactPrincipalDataPhotoDiv:
+  // const contactPrincipalDataPhotoDiv = document.createElement("div");
+  // contactPrincipalDataPhotoDiv.setAttribute(
+  //   "id",
+  //   "contactPrincipalDataPhotoDiv"
+  // );
+  // contactPrincipalDataContainer.appendChild(contactPrincipalDataPhotoDiv);
+  // //contactPrincipalDataPhotoPlusIcon:
+  // const contactPrincipalDataPhotoPlusIcon = document.createElement("div");
+  // contactPrincipalDataPhotoPlusIcon.setAttribute(
+  //   "id",
+  //   "contactPrincipalDataPhotoPlusIcon"
+  // );
+  // contactPrincipalDataPhotoDiv.appendChild(contactPrincipalDataPhotoPlusIcon);
+  // //contactPrincipalDataPhoto:
+  // const contactPrincipalDataPhoto = document.createElement("img");
+  // contactPrincipalDataPhoto.setAttribute("id", "contactPrincipalDataPhoto");
+  // contactPrincipalDataPhoto.setAttribute("src", "../assets/person-fill.png");
+  // contactPrincipalDataPhotoPlusIcon.appendChild(contactPrincipalDataPhoto);
+  // //contactPrincipalDataPhotoIcon:
+  // const contactPrincipalDataPhotoIconDiv = document.createElement("div");
+  // contactPrincipalDataPhotoIconDiv.setAttribute(
+  //   "id",
+  //   "contactPrincipalDataPhotoIconDiv"
+  // );
+  // contactPrincipalDataPhotoPlusIcon.appendChild(
+  //   contactPrincipalDataPhotoIconDiv
+  // );
+  // const contactPrincipalDataPhotoIcon = document.createElement("img");
+  // contactPrincipalDataPhotoIcon.setAttribute(
+  //   "id",
+  //   "contactPrincipalDataPhotoIcon"
+  // );
+  // contactPrincipalDataPhotoIcon.setAttribute(
+  //   "src",
+  //   "../assets/camera-fill.png"
+  // );
+  // contactPrincipalDataPhotoIconDiv.appendChild(contactPrincipalDataPhotoIcon);
   //contactName:
   //Container:
   const contactPrincipalDataNameContainer = document.createElement("div");

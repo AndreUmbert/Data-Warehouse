@@ -45,8 +45,8 @@ User.belongsTo(Contact, {
     foreignKey: "contactId"
 });
 
-Company.belongsTo(Country, {
-    foreignKey: "countryId"
+Company.belongsTo(City, {
+    foreignKey: "cityId"
 });
 
 Channel.belongsToMany(Contact, {

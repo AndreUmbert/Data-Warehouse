@@ -20,44 +20,44 @@ async function createPrimaryData() {
   contactPrincipalDataContainer.style.top = "4vw";
   contactPrincipalDataContainer.style.height = "10vw";
   contactPrincipalDataContainer.style.margin = "0 0 0 2% ";
-  //contactPrincipalDataPhotoDiv:
-  const contactPrincipalDataPhotoDiv = document.createElement("div");
-  contactPrincipalDataPhotoDiv.setAttribute(
-    "id",
-    "contactPrincipalDataPhotoDiv"
-  );
-  contactPrincipalDataContainer.appendChild(contactPrincipalDataPhotoDiv);
-  //contactPrincipalDataPhotoPlusIcon:
-  const contactPrincipalDataPhotoPlusIcon = document.createElement("div");
-  contactPrincipalDataPhotoPlusIcon.setAttribute(
-    "id",
-    "contactPrincipalDataPhotoPlusIcon"
-  );
-  contactPrincipalDataPhotoDiv.appendChild(contactPrincipalDataPhotoPlusIcon);
-  //contactPrincipalDataPhoto:
-  const contactPrincipalDataPhoto = document.createElement("img");
-  contactPrincipalDataPhoto.setAttribute("id", "contactPrincipalDataPhoto");
-  contactPrincipalDataPhoto.setAttribute("src", "../assets/person-fill.png");
-  contactPrincipalDataPhotoPlusIcon.appendChild(contactPrincipalDataPhoto);
-  //contactPrincipalDataPhotoIcon:
-  const contactPrincipalDataPhotoIconDiv = document.createElement("div");
-  contactPrincipalDataPhotoIconDiv.setAttribute(
-    "id",
-    "contactPrincipalDataPhotoIconDiv"
-  );
-  contactPrincipalDataPhotoPlusIcon.appendChild(
-    contactPrincipalDataPhotoIconDiv
-  );
-  const contactPrincipalDataPhotoIcon = document.createElement("img");
-  contactPrincipalDataPhotoIcon.setAttribute(
-    "id",
-    "contactPrincipalDataPhotoIcon"
-  );
-  contactPrincipalDataPhotoIcon.setAttribute(
-    "src",
-    "../assets/camera-fill.png"
-  );
-  contactPrincipalDataPhotoIconDiv.appendChild(contactPrincipalDataPhotoIcon);
+  // //contactPrincipalDataPhotoDiv:
+  // const contactPrincipalDataPhotoDiv = document.createElement("div");
+  // contactPrincipalDataPhotoDiv.setAttribute(
+  //   "id",
+  //   "contactPrincipalDataPhotoDiv"
+  // );
+  // contactPrincipalDataContainer.appendChild(contactPrincipalDataPhotoDiv);
+  // //contactPrincipalDataPhotoPlusIcon:
+  // const contactPrincipalDataPhotoPlusIcon = document.createElement("div");
+  // contactPrincipalDataPhotoPlusIcon.setAttribute(
+  //   "id",
+  //   "contactPrincipalDataPhotoPlusIcon"
+  // );
+  // contactPrincipalDataPhotoDiv.appendChild(contactPrincipalDataPhotoPlusIcon);
+  // //contactPrincipalDataPhoto:
+  // const contactPrincipalDataPhoto = document.createElement("img");
+  // contactPrincipalDataPhoto.setAttribute("id", "contactPrincipalDataPhoto");
+  // contactPrincipalDataPhoto.setAttribute("src", "../assets/person-fill.png");
+  // contactPrincipalDataPhotoPlusIcon.appendChild(contactPrincipalDataPhoto);
+  // //contactPrincipalDataPhotoIcon:
+  // const contactPrincipalDataPhotoIconDiv = document.createElement("div");
+  // contactPrincipalDataPhotoIconDiv.setAttribute(
+  //   "id",
+  //   "contactPrincipalDataPhotoIconDiv"
+  // );
+  // contactPrincipalDataPhotoPlusIcon.appendChild(
+  //   contactPrincipalDataPhotoIconDiv
+  // );
+  // const contactPrincipalDataPhotoIcon = document.createElement("img");
+  // contactPrincipalDataPhotoIcon.setAttribute(
+  //   "id",
+  //   "contactPrincipalDataPhotoIcon"
+  // );
+  // contactPrincipalDataPhotoIcon.setAttribute(
+  //   "src",
+  //   "../assets/camera-fill.png"
+  // );
+  // contactPrincipalDataPhotoIconDiv.appendChild(contactPrincipalDataPhotoIcon);
   //contactName:
   //Container:
   const contactPrincipalDataNameContainer = document.createElement("div");
@@ -848,7 +848,9 @@ function createChannel() {
       .appendChild(option)
       .appendChild(document.createTextNode(option.value));
   }
+}
 
+function addExtraChannel() {
   //------------------------------------------------------------------
   //Add channel:
   //------------------------------------------------------------------
@@ -905,13 +907,11 @@ function createChannel() {
             finalButtons.style.marginLeft = "70%";
             finalButtons.style.zIndex = 1;
           },
-          { once: true }
         );
       } else {
         console.log("nope");
       }
     },
-    { once: true }
   );
 }
 
@@ -959,6 +959,7 @@ function addContactFunction() {
   // CHANNEL:
   //============================================
   createChannel();
+  addExtraChannel();
   //------------------------------------------------------------------
   // FINALS BUTTONS
   //------------------------------------------------------------------
