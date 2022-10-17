@@ -77,7 +77,7 @@ const adminVerification = require("./controlers/adminVerification");
 //----------------------------------------------------
 // 5.1 USERS:
 //----------------------------------------------------
-app.get("/user/dashboard", async (req, res) => {
+app.get("/user/dashboard", adminVerification, async (req, res) => {
   try {
     const users = await db.query("SELECT * FROM userTable", {
       type: db.QueryTypes.SELECT,
@@ -89,7 +89,7 @@ app.get("/user/dashboard", async (req, res) => {
   }
 });
 
-app.get("/user/dashboard/:userId", async (req, res) => {
+app.get("/user/dashboard/:userId", adminVerification, async (req, res) => {
   try {
     const users = await db.query(
       `SELECT * FROM contact WHERE usertableId = "${req.params.userId}
@@ -130,7 +130,7 @@ app.post("/login", async (req, res) => {
   //Pushear id de usuario a localstorage para obtenerlo en el front y traer los contactos de este idusuario. (AXIOS)
 });
 
-app.post("/signup", async (req, res) => {
+app.post("/signup", adminVerification, async (req, res) => {
   try {
     const newUser = await db.query(
       "INSERT INTO userTable (name, lastname, email, password, rePassword, profile, rolId) values (?,?,?,?,?,?,?)",
@@ -516,27 +516,6 @@ app.put("/company/update/:companyName", adminVerification, async (req, res) => {
   }
 });
 
-app.post("/company/create", adminVerification, async (req, res) => {
-  try {
-    const company = await db.query(
-      "INSERT INTO company (companyName, address, email, phoneNumber, countryId) values (?,?,?,?,?)",
-      {
-        type: db.QueryTypes.INSERT,
-        replacements: [
-          req.body.companyName,
-          req.body.address,
-          req.body.email,
-          req.body.phoneNumber,
-          req.body.countryId,
-        ],
-      }
-    );
-    res.status(200).json(company);
-  } catch (error) {
-    console.error(error.message);
-    response.status(500).json({ error: "Please try again in a few minutes" });
-  }
-});
 
 app.delete(
   "/company/delete/:companyName",
@@ -682,27 +661,80 @@ app.get("/contact/dashbord/:userTableId", async (req, res) => {
 //----------------------------------------------------
 //5.6 channels:
 //----------------------------------------------------
-app.post("/contact/channelCreate/:contactId", async (req, res) => {
-  const contactId = req.params.contactId;
+app.post("/channel/create", adminVerification, async (req, res) => {
   try {
-    const contact = await db.query(
-      "INSERT INTO channel (name, userAccount, preferences, contactId) values (?,?,?,?)",
+    const channel = await db.query(
+      "INSERT INTO channel (channelName) values (?)",
       {
         type: db.QueryTypes.INSERT,
         replacements: [
-          req.body.name,
-          req.body.userAccount,
-          req.body.preferences,
-          req.params.contactId,
+          req.body.channelName,
         ],
       }
     );
-    res.status(200).json(contact);
+    res.status(200).json(channel);
   } catch (error) {
     console.error(error.message);
     response.status(500).json({ error: "Please try again in a few minutes" });
   }
 });
+
+app.get("/channels/getall", async (req, res) => {
+  try {
+    const channels = await db.query("SELECT * FROM channel", {
+      type: db.QueryTypes.SELECT,
+    });
+    res.status(200).json(channels);
+  } catch (error) {
+    console.error(error.message);
+    response.status(500).json({ error: "Please try again in a few minutes" });
+  }
+});
+
+app.put("/channels/update/:channelName", adminVerification, async (req, res) => {
+  const channelName = req.params.channelName;
+  const newName = req.body.newName;
+  try {
+    const channel = await db.query(
+      "UPDATE channel SET channelName= :newName WHERE channelName = :channelName",
+      {
+        replacements: {
+          newName: newName,
+          channelName: channelName,
+        },
+      }
+    );
+    res.status(200).json(channel);
+  } catch (error) {
+    console.error(error.message);
+    response.status(500).json({ error: "Please try again in a few minutes" });
+  }
+});
+
+app.delete(
+  "/channel/delete/:channelName",
+  adminVerification,
+  async (req, res) => {
+    const channelName = req.params.channelName;
+    db.models.channel
+      .destroy({
+        where: {
+          channelName: channelName,
+        },
+      })
+      .then((record) => {
+        console.log(record);
+        if (record >= 1) {
+          res.status(200).json({ message: "Channel was deleted successfully" });
+        } else {
+          res.status(404).json({ message: "record not found" });
+        }
+      })
+      .catch(function (error) {
+        res.status(500).json(error);
+      });
+  }
+);
 
 //----------------------------------------------------
 //6. PUT THE SERVER ON
