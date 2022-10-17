@@ -77,7 +77,7 @@ const adminVerification = require("./controlers/adminVerification");
 //----------------------------------------------------
 // 5.1 USERS:
 //----------------------------------------------------
-app.get("/user/dashboard", adminVerification, async (req, res) => {
+app.get("/user/dashboard", async (req, res) => {
   try {
     const users = await db.query("SELECT * FROM userTable", {
       type: db.QueryTypes.SELECT,

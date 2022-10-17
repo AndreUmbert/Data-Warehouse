@@ -58,7 +58,7 @@ const getContacts = async () => {
   // console.log(contactsFullData);
   //get contacts:
   let contacts = await axios.get(
-    `/contact/dashbord/${id}`,
+    `http://localhost:3000/contact/dashbord/${id}`,
     config
   );
   console.log(contacts.data);

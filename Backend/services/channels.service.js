@@ -24,11 +24,8 @@ const channelService = () => {
             })
         );
 
-        const date = new Date(Date.now());
-
 
         const newContact = await Contact.create({
-            fecha: date,
             id: contactId,
         });
 
