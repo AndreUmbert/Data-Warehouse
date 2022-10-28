@@ -405,11 +405,32 @@ function showContacts(contacts) {
       deleteAction.appendChild(deleteActionText);
       contactAccionsButtonDiv.appendChild(deleteAction);
       deleteAction.addEventListener("click", () => {
-        axios.delete(
-          `http://localhost:3000/contact/delete/${contact.id}`,
-          config
+        contactSection.style.filter = "blur(50px)";
+        const confirmDelete = document.createElement("div");
+        confirmDelete.setAttribute("class", "confirmDelete");
+        blurSection.appendChild(confirmDelete);
+        const confirmDeleteText = document.createElement("p");
+        confirmDeleteText.setAttribute("class", "confirmDeleteText");
+        confirmDeleteText.appendChild(
+          document.createTextNode("¿Desea eliminar el contacto seleccionado?")
         );
-        location.reload();
+        confirmDelete.appendChild(confirmDeleteText);
+        const confirmDeleteButtons = document.createElement("div");
+        confirmDeleteButtons.setAttribute("class", "confirmDeleteButtons");
+        confirmDelete.appendChild(confirmDeleteButtons);
+        const agreeDelete = createElement("button");
+        agreeDelete.setAttribute("class", "agreeDelete");
+        agreeDelete.appendChild(document.createTextNode("Aceptar"));
+        confirmDeleteButtons.appendChild(agreeDelete);
+        const declineDelete = createElement("button");
+        declineDelete.setAttribute("class", "declineDelete");
+        declineDelete.appendChild(document.createTextNode("Aceptar"));
+        confirmDeleteButtons.appendChild(declineDelete);
+        // axios.delete(
+        //   `http://localhost:3000/contact/delete/${contact.id}`,
+        //   config
+        // );
+        // location.reload();
       });
       // =============
       //update
@@ -761,11 +782,11 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
 
   if (
     searchContact.length +
-    searchCompany.length +
-    searchCountry.length +
-    searchCity.length +
-    searchRegion.length !=
-    0 &&
+      searchCompany.length +
+      searchCountry.length +
+      searchCity.length +
+      searchRegion.length !=
+      0 &&
     value != ""
   ) {
     contactsSearchBarResults.style.display = "block";
@@ -878,7 +899,7 @@ async function getBySearchClick(name) {
     ) {
       if (
         companies.data[companyIndex].id ==
-        contacts.data[contactIndex].companyId &&
+          contacts.data[contactIndex].companyId &&
         name === companies.data[companyIndex].companyName
       ) {
         newSearchContact.push(contacts.data[contactIndex]);
