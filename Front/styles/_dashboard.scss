@@ -273,6 +273,7 @@
         .contactDiv {
           display: flex;
           height: 6vw;
+
           .contactCheckBoxDiv {
             width: 3%;
             display: flex;
@@ -662,9 +663,10 @@
               }
               #porcentualInterestSelect {
                 height: 3.175vw;
-                width: 6vw;
+                width: 7vw;
                 background-position-y: 10px;
                 border-radius: 3px;
+                padding: 0;
               }
             }
           }
@@ -756,6 +758,32 @@
           padding: 0.5vw;
           width: 13vw;
         }
+      }
+    }
+  }
+  .confirmDelete {
+    width: 50%;
+    margin-left: 25%;
+    background-color: rgb(130, 174, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0.2vw;
+    position: absolute;
+    top: 20vw;
+    .confirmDeleteText {
+      font-size: 2vw;
+    }
+    .confirmDeleteButtons {
+      margin-bottom: 2vw;
+      width: 30%;
+      display: flex;
+      justify-content: space-between;
+      .agreeDelete {
+        cursor: pointer;
+      }
+      .declineDelete {
+        cursor: pointer;
       }
     }
   }

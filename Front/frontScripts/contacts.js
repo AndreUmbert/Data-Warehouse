@@ -168,7 +168,7 @@ function showContacts(contacts) {
       } else {
         contactCheckBox.setAttribute("check", "notChecked");
         // console.log("notChecked");
-        contactDiv.style.backgroundColor = "white";
+        contactDiv.style.backgroundColor = "";
         checkBoxChecked.pop(contactCheckBox.attributes.key.nodeValue);
         if (checkBoxChecked.length >= 2) {
           //Create things
@@ -400,7 +400,7 @@ function showContacts(contacts) {
       deleteAction.setAttribute("class", "deleteAction");
       deleteAction.setAttribute("key", contact.id);
       const deleteActionText = document.createElement("p");
-      deleteActionText.setAttribute("class", "deleteAction");
+      deleteActionText.setAttribute("class", "deleteActionText");
       deleteActionText.appendChild(document.createTextNode("Eliminar"));
       deleteAction.appendChild(deleteActionText);
       contactAccionsButtonDiv.appendChild(deleteAction);
@@ -418,19 +418,24 @@ function showContacts(contacts) {
         const confirmDeleteButtons = document.createElement("div");
         confirmDeleteButtons.setAttribute("class", "confirmDeleteButtons");
         confirmDelete.appendChild(confirmDeleteButtons);
-        const agreeDelete = createElement("button");
+        const agreeDelete = document.createElement("button");
         agreeDelete.setAttribute("class", "agreeDelete");
         agreeDelete.appendChild(document.createTextNode("Aceptar"));
+        agreeDelete.addEventListener("click", () => {
+          axios.delete(
+            `http://localhost:3000/contact/delete/${contact.id}`,
+            config
+          );
+          location.reload();
+        })
         confirmDeleteButtons.appendChild(agreeDelete);
-        const declineDelete = createElement("button");
+        const declineDelete = document.createElement("button");
         declineDelete.setAttribute("class", "declineDelete");
-        declineDelete.appendChild(document.createTextNode("Aceptar"));
+        declineDelete.appendChild(document.createTextNode("Cancelar"));
         confirmDeleteButtons.appendChild(declineDelete);
-        // axios.delete(
-        //   `http://localhost:3000/contact/delete/${contact.id}`,
-        //   config
-        // );
-        // location.reload();
+        declineDelete.addEventListener("click", () => {
+          location.reload();
+        })
       });
       // =============
       //update
@@ -464,7 +469,7 @@ function deleteChildren(element) {
 //===================================================================
 contactsDashboardContactsOrderImg.addEventListener("click", () => {
   contactsFullData.sort((a, b) => {
-    return a.name > b.name ? 1 : -1;
+    return a.contactName > b.contactName ? 1 : -1;
   });
   console.log(contactsFullData);
   contactDashboardDynamic.innerHTML = "";
@@ -473,7 +478,7 @@ contactsDashboardContactsOrderImg.addEventListener("click", () => {
 
 contactsDashboardContactsOrderImg.addEventListener("dblclick", () => {
   contactsFullData.sort((a, b) => {
-    return a.name > b.name ? 1 : -1;
+    return a.contactName > b.contactName ? 1 : -1;
   });
   contactsFullData.reverse();
   console.log(contactsFullData);
@@ -782,11 +787,11 @@ contactsSearchBarTextInput.addEventListener("input", async (e) => {
 
   if (
     searchContact.length +
-      searchCompany.length +
-      searchCountry.length +
-      searchCity.length +
-      searchRegion.length !=
-      0 &&
+    searchCompany.length +
+    searchCountry.length +
+    searchCity.length +
+    searchRegion.length !=
+    0 &&
     value != ""
   ) {
     contactsSearchBarResults.style.display = "block";
@@ -899,7 +904,7 @@ async function getBySearchClick(name) {
     ) {
       if (
         companies.data[companyIndex].id ==
-          contacts.data[contactIndex].companyId &&
+        contacts.data[contactIndex].companyId &&
         name === companies.data[companyIndex].companyName
       ) {
         newSearchContact.push(contacts.data[contactIndex]);
@@ -977,7 +982,7 @@ function showContactsClickLi(newContacts) {
       } else {
         contactCheckBox.setAttribute("check", "notChecked");
         // console.log("notChecked");
-        contactDiv.style.backgroundColor = "white";
+        contactDiv.style.backgroundColor = "";
         checkBoxChecked.pop(contactCheckBox.attributes.key.nodeValue);
         if (checkBoxChecked.length >= 2) {
           //Create things
@@ -1209,16 +1214,42 @@ function showContactsClickLi(newContacts) {
       deleteAction.setAttribute("class", "deleteAction");
       deleteAction.setAttribute("key", contact.id);
       const deleteActionText = document.createElement("p");
-      deleteActionText.setAttribute("class", "deleteAction");
+      deleteActionText.setAttribute("class", "deleteActionText");
       deleteActionText.appendChild(document.createTextNode("Eliminar"));
       deleteAction.appendChild(deleteActionText);
       contactAccionsButtonDiv.appendChild(deleteAction);
       deleteAction.addEventListener("click", () => {
-        axios.delete(
-          `http://localhost:3000/contact/delete/${contact.id}`,
-          config
+        contactSection.style.filter = "blur(50px)";
+        const confirmDelete = document.createElement("div");
+        confirmDelete.setAttribute("class", "confirmDelete");
+        blurSection.appendChild(confirmDelete);
+        const confirmDeleteText = document.createElement("p");
+        confirmDeleteText.setAttribute("class", "confirmDeleteText");
+        confirmDeleteText.appendChild(
+          document.createTextNode("¿Desea eliminar el contacto seleccionado?")
         );
-        location.reload();
+        confirmDelete.appendChild(confirmDeleteText);
+        const confirmDeleteButtons = document.createElement("div");
+        confirmDeleteButtons.setAttribute("class", "confirmDeleteButtons");
+        confirmDelete.appendChild(confirmDeleteButtons);
+        const agreeDelete = document.createElement("button");
+        agreeDelete.setAttribute("class", "agreeDelete");
+        agreeDelete.appendChild(document.createTextNode("Aceptar"));
+        agreeDelete.addEventListener("click", () => {
+          axios.delete(
+            `http://localhost:3000/contact/delete/${contact.id}`,
+            config
+          );
+          location.reload();
+        })
+        confirmDeleteButtons.appendChild(agreeDelete);
+        const declineDelete = document.createElement("button");
+        declineDelete.setAttribute("class", "declineDelete");
+        declineDelete.appendChild(document.createTextNode("Cancelar"));
+        confirmDeleteButtons.appendChild(declineDelete);
+        declineDelete.addEventListener("click", () => {
+          location.reload();
+        })
       });
       // =============
       //update
@@ -1262,12 +1293,39 @@ exportContactDownArrow.addEventListener("click", () => {
 
 deleteSelectedContacts.addEventListener("click", async (element) => {
   console.log(checkBoxChecked);
-  for (let index = 0; index < checkBoxChecked.length; index++) {
-    const contact = checkBoxChecked[index];
-    console.log(contact);
-    axios.delete(`http://localhost:3000/contact/delete/${contact}`, config);
-  }
-  location.reload();
+  contactSection.style.filter = "blur(50px)";
+  const confirmDelete = document.createElement("div");
+  confirmDelete.setAttribute("class", "confirmDelete");
+  blurSection.appendChild(confirmDelete);
+  const confirmDeleteText = document.createElement("p");
+  confirmDeleteText.setAttribute("class", "confirmDeleteText");
+  confirmDeleteText.appendChild(
+    document.createTextNode("¿Desea eliminar el contacto seleccionado?")
+  );
+  confirmDelete.appendChild(confirmDeleteText);
+  const confirmDeleteButtons = document.createElement("div");
+  confirmDeleteButtons.setAttribute("class", "confirmDeleteButtons");
+  confirmDelete.appendChild(confirmDeleteButtons);
+  const agreeDelete = document.createElement("button");
+  agreeDelete.setAttribute("class", "agreeDelete");
+  agreeDelete.appendChild(document.createTextNode("Aceptar"));
+  agreeDelete.addEventListener("click", () => {
+    for (let index = 0; index < checkBoxChecked.length; index++) {
+      const contact = checkBoxChecked[index];
+      console.log(contact);
+      axios.delete(`http://localhost:3000/contact/delete/${contact}`, config);
+    }
+    location.reload();
+    location.reload();
+  })
+  confirmDeleteButtons.appendChild(agreeDelete);
+  const declineDelete = document.createElement("button");
+  declineDelete.setAttribute("class", "declineDelete");
+  declineDelete.appendChild(document.createTextNode("Cancelar"));
+  confirmDeleteButtons.appendChild(declineDelete);
+  declineDelete.addEventListener("click", () => {
+    location.reload();
+  })
 });
 
 console.log("1247");
@@ -2289,6 +2347,7 @@ function updateContactFunction(contactId) {
       },
       config
     );
+    location.reload();
     // let channelsPost = await axios.put(`http://localhost:3000/contact/channelCreate/${}`)
   });
 }

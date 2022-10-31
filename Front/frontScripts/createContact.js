@@ -1015,5 +1015,6 @@ function addContactFunction() {
       config
     );
     // let channelsPost = await axios.post(`http://localhost:3000/contact/channelCreate/${}`)
+    location.reload();
   });
 }
