@@ -62,7 +62,7 @@ app.use(
 //4.3 Import services
 //----------------------------------------------------
 
-const { ChannelService } = require("./services/index");
+// const { ChannelService } = require("./services/index");
 
 //----------------------------------------------------
 //4.4 Import controlers
