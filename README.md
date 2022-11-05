@@ -10,167 +10,262 @@ Dicho proyecto se ha trabajado de manera individual y se ha realizado desde cero
 
 ---
 
-# Entregable:
+# Entregables:
 
 El entregable cuenta en generar un sitio web que permite realizar distintas operaciones CRUD a una base de datos de contactos que incluyen sus datos personales, sus preferencias, datos de contacto, lugar donde trabajan, y lugar donde viven.
 
 Dichos archivos entregables son:
-\*Carpeta Front que incluye subcarpetas para los archivos HTML, CSS y JS. - Carpeta assets: Cuenta con todas las imagenes con formato PNG y SVG que se han utilizado para emular iconos y demases dentro del sitio web. - Carpeta frontScripts: En esta carpeta se pueden encontrar todos los archivos de JavaScript que se utilizan para las funcionalidades e interacciones del frontend con las que el usuario de la web podra interactuar. - Carpeta styles: Aca se podran encontrar todos los archivos SCSS que se han utilizado para el estilado a traves del compilador. - Carpeta views: Son todos los archivos HTML que se han utilizado para renderizar las distintas paginas y secciones: Dashboard que muestra todos los contactos del usuario, Company, Region/City, Index que es el Login y por ultimo el Registro que es el archivo signup.html. - Archivos principales encontrados en la carpeta Front: - style.scss, style.css y style.css.map: En el primero de ellos se realizan el import de cada uno de los archivos SCSS, al utilizar el compilador, este genera dos archivos, el style.css y style.css.map. El archivo style.css es el que se importa en las distitnas views para que se aplique el estilado general a cada una de ellas y a cada parte en especifico.
+\*Carpeta Front que incluye subcarpetas para los archivos HTML, CSS y JS:
 
-\*Carpeta Backend: Cuenta con todos los archivos y recursos necesarios para inicializar el servidor y hacer la conexion con el mismo, el mismo cuenta con subcarpetas y archivos sueltos.
+- Carpeta assets: Cuenta con todas las imagenes con formato PNG y SVG que se han utilizado para emular iconos y demases dentro del sitio web.
+
+- Carpeta frontScripts: En esta carpeta se pueden encontrar todos los archivos de JavaScript que se utilizan para las funcionalidades e interacciones del frontend con las que el usuario de la web podra interactuar.
+
+- Carpeta styles: Aca se podran encontrar todos los archivos SCSS que se han utilizado para el estilado a traves del compilador.
+
+- Carpeta views: Son todos los archivos HTML que se han utilizado para renderizar las distintas paginas y secciones: Dashboard que muestra todos los contactos del usuario, Company, Region/City, Index que es el Login y por ultimo el Registro que es el archivo signup.html.
+
+- Archivos principales encontrados en la carpeta Front:
+  - style.scss, style.css y style.css.map: En el primero de ellos se realizan el import de cada uno de los archivos SCSS, al utilizar el compilador, este genera dos archivos, el style.css y style.css.map. El archivo style.css es el que se importa en las distitnas views para que se aplique el estilado general a cada una de ellas y a cada parte en especifico.
+
+\*Carpeta Backend: Cuenta con todos los archivos y recursos necesarios para inicializar el servidor y hacer la conexion con el mismo, el mismo cuenta con subcarpetas y archivos sueltos:
 
     - Carpeta config: En la misma se puede encontrar el archivo "db.js", en dicho archivo se establece el uso de los datos traidos desde el archivo ".env", que contiene las variables de entorno. Ademas en el mismo archivo db.js se encuentra la utilizacion del ORM sequelize. En conjunto ambas dos herramientas descriptas con anterioridad hacen que el archivo "db.js" sea aquel encargado de establecer la conexion con el servidor y la base de datos.
 
     - Carpeta controlers: Se puede encontrar un unico archivo llamado "adminVerification.js": es un middleware encargado de verificacar que el usuario que esta intentando realizar algun proceso CRUD sea administrador. Si es administrador le otorgara permiso y si es usuario sera rechazado.
 
     - Carpeta models: Dentro de la carpeta models podemos encontrar el archivo "index.js" y los demas archivos.
+
         - "index.js": Aquí se importan todos los modelos, se establecen las relaciones entre las distintas llaves foraneas y se las exporta.
+
         - "channel.js, channelHasContact.js, city.js, company.js, contact.js, country.js, region.js, rol.js y user.js": Son los modelos de cada una de las tablas que conforman la estructura de los datos en la base elaborada, donde cada fila concuerda tanto en el modelo como en la base de datos para que que la app corra correctamente. Todos ellos estan trabajados con el ORM de sequelize y se exportan para luego establecer las conexiones en el archivo "index.js" y luegos volverlos a exportar para trabajar con ellos desde otras partes del proyecto.
 
     - Carpeta services: Esta carpeta cuenta con dos archivos, una que lleva el servicio propiamente dicho y otro archivo "index.js", el cual sirve para trabajar todos los archivos de servicios desde uno solo y poder exportarlos. Cabe aclarar que esto fue creado con el objeto de cumplir con una de las tareas optativas, aquella sobre mostrar los canales en el dashboard, pero debido a cuestiones de tiempo he decidido a omitir dicha tarea, por lo cual ambos archivos y sus respectivos importes estan comentados.
 
     -Archivos sueltos encontrados dentro de la carpeta "Backend":
+
         -"DATABASE.sql": Es un archivo de queries, que se puede ejecutar desde MySQLWorkbench y el mismo generara las tablas y las conexiones necesarias para empezar a trabajar.
+
         -"DBQueries.sql": Este archivo cuenta con queries que he utilizado para generar algunas interacciones mas complejas con la base de datos, para cumplir con los requerimientos del proyecto.
-        -"server.js":
 
-*Archivo SQL sobre la estructura de los datos.
-*Archivo de documentación.
-\*README.md (actualmente en lectura).
+        -"server.js": Este archivo es muy importante, dado que es aquel que junta los modelos, la conexion, los middlewares, importa un monton de herramientas necesarias para conectar el proyecto con la base de datos y el encargado de poner el funcionamiento el servidor.
 
-_Tener en cuenta_: El frotend no está incluido en el paquete de entegables ni los recursos de este proyecto otorgados por Acamica. El foco está puesto en el Backend.
+        -"data-warehouse.json" y "data-warehouse.yaml": Es la documentacion de la aplicacion, en la misma cuenta como deberian ser los modelos y la informacion cada una de ellas, asi como tambien los procesos CRUDs que se deben realizar para cada uno de ellos.
+
+\*Archivos sueltos en la carpeta integral del proyecto "Data-Warehouse":
+
+    - "README.md" (actualmente en lectura): Trae los detalles de como inicializar el proyecto y la informacion con la que cuenta cada uno de los archivos del proyecto.
+
+    - ".gitignore": Este archivo se utiliza para que la carpeta "node_modules" no se pueda pushear al repositorio.
+
+    - "package.json": Archivo de vital importancia para el proyecto, el mismo cuenta con los scripts que se utilizan para startear la conexion y el servidor, como asi todas las dependencias del proyecto.
+
+    - ".env": Este archivo contiene las variables de entorno que se importan en el archivo "db.js" que tiene las configuraciones de la conexion.
+
+    - "package-lock.sjon": Este surge de hacer la instalacion de las dependencias.
 
 ---
 
 # Uso de librerías:
 
-No está permitido el uso de librerías, plugins o cualquier otro recurso que no esté especificado en esta guía, ya que el objetivo del proyecto es validar los conocimientos de base.
+La selección de tecnología es libre tanto en el modo compañía cómo el modo freelance, puedes utilizar la librería o framework que desees solo debes asegurarte que tengan una licencia libre de uso.Trabaja Bootstrap o maqueta desde cero, selecciona las librerías que necesites o desarrolla todas las funcionalidades por tu cuenta, elige las librerías de Node que creas más convenientes y por último selecciona tu motor de base de datos preferido: Mongo DB o MariaDB.
+
+---
+
+# Modalidad del trabajo:
+
+Modo Freelance. Crea tu propia interfaz con la experiencia de usuario que desees para tu proyecto. Si eliges esta opción, sólo evaluaremos que tu proyecto cumpla con los requisitos de funcionalidades de la checklist (que podrás encontrar al final de este documento).
 
 ---
 
 # Consignas:
 
-A continuacion se detalla la guía de pasos seguidos para contruir el proyecto.
+Tienes mucho trabajo por delante, pero antes de poner manos a la obra, lo mejor que puedes hacer es planificar. Habiendo visto el prototipo interactivo, te sugerimos que tu siguiente paso sea leer la guía completa antes de empezar a desarrollar.
 
-a. Método de evaluación de tu proyecto
+Sabiendo de qué se trata el entregable que debes desarrollar, busca un esquema para dividirlo en tareas que te sirva a tí. Puedes apoyarte en Trello y crear tarjetas para cada tarea o post-its pegados en un pizarrón. Puedes también armar un Gantt chart.
 
-La tarea de un/a evaluador/a es descargar tu proyecto e instalarlo siguiendo tus instrucciones del README.md.
+Una vez que tengas todo el universo de tareas para realizar no hay una receta mágica o un flujo a seguir. Dependiendo cuáles sean tus fuertes, puedes comenzar por el front, por el back, la documentación o cualquier otro aspecto del desarrollo.
 
-El objetivo es validar que tu aplicación funcione en cualquier plataforma, por lo tanto el/la evaluador/a realizará todas las pruebas sobre su entorno local. Ten en cuenta este método para realizar tu desarrollo.
+Verás a continuación un índice con seis módulos de trabajo que podrás tomar para trabajar individualmente, cada uno en el orden que prefieras.
 
-b. Preparación
+Índice de módulos:
 
-Si todavía no los tienes, instala Node.js, MySQL y Postman.
-Descarga los recursos del proyecto.
-c. Puesta a punto
+1. Header
+2. Login
+3. Sección
+4. Usuarios
+5. Sección Región / Ciudad
+6. Sección Compañías
+7. Sección Contactos
 
-Paso 1: Introducción al proyecto
+---
 
-Entre los recursos que descargaste, analiza cada una de las vistas para entender el proyecto en su totalidad.
-Observa con detenimiento cómo es el comportamiento de la aplicación y comienza a diagramar a grandes rasgos la arquitectura de la misma. Haz click aquí para ver el ejemplo.
+1. Header
 
-Paso 2: Definiendo la especificación
+La imagen de arriba representa el header del sitio. A la izquierda, en donde dice “LOGO” se supone que va el logo de la compañía para la cual estás desarrollando el sitio. Puedes elegir el logo que más te guste y ponerlo en ese lugar. A la derecha verás las 4 secciones que presenta el menú:
 
-En base a la información relevada, es momento de la documentación con Swagger bajo el estándar OpenAPI.
-Crea un archivo spec.yml en el raíz de tu proyecto y completa el listado de endpoints.
+• Contactos: son los contactos que tiene almacenados la compañía para la cual estás desarrollando este sitio. Es el ítem más importante, ya que tu sitio está diseñado para facilitar su administración. Ten en cuenta que un contacto trabaja en una Compañía y también vive en una Ciudad (que es parte de una Región).
 
-Paso 3: Creando el entorno
+• Usuarios: se trata de los usuarios de la compañía para la cual estás desarrollando este sitio que utilizarán este sitio (ej.: personas de Marketing, Comerciales, etc.).
 
-Es momento de iniciar la carpeta con tu proyecto.
-Crea una nueva carpeta en tu computadora, comienza con un repositorio de git, e inicializa tu proyecto de NodeJS creando el archivo package.json.
-Instala las dependencias necesarias y crea tu servidor web.
+• Compañías: son las compañías para las cuales trabajan los contactos almacenados en este sitio. Es una sección del sitio —distinta a Contactos— porque permite trabajar las compañías de manera individual. A cada contacto se le asignará una compañía previamente cargada.
 
-Paso 4: Endpoints
+• Región / Ciudad: refiere a la Región / Ciudad en la cual trabajan los contactos y también donde están situadas las compañías almacenadas en tu sitio (puedes pensarlo como una forma de organizar la información). Un posible caso de uso es querer organizar un evento en Bogotá, Colombia y que el sitio nos permita filtrar todos los contactos que viven en esas ciudad.
 
-Instala express en tu proyecto y comienza a definir todas las rutas que has especificado en tu documentación, recuerdo utilizar los métodos tipo GET, POST, PUT y DELETE dependiendo la acción que vayas a realizar.
+Por lo tanto, trabajar inicialmente en estas cuatro vistas facilitará tu trabajo ya que, por ejemplo, cuando crees un nuevo Contacto, deberás seleccionar en qué Compañía trabaja y en qué Región / Ciudad vive (datos previamente cargados en tu DB).
+Si piensas en la arquitectura del sitio, verás que los datos tienen relación entre sí. Por lo tanto, debes definir un modelo de base de datos que soporte el almacenamiento de todos ellos y luego te permita recuperar la información a medida que navegas tu sitio.
+Entonces, recapitulando lo que tenemos hasta aquí:
 
-Paso 5: Estructura de la información
+---
 
-El siguiente paso es armar tu base de datos para que soporte todo el flujo de la aplicación. Revisa nuevamente cada una de las vistas y diagrama cada tabla en base a la información que extraes de las vistas.
-Al finalizar el análisis de todas las vistas tu primera versión del modelo de datos estará lista.
+2. Login
 
-Paso 6 : Conexión a la base de datos
+¡Comenzar tu proyecto por el login puede ser una buena idea! Crea tu vista de login con los componentes en los assets provistos para que los usuarios accedan al sitio. Aquí tienes un boceto tentativo para que diseñes tu propia pantalla de ingreso (recuerda que para crearla puedes utilizar los assets provistos en el UI Kit).
 
-Extiende el código del servidor con la conexión a la base de datos. Al finalizar este paso deberías tener un servidor ‘escuchando’ en un puerto local, conectado a una base de datos MySQL.
+Recuerda que debes devolver a tu sitio un JWT si la validación es satisfactoria. Así podrás realizar los próximos request dentro del sitio y estar seguro/a de que un usuario logueado los está realizando.
+En la home de tu sitio puedes mostrar momentáneamente un “Hola Mundo” para validar que solo usuarios logueados pueden acceder allí.
 
-d. Listado y creación de productos
+El sistema no permite que un usuario no registrado pueda crear una cuenta. Esto se debe a que los usuarios deben ser creados desde dentro del sitio (lee la sección “Usuarios” para conocer cómo administrar cada uno de los usuarios y perfiles).
 
-Paso 1: Crea la tabla y estructura de productos
+---
 
-Ahora vas a crear la primera tabla del proyecto!
-En base a la especificación creada anteriormente, crea la tabla de productos con las columnas requeridas para cumplir la especificación de la API.
+3. Sección Usuarios
 
-Paso 2: CRUD de productos
+Comenzamos por esta sección, ya que no tiene relación con las otras 3 secciones del header. Esto se debe a que los usuarios son personas de la compañía para la cual estás haciendo el sitio y que, por ende, no guardan relación con los contactos, compañías, o regiones a almacenar en la DB.
 
-Añade Express a tu proyecto, crea tu primer endpoint de /productos y genera las operaciones necesarias para poder crear, leer, actualizar y borrar un producto.
-Tómate tu tiempo para ir probando y debugueando cada parte por separado.
+En la sección de Usuarios debes crear un CRUD para brindar las credenciales de acceso a la plataforma. Permite el ingreso de los siguientes datos para crear acceso:
+• Nombre
+• Apellido
+• Email
+• Perfil
+• Admin (Puede realizar todas las acciones sobre la entidad contactos y puede crear usuarios nuevos)
+• Básico (Puede realizar todas las acciones sobre la entidad contactos pero no puede crear usuarios nuevos)
+• Contraseña
+• Repetir contraseña
 
-Pro Tip: No dudes en usar la consola integrada en phpMyAdmin para probar tus consultas si es que tenés alguna duda.
+Aquí tienes un boceto tentativo para que diseñes esta sección (recuerda que para crearla puedes utilizar los assets provistos en el UI Kit):
 
-e. Sistema de usuarios
+No olvides generar tu lista de usuarios para poder editar o eliminar cuando lo necesites.
 
-Paso 1: Crea la tabla y estructura de usuarios
+Una recomendación: bloquea todos los request a tus endpoints y users a todos los usuarios que no tengan perfil administrador a través de un Middleware.
 
-Confiamos en que ya tienes experiencia creando una nueva tabla. ¡La repetición convierte conceptos en saberes! En este paso debes crear la tabla de usuarios.
+---
 
-Paso 2: Registro y login de usuarios
+4. Sección Región / Ciudad
 
-Basándose en la especificación, crea el endpoint correspondiente para darle al usuario una forma de crear una nueva cuenta.
-Lo siguiente es incorporar tus conocimientos sobre tokens JWT para darle a tus usuarios registrados una forma de iniciar sesión en la plataforma.
+Teniendo el Header, el Login, y la sección de Usuarios internos, te sugerimos continuar por la sección Región / Ciudad debido a que las otras dos —Contactos y Compañías— dependen de ésta. ¿Por qué? Piénsalo así: un contacto o una compañía pertenece a una ciudad y no al revés. Entonces, cuando intentes crear un nuevo contacto o compañía deberás asignar una ciudad existente, por lo que si no tienes completo este módulo en tu sitio no podrás hacerlo.
 
-Paso 3: Agregar validación de roles
+El siguiente árbol te ayudará a trabajar el modelado de tu base de datos para definir las relaciones:
+• Sudamérica
+• Argentina
+• Buenos Aires
+• Córdoba
+• Colombia
+• Bogotá
+• Cúcuta
+• Medellín
+• Chile
+• Atacama
+• Santiago
+• Valparaíso
+• Uruguay
+• Canelones
+• Maldonado
+• Montevideo
+• Norteamérica
+• México
+• Ciudad de México
+• Tijuana
+• Estados Unidos
+• Florida
+• Texas
 
-Por último, genera una estrategia de validación de roles para todos los endpoints existentes. Por ejemplo, que “solo usuarios administradores puedan crear, editar y eliminar productos, y que los usuarios logueados solo tengan acceso a su información personal”.
+Verás que aparecen países además de la Región y la Ciudad (¡y es lógico!). En el header decidimos poner solo Región / Ciudad para acotar el nombre entre el término más amplio —Región— y el más acotado —Ciudad. El trabajo que debes realizar en esta sección es generar una vista que permita, listar, crear, editar y eliminar cualquiera de las ramas del árbol.
+Aquí tienes un boceto que puede ayudarte (recuerda que para crearla puedes utilizar los assets provistos en el UI Kit):
 
-f. Creación de pedidos
+Puedes reutilizar todos los componentes de la vista de Contactos para armar ésta o plantear un nuevo diseño ordenando la información de manera diferente (solo necesitas tomar el estilo de un texto, algunos íconos para las acciones y un botón para agregar una nueva región).
 
-Paso 1: Creando la tabla y estructura de pedidos
+---
 
-La tabla de pedidos se relaciona con dos tablas: la de usuarios y la de productos. Al crearla, ten en cuenta las siguientes condiciones:
-*Un pedido puede ser realizado por un único usuario.
-*Un usuario puede realizar más de un pedido.
-*Un pedido puede contener varios productos.
-*Un producto puede formar parte de varios pedidos.
+5. Sección Compañías
+   Al igual que en el caso de “Región / Ciudad”, deberás crear las vistas necesarias para realizar las operaciones CRUD sobre esta sección. Nuevamente, puedes reutilizar los componentes de la vista de Contactos.
 
-Paso 2: Creando y obteniendo pedidos
+Aquí tienes el boceto de una estructura tentativa para mostrar la información (recuerda que para crearla puedes utilizar los assets provistos en el UI Kit):
 
-Con las tablas ya creadas, genera el primer endpoint para la creación de los productos. Recuerda basarte en la especificación para saber qué vas a recibir y qué deberías devolver.
-Ahora puedes crear un nuevo endpoint para hacer GET de todos los productos. Esta consulta no solo tiene que devolver el detalle de los pedidos sino también el detalle de todos los productos.
-Es importante que el GET de todos los pedidos solo pueda ser ejecutado por un admin. Un usuario logueado solo debe recibir los propios.
+Estos son los datos mínimos que debe tener la sección “Compañías”:
+• Nombre
+• Dirección
+• Email
+• Teléfono
+• Ciudad (ya que tiene asociado un país y éste su región)
 
-Paso 3: Edición de pedidos
+---
 
-El último paso para finalizar la API es brindarle al admin herramientas de edición sobre los pedidos realizados para poder actualizar el estado de los mismos. Solo te falta crear un endpoint para hacer un UPDATE sobre la ruta de pedidos, que debería ser muy parecido al que ya creaste en el CRUD de productos.
+6. Sección Contactos
+
+Como te comentamos más arriba, esta sección es la más importante del sitio y, por eso, la dejamos para el final. Si observas nuevamente el prototipo interactivo o las pantallas, podrás notar que podemos dividir la sección Contactos en cuatro operaciones relacionadas al CRUD:
+
+a. Pantalla de inicio de la sección Contactos (aquí es donde tienes la vista de los contactos de tu base).
+
+b. Crear contactos: en la vista de arriba, cuando un usuario hace click en el botón ‘Agregar contacto’, debes llevarlo a una nueva pantalla en donde podrá ingresar los datos.
+
+c. Editar contactos.
+
+d. Eliminar contactos.
 
 ---
 
 # Condiciones para entregar el proyecto:
 
-\*Archivos mínimos entregados: debes incluir como mínimo todos los archivos JS correspondientes al servidor de la API. Debes incluir el package.json con el listado de dependencias.
-
-\*Estructura de base de datos: debes enviar un archivo con queries de base de datos requeridas para crear la base de la estructura de las tablas requeridas por el proyecto o un instalador que importe todos los datos necesarios en la base de datos.
-
-\*Instrucciones para ejecución: debes incluir un README.md con pasos requeridos para inicializar el servidor. Incluye la configuración del servidor, instrucciones y archivos para poder tener la estructura base de la base de datos y cómo iniciar el servidor.
-
-\*Documentación: archivo spec.yml con la documentación de tu API.
-
-\*Enlace al proyecto sobre un repositorio: envía el enlace a tu proyecto sobre un repositorio. Si aún no tienes repositorio, crea tu usuario gratuito en GitHub, GitLab, Bitbucket o cualquier otra plataforma que trabaje con GIT.
+*Una carpeta Front que incluya subcarpetas para tus archivos HTML, CSS y JS.
+*Una carpeta Backend con todos los archivos necesarios para iniciar tu servidor.
+*README.MD con instrucciones de instalación.
+*URL de repositorio.
 
 ---
 
 # Condiciones para aprobar:
 
-\*Condición 1: Poder registrar un nuevo usuario.
+a. Si elegiste Modo Compañía: el diseño debe ser igual al de referencia (tanto la estética como el flujo de pantallas).
 
-\*Condición 2: Un usuario debe poder listar todos los productos disponibles.
+b. Login: el sitio debe permitir el registro y login únicamente de usuarios creados en el sitio.
 
-\*Condición 3: Un usuario debe poder generar un nuevo pedido al restaurante con un listado de platos que desea.
+c. Header: si el usuario logueado no es administrador no debe mostrar el link de Usuarios.
 
-\*Condición 4: El usuario con roles de administrador debe poder actualizar el estado del pedido.
+d. CRUD de Usuario (solo usuarios de perfil administrador):
+-Nombre
+-Apellido
+-Email
+-Perfil
+-Contraseña
 
-\*Condición 5: Un usuario con rol de administrador debe poder realizar las acciones de creación, edición y eliminación de recursos de productos (CRUD de productos).
+e. CRUD de Región / País / Ciudad:
+-Ciudades deben estar relacionadas con países
+-Países deben estar relacionados con regiones
 
-\*Condición 6: Un usuario sin roles de administrador no debe poder crear, editar o eliminar un producto, ni editar o eliminar un pedido. Tampoco debe poder acceder a información de otros usuarios.
+f. CRUD de Compañías:
+-Nombre
+-Teléfono
+-Email
+-Ciudad: relación con tabla o colección de ciudades.
+-Dirección
+
+g. CRUD de Contactos:
+Datos de contacto:
+-Nombre
+-Apellido
+-Email
+-Compañía: relación con tabla o colección de compañías.
+-Ciudad: relación con tabla o colección de ciudades.
+-Dirección
+-Canales de contacto: relación con uno o más canales de contacto. Si bien debes incluir Canales de contacto al cargar nuevos contactos, visibilizar esta información en la información de cada contacto en la vista principal es opcional .
+
+h. Buscador de contactos: debes realizar al menos 1 de las 3 opciones ofrecidas en la guía de este documento.
+-Añadir tags según búsquedas del usuario es una funcionalidad opcional.
+-Selección múltiple: debe mostrar la cantidad de contactos a medida que se van seleccionando; debe permitir eliminarlos.
+-Editar contacto: debe permitir editar cualquier dato de cualquier contacto.
+-Eliminar contacto: debe permitir eliminar un contacto con la previa confirmación de esta acción.
+-Importar / Exportar masivamente es una funcionalidad opcional.
 
 -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-
 
@@ -180,7 +275,7 @@ El último paso para finalizar la API es brindarle al admin herramientas de edic
 
 Comenzaremos poniendo todo en marcha por lo tanto comenzaremos iniciando los programas que se requieren para la ejecución y luego iremos paso por paso hasta iniciar el servidor. Los pasos para inicializar el servidor son los siguientes:
 
-1. Abrir Visual Studio Code y abrir la carpeta DELILAH-RESTO -> Delilah-Resto-Acamica-Proyecto-3, donde encontraremos el archivo ".env" que contendra los valores de las variables de entorno. Abrir dicho archivo en el editor de código.
+1. Abrir Visual Studio Code y abrir la carpeta DATA-WAREHOUSE -> Data-Warehouse, donde encontraremos el archivo ".env" que contendra los valores de las variables de entorno. Abrir dicho archivo en el editor de código.
 
 2. Abrir MySQL Workbench y establecer una nueva conexión, donde pondremos el usuario, el ip y el puerto de la base de datos. Crear la conexión con dichos datos.
 
@@ -190,65 +285,14 @@ Comenzaremos poniendo todo en marcha por lo tanto comenzaremos iniciando los pro
 
 5. Utilizar el archivo "DATABASE.sql" para la obtención de la estructura de los datos (tablas y relaciones) en MySQL Workbench.
 
-6. Abrir una nueva terminal en el editor de código y en ella dirigirse a la direccion "D:\Proyectos Acamica Entregables\Delilah-Resto\Delilah-Resto-Acamica-Proyecto-3\Delilah Resto"
+6. Abrir una nueva terminal en el editor de código y en ella dirigirse a la direccion " D:\Proyectos AcamicaEntregables\Data-Warehouse\Data-Warehouse\Backend"
 
 7. En dicha terminal ejecutar el comando "npm run start". Donde "start" es el script en el archivo "package.json" que nos permitira prender el servidor. Si el servidor se conecta correctamente debe mostrar los siguientes mensajes en consola:
-   "mysql://root@127.0.0.1:3306/dellilah
+   "mysql://root@127.0.0.1:3306/data_warehouse
    escuchando en puerto 3000
    Executing (default): SELECT 1+1 AS result
-   todo Ok"
+   todo OK"
 
-8. Abrir Postman para poder realizar todas los procesos CRUD de la API.
+8. Crear un usuario administrador de manera manual desde la base de datos para poder logearse correctamente. No se puede crear un usuario sin ser administrador, dado que se entiende que es un producto de venta para una compañia, es decir de entorno cerrado.
 
----
-
-## CARPETAS:
-
-Ire estableciendo información de lo que se encuentra dentro de cada carpeta y que sea de importancia, en orden de arbol y ramas. Cada carpeta sera inspeccionada de la siguiente manera:
-"Carpeta tronco -> archivos contenidos en la carpeta -> carpetas ramas contenidas dentro de la carpeta tronco/rama anterior".
-
-# DELILAH-RESTO:
-
-"DATABASE.sql": Informacion de como estan estructuradas las tablas y las relaciones de la base de datos.
-
-    # Delilah-Resto-Acamica-Proyecto-3:
-
-    "delilahRestó.json y delilahRestó.yaml": Estos archivos contienen la documentación de la API realizado con la herramienta Swagger bajo el estandar OpenAPI. Contienen lo mismo pero en distintos tipos de archivos.
-
-    "README.md": Archivo de texto que contiene informacion sobre el proyecto, sus consignas, requerimientos y modo de utilización.
-
-        # Delilah Resto:
-
-        ".env": Contiene las variables de entorno del proyecto y la palabra mágica (token de seguridad o JWT secreto).
-
-        "package.json": Archivo vital del proyecto donde se han establecido scripts, dependencias y demas informacion importante.
-
-        "package-lock.json": Archivo autogenerado luego de instalar las dependencias y instancias.
-
-        "server.js": Archivo json principal del proyecto donde se encuentran los procesos CRUD, endpoints, instancia de express, uso de librerias y donde se levanta el servidor.Los endpoints que abarca son:
-
-         "USUARIOS", donde encontraremos "/login" que es para que tanto usuarios y administradores puedan logearse y "/signup" donde nuevos usuarios (NO administradores) podrán crear una nueva cuenta brindando la informacion necesaria.
-
-         "PRODUCTOS": donde tenemos "/productos" donde los usuarios pueden hacer un get a todos los productos de la API, luego "/productos/buscar/palabra/:palabraParam" donde remplazando palabraParam por otra, la API traera los productos que contengan esa palabra. Luego encontramos "/productos/buscar/:idPlato", que donde remplazaremos idPlato por un numero entero y la API nos otorgara informacion de dicho producto al cual corresponda ese valor númerico. Utilizando "/productos" en manera de "post" e incertando los valores requeridos se podra pushear un nuevo producto a la base de datos solo y en cuanto seas administrador y estes logeado. "/productos/update/:idProducto" permitira al administrador logeado actualizar/cambiar (realizar un put) la informacion de los productos en aquellas caracteristicas presentes en los replacements. El ultimo proceso crud de este endpoint es el delete. "/productos/delete/:idPlato", donde el administrador logeado podra eliminar un producto de la lista de la base de datos, pero hay que tener en consideracion que realizar esto solo romperia las relaciones, dichos productos en los cuales se tenga un pedido, tambien sera borrado dicho pedido que contenga al producto eliminado.
-
-         "PEDIDOS": En "/pedidos" tanto usuarios como administradores podran hacer un post, es decir hacer un pedido, a la API. En cambio en "/pedidos/dashboard" los usuarios solo podran revisar los pedidos que ellos realizaron y los administradores podran ver todos los pedidos. En este tercer pathing para este endpoin el administrador podra cambiar el estado de un pedido accediendo a su id a traves de "/pedidos/update/:idPedido". Finalmente utilizando el path "/pedidos/delete/:idPedido", el administrador que se encuentre logeado podra remplazar el idPedido por un numero entero, dicho valor eliminara el pedido al que corresponda dicho valor que representa el id del pedido.
-
-        # config:
-
-            "db.js": En este archivo se realiza la conexion del código con la base de datos.
-
-        # controlers:
-
-            "adminVerification.js": Middleware encargado de verificacar que el usuario que esta intentando realizar algun proceso CRUD sea administrador. Si es administrador le otorgara permiso y si es usuario sera rechazado.
-
-        # models:
-
-            "index.js": Importa todos los modelos, establece las relaciones y las exporta.
-
-            "paymentMethod.js, pedido.js, pedidoHasProduct.js, product.js, rol.js, usuario.js": Todos estos archivos seran tratados de la misma manera para no sobreextenderme, en cada uno de ellos se establecen los modelos de cada una de las tablas que conforman la estructura de los datos en la base trabajada, donde cada fila concuerda tanto en el modelo como en la base de datos para que corra perfectamente. Estan trabajadas con sequelize y son exportadas para luego trabajar con dichos modelos en el resto del proyecto.
-
-        # services:
-
-             "index.js": importa y exporta los servicios en un solo archivo para mayor facilidad.
-
-             "pedido.service.js": Contiene los distintos servicios en si mismos, el de traerPedidos y el de crearPedido, dichos servicios son exportados al index.js y utilizados en el resto del proyecto.
+9. Apretar en "Go Live" para inicializar la aplicacion de manera local y poder verla e interactuar con ella desde su navegador.
